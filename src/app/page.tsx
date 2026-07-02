@@ -1,11 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import { SpiralMark } from "@/components/SpiralMark";
+import { HeroScroll } from "@/components/HeroScroll";
 import { featuredWorks } from "@/lib/gallery";
 import { categories, site } from "@/lib/site";
 
-const heroImage = "/gallery/jeans-01.jpg";
 const categoryImage: Record<string, string> = {
   giubbotti: "/gallery/giubbotti-01.jpg",
   jeans: "/gallery/jeans-02.jpg",
@@ -16,50 +15,18 @@ const categoryImage: Record<string, string> = {
 export default function Home() {
   return (
     <>
-      {/* ——— HERO ——— */}
-      <section className="relative flex min-h-[92vh] items-end overflow-hidden">
-        <Image
-          src={heroImage}
-          alt="Giubbotto in denim con i girasoli di Van Gogh dipinti a mano"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/40 to-ink/30" />
-        <div className="wrap relative z-10 pb-16 pt-32 sm:pb-24">
-          <p className="animate-fade-up eyebrow text-paper/80">
-            {site.city} · Custom wearable art
-          </p>
-          <h1 className="animate-fade-up mt-4 max-w-4xl text-balance font-display text-5xl font-medium leading-[0.95] text-paper sm:text-7xl md:text-8xl">
-            L&apos;arte che indossi.
-          </h1>
-          <p className="animate-fade-up mt-6 max-w-xl text-pretty font-sans text-base leading-relaxed text-paper/85 sm:text-lg">
-            Capi unici dipinti a mano, un pezzo alla volta. Giubbotti, jeans e
-            scarpe che diventano opere irripetibili.
-          </p>
-          <div className="animate-fade-up mt-9 flex flex-wrap gap-3">
-            <Link href="/portfolio" className="btn-primary">
-              Esplora il portfolio
-            </Link>
-            <Link
-              href="/commissioni"
-              className="btn border border-paper/40 text-paper hover:bg-paper hover:text-ink"
-            >
-              Richiedi un pezzo custom
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* ——— HERO dinamico (spirale + scroll reveal) ——— */}
+      <HeroScroll />
 
       {/* ——— MANIFESTO ——— */}
-      <section className="wrap py-20 sm:py-28">
+      <section className="wrap relative py-20 sm:py-28">
         <Reveal className="mx-auto max-w-3xl text-center">
-          <SpiralMark className="mx-auto mb-8 h-12 w-12 text-flame" aria-hidden />
-          <p className="text-balance font-display text-3xl leading-snug text-ink sm:text-4xl md:text-5xl">
-            Ogni pezzo nasce da una tela diversa: un giubbotto vissuto, un jeans,
-            un paio di scarpe. Li trasformo in qualcosa che nessun altro potrà
-            avere uguale.
+          <div className="relative mx-auto mb-8 h-14 w-14">
+            <Image src="/brand/spiral.png" alt="" fill className="object-contain" />
+          </div>
+          <p className="text-balance font-display text-3xl leading-[1.05] text-ink sm:text-4xl md:text-5xl">
+            Prendo un capo vissuto — un giubbotto, un jeans, un paio di scarpe — e
+            lo trasformo in qualcosa che nessun altro potrà avere uguale.
           </p>
         </Reveal>
       </section>
@@ -75,7 +42,7 @@ export default function Home() {
           </div>
           <Link
             href="/portfolio"
-            className="link-underline hidden shrink-0 font-sans text-sm text-ink/70 hover:text-ink sm:block"
+            className="link-underline hidden shrink-0 font-sans text-sm text-ink/80 hover:text-ink sm:block"
           >
             Tutte le opere →
           </Link>
@@ -91,7 +58,7 @@ export default function Home() {
             >
               <Link
                 href="/portfolio"
-                className="group relative block overflow-hidden rounded-lg bg-paper-deep"
+                className="group relative block overflow-hidden rounded-lg bg-ink/10 ring-1 ring-ink/10"
               >
                 <div
                   className={`relative ${i === 0 ? "aspect-square lg:aspect-[3/4]" : "aspect-[3/4]"}`}
@@ -103,11 +70,9 @@ export default function Home() {
                     sizes="(max-width: 1024px) 50vw, 25vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/75 to-transparent opacity-70 transition-opacity group-hover:opacity-90" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-4 text-paper">
-                    <p className="font-display text-2xl leading-tight">
-                      {w.title}
-                    </p>
+                    <p className="font-display text-2xl leading-tight">{w.title}</p>
                     <p className="mt-0.5 font-sans text-xs text-paper/80">
                       {w.reference ?? w.base}
                     </p>
@@ -119,7 +84,7 @@ export default function Home() {
         </div>
         <Link
           href="/portfolio"
-          className="mt-8 block text-center font-sans text-sm text-flame sm:hidden"
+          className="mt-8 block text-center font-sans text-sm text-ink underline sm:hidden"
         >
           Tutte le opere →
         </Link>
@@ -138,7 +103,7 @@ export default function Home() {
             <Reveal key={c.slug} as="article" delay={i * 0.06}>
               <Link
                 href={`/portfolio?cat=${c.slug}`}
-                className="group flex h-full flex-col overflow-hidden rounded-lg border border-ink/10 bg-white/40 transition-colors hover:border-ink/25"
+                className="group flex h-full flex-col overflow-hidden rounded-lg bg-ink text-paper"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
@@ -146,15 +111,15 @@ export default function Home() {
                     alt={c.label}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-5">
-                  <h3 className="font-display text-2xl text-ink">{c.label}</h3>
-                  <p className="mt-2 text-pretty font-sans text-sm leading-relaxed text-ink/65">
+                  <h3 className="font-display text-2xl text-paper">{c.label}</h3>
+                  <p className="mt-2 text-pretty font-sans text-sm leading-relaxed text-paper/70">
                     {c.blurb}
                   </p>
-                  <span className="mt-4 font-sans text-sm text-flame">
+                  <span className="mt-4 font-sans text-sm text-flame-soft">
                     Scopri →
                   </span>
                 </div>
@@ -164,7 +129,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ——— CHI SONO (teaser) ——— */}
+      {/* ——— CHI SONO (teaser, sezione navy) ——— */}
       <section className="bg-ink text-paper">
         <div className="wrap grid gap-12 py-20 sm:py-28 md:grid-cols-2 md:items-center">
           <Reveal className="relative aspect-[4/5] overflow-hidden rounded-lg">
@@ -177,18 +142,17 @@ export default function Home() {
             />
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="eyebrow text-flame">Chi sono</p>
+            <p className="eyebrow text-flame-soft">Chi sono</p>
             <h2 className="mt-3 font-display text-4xl text-paper sm:text-5xl">
               Ho fatto della mia passione il mio lavoro.
             </h2>
             <p className="mt-5 text-pretty font-sans text-base leading-relaxed text-paper/80">
               Ho iniziato con la custom art nel 2020, in un periodo difficile che
               mi ha fatto riscoprire l&apos;amore per l&apos;arte. Da allora non
-              mi sono più fermata: ho continuato a studiare, a dipingere e, a un
-              certo punto, ho trovato il coraggio di lasciare il posto fisso per
-              dedicarmi anima e corpo a MementoLab.
+              mi sono più fermata: a un certo punto ho trovato il coraggio di
+              lasciare il posto fisso per dedicarmi anima e corpo a MementoLab.
             </p>
-            <Link href="/chi-sono" className="btn-primary mt-8">
+            <Link href="/chi-sono" className="btn-onInk mt-8">
               La mia storia
             </Link>
           </Reveal>
@@ -202,12 +166,12 @@ export default function Home() {
           <h2 className="mt-3 text-balance font-display text-4xl text-ink sm:text-6xl">
             Hai un&apos;idea in mente?
           </h2>
-          <p className="mt-5 text-pretty font-sans text-base leading-relaxed text-ink/70">
+          <p className="mt-5 text-pretty font-sans text-base leading-relaxed text-ink/80">
             Dal capo che indossi già a un pezzo pensato da zero: raccontami la tua
             idea e la trasformo in un&apos;opera da indossare.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href="/commissioni" className="btn-ink">
+            <Link href="/commissioni" className="btn-primary">
               Richiedi un pezzo custom
             </Link>
             <a

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { CommissionForm } from "@/components/CommissionForm";
-import { SpiralMark } from "@/components/SpiralMark";
 
 export const metadata: Metadata = {
   title: "Commissioni",
@@ -31,12 +31,11 @@ export default function CommissioniPage() {
           {points.map((p) => (
             <li
               key={p}
-              className="flex items-start gap-3 font-sans text-sm text-ink/75"
+              className="flex items-start gap-3 font-sans text-sm text-ink/80"
             >
-              <SpiralMark
-                className="mt-0.5 h-5 w-5 shrink-0 text-flame"
-                aria-hidden
-              />
+              <span className="relative mt-0.5 block h-5 w-5 shrink-0">
+                <Image src="/brand/spiral.png" alt="" fill className="object-contain" />
+              </span>
               {p}
             </li>
           ))}

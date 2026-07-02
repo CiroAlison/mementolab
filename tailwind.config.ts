@@ -9,21 +9,26 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Brand palette — see DECISIONS.md
+        // Brand palette — arancione dominante, navy come inchiostro. Vedi DECISIONS.md
+        flame: {
+          DEFAULT: "#F1500F", // arancione vivido del brand — SFONDO dominante
+          soft: "#FF6A34",
+          deep: "#D63F07",
+          bright: "#FC5300",
+        },
         ink: {
-          DEFAULT: "#082E56", // navy — primary text / brand
+          DEFAULT: "#0A2A4C", // navy — testo / brand
           soft: "#123f6d",
           light: "#1B4B7A",
         },
-        flame: {
-          DEFAULT: "#EB5634", // burnt orange — accent
-          soft: "#f0744f",
-          deep: "#c8442a",
+        sky: {
+          DEFAULT: "#2E93C8", // azzurro pennellato della spirale — accento
+          soft: "#63b4df",
         },
         paper: {
-          DEFAULT: "#FAF6EF", // warm crema — background
-          soft: "#F3ECE0",
-          deep: "#EDE3D3",
+          DEFAULT: "#FBF1E4", // crema — pannelli di contrasto
+          soft: "#F6E7D5",
+          deep: "#EEDBC4",
         },
       },
       fontFamily: {

@@ -31,8 +31,8 @@ export function Header() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-ink/10 bg-paper/85 backdrop-blur-md"
-          : "border-b border-transparent bg-paper/0"
+          ? "border-b border-ink/10 bg-flame/90 backdrop-blur-md"
+          : "border-b border-transparent bg-flame/0"
       }`}
     >
       <div className="wrap flex h-16 items-center justify-between sm:h-20">
@@ -51,7 +51,7 @@ export function Header() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={`link-underline font-sans text-sm tracking-wide transition-colors ${
-                  active ? "text-flame" : "text-ink/80 hover:text-ink"
+                  active ? "font-semibold text-ink after:w-full" : "text-ink/75 hover:text-ink"
                 }`}
               >
                 {item.label}
@@ -96,7 +96,7 @@ export function Header() {
       {/* Mobile menu */}
       <div
         id="mobile-menu"
-        className={`fixed inset-0 top-0 z-40 flex flex-col bg-paper transition-all duration-300 md:hidden ${
+        className={`fixed inset-0 top-0 z-40 flex flex-col bg-flame transition-all duration-300 md:hidden ${
           open
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
@@ -115,8 +115,8 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`border-b border-ink/10 py-4 font-display text-3xl transition-colors ${
-                  active ? "text-flame" : "text-ink"
+                className={`border-b border-ink/15 py-4 font-display text-3xl transition-colors ${
+                  active ? "italic text-ink" : "text-ink/80"
                 }`}
                 style={{
                   transitionDelay: open ? `${80 + i * 40}ms` : "0ms",

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import { SpiralMark } from "@/components/SpiralMark";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -72,7 +71,7 @@ export default function ChiSonoPage() {
               che il tempo mi dia ragione.
             </p>
           </div>
-          <p className="mt-6 font-display text-2xl text-flame">
+          <p className="mt-6 font-display text-2xl italic text-ink">
             — {site.city}, Italia
           </p>
         </Reveal>
@@ -82,7 +81,9 @@ export default function ChiSonoPage() {
       <section className="bg-ink text-paper">
         <div className="wrap py-20 sm:py-28">
           <Reveal className="mb-12 flex items-center gap-4">
-            <SpiralMark className="h-10 w-10 shrink-0 text-flame" aria-hidden />
+            <span className="relative block h-10 w-10 shrink-0">
+              <Image src="/brand/spiral-cream.png" alt="" fill className="object-contain" />
+            </span>
             <h2 className="font-display text-4xl text-paper sm:text-5xl">
               Il percorso
             </h2>

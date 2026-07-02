@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { SiteIntro } from "@/components/SiteIntro";
 import { site } from "@/lib/site";
 
 const display = Cormorant_Garamond({
@@ -52,13 +53,13 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: "/" },
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
-    apple: [{ url: "/icon.svg" }],
+    icon: [{ url: "/apple-icon.png", type: "image/png" }],
+    apple: [{ url: "/apple-icon.png" }],
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FAF6EF",
+  themeColor: "#F1500F",
   colorScheme: "light",
 };
 
@@ -67,7 +68,8 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="it" className={`${display.variable} ${sans.variable}`}>
-      <body className="min-h-screen bg-paper antialiased">
+      <body className="min-h-screen bg-flame antialiased">
+        <SiteIntro />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-paper"

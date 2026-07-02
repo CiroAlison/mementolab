@@ -58,7 +58,7 @@ function ContactRow({
           href={href}
           target={href.startsWith("http") ? "_blank" : undefined}
           rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-          className="link-underline font-sans text-base text-ink hover:text-flame"
+          className="link-underline font-sans text-base text-ink hover:text-sky"
         >
           {value}
         </a>
