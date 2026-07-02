@@ -1,0 +1,41 @@
+// MementoLab — schema dati (Neon / Postgres serverless)
+// Vedi DECISIONS.md per i dettagli.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Richieste di commissione custom inviate dal form /commissioni
+model Commission {
+  id         String   @id @default(cuid())
+  name       String
+  email      String
+  phone      String?
+  itemType   String // giubbotto / jeans / scarpe / altro
+  idea       String // descrizione dell'idea
+  budget     String?
+  refImages  String[] // URL immagini di riferimento (opzionale)
+  status     String   @default("nuova") // nuova / in-corso / conclusa
+  createdAt  DateTime @default(now())
+}
+
+// Messaggi dal form /contatti
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+// Iscrizioni newsletter (opzionale)
+model NewsletterSignup {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
