@@ -38,3 +38,4 @@ next-env.d.ts
 # MementoLab — materiale di lavoro (non versionato)
 /gallery-manifest.json
 /ig-raw/
+.env*

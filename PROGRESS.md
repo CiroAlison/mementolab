@@ -2,6 +2,11 @@
 
 Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
 
+## 🌐 Online
+- **Sito live**: https://mementolab.vercel.app
+- **Repo**: https://github.com/CiroAlison/mementolab
+- **Vercel**: progetto `mementolab` (separato da Cala Sea), collegato al repo GitHub → deploy automatico ad ogni `git push`.
+
 ## ✅ Fatto (release 1)
 
 ### Fase 0 — Ricerca & materiali
