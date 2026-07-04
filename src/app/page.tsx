@@ -10,7 +10,7 @@ import { ParallaxImage } from "@/components/ParallaxImage";
 
 const categoryImage: Record<string, string> = {
   giubbotti: "/gallery/giubbotti-01.jpg",
-  jeans: "/gallery/jeans-02.jpg",
+  jeans: "/gallery/jeans-04.jpg",
   scarpe: "/gallery/scarpe-03.jpg",
   altro: "/gallery/altro-03.jpg",
 };
