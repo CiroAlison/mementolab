@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
-import { SpiralMark } from "./SpiralMark";
 
 export function HeroScroll() {
   const ref = useRef<HTMLDivElement>(null);
@@ -37,21 +36,28 @@ export function HeroScroll() {
           aria-hidden
           className="pointer-events-none absolute -left-[20%] top-[8%] h-[55vh] w-[55vh] opacity-[0.10]"
         >
-          <Image src="/brand/spiral.svg" alt="" fill className="spin-slow object-contain" />
+          <Image src="/brand/spiral.png" alt="" fill className="spin-slow object-contain" />
         </div>
         <div
           aria-hidden
           className="pointer-events-none absolute -right-[18%] bottom-[6%] h-[48vh] w-[48vh] opacity-[0.10]"
         >
-          <Image src="/brand/spiral.svg" alt="" fill className="spin-slow-rev object-contain" />
+          <Image src="/brand/spiral.png" alt="" fill className="spin-slow-rev object-contain" />
         </div>
 
-        {/* Spirale protagonista (vettoriale, nitida) */}
+        {/* Spirale protagonista (la spirale reale del brand) */}
         <motion.div
           style={reduce ? undefined : { rotate, scale, y: spiralY }}
           className="relative h-[46vh] max-h-[420px] w-[46vh] max-w-[420px] drop-shadow-[0_10px_40px_rgba(10,42,76,0.22)]"
         >
-          <SpiralMark className="h-full w-full" />
+          <Image
+            src="/brand/spiral.png"
+            alt="MementoLab"
+            fill
+            priority
+            sizes="46vh"
+            className="object-contain"
+          />
         </motion.div>
 
         {/* Wordmark che si rivela */}

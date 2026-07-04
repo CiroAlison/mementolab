@@ -2,24 +2,34 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { SpiralMark } from "./SpiralMark";
+import {
+  AnimatePresence,
+  motion,
+  animate,
+  useMotionValue,
+  useMotionTemplate,
+} from "framer-motion";
 
 export function SiteIntro() {
   const [show, setShow] = useState(false);
+  const deg = useMotionValue(0);
+  // La spirale reale si "dipinge" con una spazzata circolare
+  const mask = useMotionTemplate`conic-gradient(from -95deg, #000 ${deg}deg, rgba(0,0,0,0) ${deg}deg)`;
 
-  // Mostra l'intro una sola volta per sessione (mount-once).
   useEffect(() => {
     if (sessionStorage.getItem("ml_intro_seen")) return;
     setShow(true);
+    const ctrl = animate(deg, 360, { duration: 1.9, ease: [0.42, 0, 0.2, 1] });
     const t = setTimeout(() => {
       sessionStorage.setItem("ml_intro_seen", "1");
       setShow(false);
     }, 3400);
-    return () => clearTimeout(t);
-  }, []);
+    return () => {
+      ctrl.stop();
+      clearTimeout(t);
+    };
+  }, [deg]);
 
-  // Blocca lo scroll mentre l'intro è visibile.
   useEffect(() => {
     document.body.style.overflow = show ? "hidden" : "";
     return () => {
@@ -37,8 +47,21 @@ export function SiteIntro() {
           exit={{ y: "-100%" }}
           transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
         >
-          {/* La spirale si dipinge da sola (stile logo-reveal) */}
-          <SpiralMark draw duration={1.9} className="h-36 w-36 sm:h-44 sm:w-44" />
+          <motion.div
+            className="relative h-36 w-36 sm:h-44 sm:w-44 drop-shadow-[0_8px_26px_rgba(10,42,76,0.25)]"
+            initial={{ scale: 0.82, rotate: -18 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
+            style={{ WebkitMaskImage: mask, maskImage: mask }}
+          >
+            <Image
+              src="/brand/spiral.png"
+              alt=""
+              fill
+              priority
+              className="object-contain"
+            />
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}

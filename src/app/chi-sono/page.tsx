@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
+import { ParallaxImage } from "@/components/ParallaxImage";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -36,13 +37,11 @@ export default function ChiSonoPage() {
       {/* Intro */}
       <section className="wrap grid gap-10 py-16 sm:py-24 md:grid-cols-2 md:items-center md:gap-16">
         <Reveal className="relative aspect-[4/5] overflow-hidden rounded-lg bg-paper-deep">
-          <Image
+          <ParallaxImage
             src="/gallery/jeans-03.jpg"
             alt="L'artista di MementoLab mentre dipinge una tela nel suo studio"
-            fill
             priority
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover"
           />
         </Reveal>
         <Reveal delay={0.1}>
@@ -82,7 +81,7 @@ export default function ChiSonoPage() {
         <div className="wrap py-20 sm:py-28">
           <Reveal className="mb-12 flex items-center gap-4">
             <span className="relative block h-10 w-10 shrink-0">
-              <Image src="/brand/spiral-cream.svg" alt="" fill className="object-contain" />
+              <Image src="/brand/spiral-cream.png" alt="" fill className="object-contain" />
             </span>
             <h2 className="font-display text-4xl text-paper sm:text-5xl">
               Il percorso

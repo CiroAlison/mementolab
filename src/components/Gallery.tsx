@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { Work } from "@/lib/gallery";
 import { categories, type CategorySlug } from "@/lib/site";
+import { blurFor } from "@/lib/blur";
 
 type Filter = "tutti" | CategorySlug;
 
@@ -111,6 +112,8 @@ export function Gallery({
                     alt={`${w.title}${w.reference ? ` — ${w.reference}` : ""}, ${w.base}`}
                     fill
                     sizes="(max-width: 768px) 50vw, 33vw"
+                    placeholder={blurFor(w.src) ? "blur" : "empty"}
+                    blurDataURL={blurFor(w.src)}
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />

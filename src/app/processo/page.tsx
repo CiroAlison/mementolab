@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
+import { ParallaxImage } from "@/components/ParallaxImage";
 
 export const metadata: Metadata = {
   title: "Processo creativo",
@@ -75,12 +75,10 @@ export default function ProcessoPage() {
       <section className="bg-paper-soft">
         <div className="wrap grid gap-10 py-20 sm:py-24 md:grid-cols-2 md:items-center md:gap-16">
           <Reveal className="relative aspect-[4/3] overflow-hidden rounded-lg">
-            <Image
+            <ParallaxImage
               src="/gallery/scarpe-04.jpg"
               alt="Dettaglio di una lavorazione a mano MementoLab"
-              fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
             />
           </Reveal>
           <Reveal delay={0.1}>

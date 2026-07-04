@@ -4,6 +4,8 @@ import { Reveal } from "@/components/Reveal";
 import { HeroScroll } from "@/components/HeroScroll";
 import { featuredWorks } from "@/lib/gallery";
 import { categories, site } from "@/lib/site";
+import { blurFor } from "@/lib/blur";
+import { ParallaxImage } from "@/components/ParallaxImage";
 
 const categoryImage: Record<string, string> = {
   giubbotti: "/gallery/giubbotti-01.jpg",
@@ -22,7 +24,7 @@ export default function Home() {
       <section className="wrap relative py-20 sm:py-28">
         <Reveal className="mx-auto max-w-3xl text-center">
           <div className="relative mx-auto mb-8 h-14 w-14">
-            <Image src="/brand/spiral.svg" alt="" fill className="object-contain" />
+            <Image src="/brand/spiral.png" alt="" fill className="object-contain" />
           </div>
           <p className="text-balance font-display text-3xl leading-[1.05] text-ink sm:text-4xl md:text-5xl">
             Prendo un capo vissuto — un giubbotto, un jeans, un paio di scarpe — e
@@ -68,6 +70,8 @@ export default function Home() {
                     alt={`${w.title}, ${w.base}`}
                     fill
                     sizes="(max-width: 1024px) 50vw, 25vw"
+                    placeholder={blurFor(w.src) ? "blur" : "empty"}
+                    blurDataURL={blurFor(w.src)}
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
@@ -111,6 +115,8 @@ export default function Home() {
                     alt={c.label}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    placeholder={blurFor(categoryImage[c.slug]) ? "blur" : "empty"}
+                    blurDataURL={blurFor(categoryImage[c.slug])}
                     className="object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
@@ -133,12 +139,10 @@ export default function Home() {
       <section className="bg-ink text-paper">
         <div className="wrap grid gap-12 py-20 sm:py-28 md:grid-cols-2 md:items-center">
           <Reveal className="relative aspect-[4/5] overflow-hidden rounded-lg">
-            <Image
+            <ParallaxImage
               src="/gallery/jeans-03.jpg"
               alt="L'artista di MementoLab al lavoro in studio"
-              fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
             />
           </Reveal>
           <Reveal delay={0.1}>
@@ -157,6 +161,21 @@ export default function Home() {
             </Link>
           </Reveal>
         </div>
+      </section>
+
+      {/* ——— COLLABORAZIONI / PRESS ——— */}
+      <section className="wrap py-20 sm:py-28">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <p className="eyebrow">Collaborazioni</p>
+          <blockquote className="mt-5 text-balance font-display text-2xl leading-snug text-ink sm:text-3xl md:text-4xl">
+            «MementoLab trasforma la moda in arte indossabile. Ogni creazione è un
+            pezzo irripetibile, dipinto a mano e pensato per chi vuole raccontare
+            la propria personalità attraverso ciò che indossa.»
+          </blockquote>
+          <p className="mt-6 font-sans text-sm text-ink/60">
+            — NEA Connect, sul progetto MementoLab
+          </p>
+        </Reveal>
       </section>
 
       {/* ——— CTA COMMISSIONI ——— */}
