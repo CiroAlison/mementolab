@@ -15,16 +15,10 @@ export function HeroScroll() {
 
   // La spirale ruota e si rimpicciolisce restando SEMPRE al centro e interamente visibile
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 220]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.6]);
-  // Il nome si rivela con un wipe da sinistra
-  const wordClip = useTransform(
-    scrollYProgress,
-    [0.12, 0.55],
-    ["inset(0 100% 0 0)", "inset(0 0% 0 0)"],
-  );
-  const wordOpacity = useTransform(scrollYProgress, [0.12, 0.4], [0, 1]);
-  const revealOpacity = useTransform(scrollYProgress, [0.5, 0.82], [0, 1]);
-  const revealY = useTransform(scrollYProgress, [0.5, 0.82], [28, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.62]);
+  // Claim + CTA si rivelano scorrendo (niente wordmark qui)
+  const revealOpacity = useTransform(scrollYProgress, [0.15, 0.5], [0, 1]);
+  const revealY = useTransform(scrollYProgress, [0.15, 0.5], [26, 0]);
   const hintOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
 
   return (
@@ -33,19 +27,19 @@ export function HeroScroll() {
         {/* spirali di sfondo che ruotano lente */}
         <div
           aria-hidden
-          className="pointer-events-none absolute -left-[20%] top-[6%] h-[50vh] w-[50vh] opacity-[0.10]"
+          className="pointer-events-none absolute -left-[22%] top-[6%] h-[46vh] w-[46vh] opacity-[0.09]"
         >
           <Image src="/brand/spiral.png" alt="" fill className="spin-slow object-contain" />
         </div>
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-[18%] bottom-[4%] h-[44vh] w-[44vh] opacity-[0.10]"
+          className="pointer-events-none absolute -right-[20%] bottom-[4%] h-[40vh] w-[40vh] opacity-[0.09]"
         >
           <Image src="/brand/spiral.png" alt="" fill className="spin-slow-rev object-contain" />
         </div>
 
-        {/* Spirale protagonista — centrata nella parte alta, mai sotto la barra */}
-        <div className="absolute inset-x-0 top-[9%] flex h-[52%] items-center justify-center">
+        {/* Spirale protagonista — centrata in alto, mai sotto la barra, più piccola su mobile */}
+        <div className="absolute inset-x-0 top-[11%] flex h-[40%] items-center justify-center sm:top-[9%] sm:h-[50%]">
           <motion.div
             style={reduce ? undefined : { rotate, scale }}
             className="relative h-full w-auto"
@@ -56,44 +50,29 @@ export function HeroScroll() {
               width={420}
               height={420}
               priority
-              sizes="(max-width: 640px) 62vw, 40vh"
-              className="h-full w-auto object-contain drop-shadow-[0_10px_40px_rgba(10,42,76,0.18)]"
+              sizes="(max-width: 640px) 58vw, 40vh"
+              className="h-full w-auto object-contain"
             />
           </motion.div>
         </div>
 
-        {/* Blocco che si rivela: nome + claim + CTA */}
-        <div className="absolute inset-x-0 top-[58%] flex flex-col items-center px-6 text-center">
-          <motion.div
-            style={reduce ? undefined : { clipPath: wordClip, opacity: wordOpacity }}
-            className="relative h-14 w-[min(82vw,560px)] sm:h-16"
-          >
-            <Image
-              src="/brand/wordmark-full.png"
-              alt="MementoLab"
-              fill
-              priority
-              className="object-contain"
-            />
-          </motion.div>
-
-          <motion.div
-            style={reduce ? undefined : { opacity: revealOpacity, y: revealY }}
-            className="mt-6 flex flex-col items-center"
-          >
-            <p className="max-w-md text-balance font-display text-2xl leading-tight text-ink sm:text-3xl">
-              Capi unici dipinti a mano. Ogni pezzo è un&apos;opera irripetibile.
-            </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <Link href="/portfolio" className="btn-primary">
-                Esplora il portfolio
-              </Link>
-              <Link href="/commissioni" className="btn-ghost">
-                Richiedi un pezzo
-              </Link>
-            </div>
-          </motion.div>
-        </div>
+        {/* Claim + CTA che si rivelano */}
+        <motion.div
+          style={reduce ? undefined : { opacity: revealOpacity, y: revealY }}
+          className="absolute inset-x-0 top-[58%] flex flex-col items-center px-6 text-center"
+        >
+          <p className="max-w-md text-balance font-display text-3xl leading-tight text-ink sm:text-4xl">
+            Capi unici dipinti a mano. Ogni pezzo è un&apos;opera irripetibile.
+          </p>
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
+            <Link href="/portfolio" className="btn-primary">
+              Esplora il portfolio
+            </Link>
+            <Link href="/commissioni" className="btn-ghost">
+              Richiedi un pezzo
+            </Link>
+          </div>
+        </motion.div>
 
         {/* Hint scroll */}
         <motion.div

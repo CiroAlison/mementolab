@@ -48,7 +48,7 @@ export function SiteIntro() {
           transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
         >
           <motion.div
-            className="relative h-36 w-36 sm:h-44 sm:w-44 drop-shadow-[0_8px_26px_rgba(10,42,76,0.25)]"
+            className="relative h-32 w-32 sm:h-44 sm:w-44"
             initial={{ scale: 0.82, rotate: -18 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
