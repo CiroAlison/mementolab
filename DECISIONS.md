@@ -41,6 +41,18 @@ Scelte progettuali prese in autonomia, con motivazione.
 - **Honeypot** anti-spam nei form (campo nascosto `website`).
 - `prisma generate` inserito in `build` e `postinstall` per il deploy su Vercel.
 
+## Redesign "premium/dinamico" (v2)
+Dopo la prima release, il brand ha chiesto un'esperienza più forte e in movimento. Scelte:
+- **Arancione dominante**: sfondo di tutto il sito nell'arancione vivido del brand (`#F1500F`,
+  vicino al `#FC5300` del logo), navy come inchiostro, azzurro pennellato come accento.
+- **Spirale reale**: estratta in PNG trasparente dalla "O" del logo ufficiale
+  (`public/brand/spiral.png`), con relativi wordmark trasparenti. Sostituisce la spirale SVG
+  ridisegnata in precedenza.
+- **Intro cinematografica** (`SiteIntro.tsx`): all'apertura, la spirale entra e rivela il nome;
+  mostrata una volta per sessione (`sessionStorage`).
+- **Hero scroll-driven** (`HeroScroll.tsx`): con Framer Motion `useScroll`, la spirale ruota e
+  si rimpicciolisce mentre il wordmark si svela con un wipe. Rispetta `prefers-reduced-motion`.
+
 ## Contatti
 - **WhatsApp 348 592 4413** e **Instagram @mementolab_** presi dai contenuti reali.
 - **Email**: placeholder (`mementolab.art@gmail.com`) in `src/lib/site.ts` — **da confermare**.

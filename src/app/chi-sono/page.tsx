@@ -82,7 +82,7 @@ export default function ChiSonoPage() {
         <div className="wrap py-20 sm:py-28">
           <Reveal className="mb-12 flex items-center gap-4">
             <span className="relative block h-10 w-10 shrink-0">
-              <Image src="/brand/spiral-cream.png" alt="" fill className="object-contain" />
+              <Image src="/brand/spiral-cream.svg" alt="" fill className="object-contain" />
             </span>
             <h2 className="font-display text-4xl text-paper sm:text-5xl">
               Il percorso

@@ -22,7 +22,7 @@ export default function Home() {
       <section className="wrap relative py-20 sm:py-28">
         <Reveal className="mx-auto max-w-3xl text-center">
           <div className="relative mx-auto mb-8 h-14 w-14">
-            <Image src="/brand/spiral.png" alt="" fill className="object-contain" />
+            <Image src="/brand/spiral.svg" alt="" fill className="object-contain" />
           </div>
           <p className="text-balance font-display text-3xl leading-[1.05] text-ink sm:text-4xl md:text-5xl">
             Prendo un capo vissuto — un giubbotto, un jeans, un paio di scarpe — e

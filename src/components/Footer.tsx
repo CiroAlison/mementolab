@@ -11,7 +11,7 @@ export function Footer() {
         aria-hidden
         className="pointer-events-none absolute -right-16 -top-16 h-72 w-72 opacity-[0.08] sm:h-96 sm:w-96"
       >
-        <Image src="/brand/spiral-cream.png" alt="" fill className="spin-slow object-contain" />
+        <Image src="/brand/spiral-cream.svg" alt="" fill className="spin-slow object-contain" />
       </div>
       <div className="wrap relative grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
