@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { HeroScroll } from "@/components/HeroScroll";
-import { featuredWorks } from "@/lib/gallery";
+import { Marquee } from "@/components/Marquee";
+import { works } from "@/lib/gallery";
 import { categories, site } from "@/lib/site";
 import { blurFor } from "@/lib/blur";
 import { ParallaxImage } from "@/components/ParallaxImage";
@@ -33,9 +34,9 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* ——— IN EVIDENZA ——— */}
-      <section className="wrap pb-8">
-        <Reveal className="mb-10 flex items-end justify-between gap-4">
+      {/* ——— IN EVIDENZA (carosello) ——— */}
+      <section className="overflow-hidden py-8">
+        <Reveal className="wrap mb-10 flex items-end justify-between gap-4">
           <div>
             <p className="eyebrow">Selezione</p>
             <h2 className="mt-2 font-display text-4xl text-ink sm:text-5xl">
@@ -44,95 +45,81 @@ export default function Home() {
           </div>
           <Link
             href="/portfolio"
-            className="link-underline hidden shrink-0 font-sans text-sm text-ink/80 hover:text-ink sm:block"
+            className="link-underline shrink-0 font-sans text-sm text-ink/80 hover:text-ink"
           >
             Tutte le opere →
           </Link>
         </Reveal>
 
-        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
-          {featuredWorks.slice(0, 4).map((w, i) => (
-            <Reveal
+        <Marquee speed={70}>
+          {works.map((w) => (
+            <Link
               key={w.id}
-              as="article"
-              delay={i * 0.08}
-              className={i === 0 ? "col-span-2 lg:col-span-1" : ""}
+              href="/portfolio"
+              className="group relative block w-[230px] shrink-0 overflow-hidden rounded-lg bg-ink/10 sm:w-[280px]"
+              aria-label={w.title}
             >
-              <Link
-                href="/portfolio"
-                className="group relative block overflow-hidden rounded-lg bg-ink/10 ring-1 ring-ink/10"
-              >
-                <div
-                  className={`relative ${i === 0 ? "aspect-square lg:aspect-[3/4]" : "aspect-[3/4]"}`}
-                >
-                  <Image
-                    src={w.src}
-                    alt={`${w.title}, ${w.base}`}
-                    fill
-                    sizes="(max-width: 1024px) 50vw, 25vw"
-                    placeholder={blurFor(w.src) ? "blur" : "empty"}
-                    blurDataURL={blurFor(w.src)}
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-4 text-paper">
-                    <p className="font-display text-2xl leading-tight">{w.title}</p>
-                    <p className="mt-0.5 font-sans text-xs text-paper/80">
-                      {w.reference ?? w.base}
-                    </p>
-                  </div>
+              <div className="relative aspect-[3/4]">
+                <Image
+                  src={w.src}
+                  alt={`${w.title}, ${w.base}`}
+                  fill
+                  sizes="280px"
+                  placeholder={blurFor(w.src) ? "blur" : "empty"}
+                  blurDataURL={blurFor(w.src)}
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-4 text-paper">
+                  <p className="font-display text-2xl leading-tight">{w.title}</p>
+                  <p className="mt-0.5 font-sans text-xs text-paper/80">
+                    {w.reference ?? w.base}
+                  </p>
                 </div>
-              </Link>
-            </Reveal>
+              </div>
+            </Link>
           ))}
-        </div>
-        <Link
-          href="/portfolio"
-          className="mt-8 block text-center font-sans text-sm text-ink underline sm:hidden"
-        >
-          Tutte le opere →
-        </Link>
+        </Marquee>
       </section>
 
-      {/* ——— CATEGORIE ——— */}
-      <section className="wrap py-20 sm:py-28">
-        <Reveal className="mb-10">
+      {/* ——— CATEGORIE (carosello, direzione opposta) ——— */}
+      <section className="overflow-hidden py-20 sm:py-28">
+        <Reveal className="wrap mb-10">
           <p className="eyebrow">Cosa personalizzo</p>
           <h2 className="mt-2 font-display text-4xl text-ink sm:text-5xl">
             Le categorie
           </h2>
         </Reveal>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {categories.map((c, i) => (
-            <Reveal key={c.slug} as="article" delay={i * 0.06}>
-              <Link
-                href={`/portfolio?cat=${c.slug}`}
-                className="group flex h-full flex-col overflow-hidden rounded-lg bg-ink text-paper"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={categoryImage[c.slug]}
-                    alt={c.label}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    placeholder={blurFor(categoryImage[c.slug]) ? "blur" : "empty"}
-                    blurDataURL={blurFor(categoryImage[c.slug])}
-                    className="object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="font-display text-2xl text-paper">{c.label}</h3>
-                  <p className="mt-2 text-pretty font-sans text-sm leading-relaxed text-paper/70">
-                    {c.blurb}
-                  </p>
-                  <span className="mt-4 font-sans text-sm text-flame-soft">
-                    Scopri →
-                  </span>
-                </div>
-              </Link>
-            </Reveal>
+        <Marquee reverse speed={55}>
+          {categories.map((c) => (
+            <Link
+              key={c.slug}
+              href={`/portfolio?cat=${c.slug}`}
+              className="group flex w-[280px] shrink-0 flex-col overflow-hidden rounded-lg bg-ink text-paper sm:w-[340px]"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={categoryImage[c.slug]}
+                  alt={c.label}
+                  fill
+                  sizes="340px"
+                  placeholder={blurFor(categoryImage[c.slug]) ? "blur" : "empty"}
+                  blurDataURL={blurFor(categoryImage[c.slug])}
+                  className="object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-5">
+                <h3 className="font-display text-2xl text-paper">{c.label}</h3>
+                <p className="mt-2 text-pretty font-sans text-sm leading-relaxed text-paper/70">
+                  {c.blurb}
+                </p>
+                <span className="mt-4 font-sans text-sm text-flame-soft">
+                  Scopri →
+                </span>
+              </div>
+            </Link>
           ))}
-        </div>
+        </Marquee>
       </section>
 
       {/* ——— CHI SONO (teaser, sezione navy) ——— */}
