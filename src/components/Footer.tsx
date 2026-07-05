@@ -80,7 +80,12 @@ export function Footer() {
         <p>
           © {new Date().getFullYear()} {site.name}. Tutti i pezzi sono unici.
         </p>
-        <p>Dipinto a mano a {site.city}.</p>
+        <div className="flex items-center gap-4">
+          <Link href="/privacy" className="transition-colors hover:text-ink">
+            Privacy Policy
+          </Link>
+          <span>Dipinto a mano a {site.city}.</span>
+        </div>
       </div>
     </footer>
   );

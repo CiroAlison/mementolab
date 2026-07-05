@@ -38,8 +38,9 @@ export default function Home() {
       </section>
 
       {/* ——— IN EVIDENZA (carosello) ——— */}
-      <section className="overflow-hidden py-8">
-        <Reveal className="wrap mb-10 flex items-end justify-between gap-4">
+      <section className="relative overflow-hidden py-8">
+        <SectionSpiral className="-right-16 -top-4 h-64 w-64 sm:h-80 sm:w-80" />
+        <Reveal className="wrap relative z-10 mb-10 flex items-end justify-between gap-4">
           <div>
             <p className="eyebrow">Selezione</p>
             <h2 className="mt-2 font-display text-4xl text-ink sm:text-5xl">
@@ -86,8 +87,9 @@ export default function Home() {
       </section>
 
       {/* ——— CATEGORIE (carosello, direzione opposta) ——— */}
-      <section className="overflow-hidden py-20 sm:py-28">
-        <Reveal className="wrap mb-10">
+      <section className="relative overflow-hidden py-20 sm:py-28">
+        <SectionSpiral reverse className="-left-16 -top-4 h-64 w-64 sm:h-80 sm:w-80" />
+        <Reveal className="wrap relative z-10 mb-10">
           <p className="eyebrow">Cosa personalizzo</p>
           <h2 className="mt-2 font-display text-4xl text-ink sm:text-5xl">
             Le categorie

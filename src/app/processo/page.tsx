@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { ParallaxImage } from "@/components/ParallaxImage";
-import { ProcessTimeline } from "@/components/ProcessTimeline";
+import { ProcessScrolly } from "@/components/ProcessScrolly";
 import { SectionSpiral } from "@/components/SectionSpiral";
 
 export const metadata: Metadata = {
@@ -48,9 +48,8 @@ const steps = [
 export default function ProcessoPage() {
   return (
     <div>
-      <section className="relative overflow-hidden bg-paper py-16 sm:py-24">
+      <section className="relative overflow-hidden bg-paper pt-16 sm:pt-24">
         <SectionSpiral className="-right-24 top-10 h-80 w-80" opacity={0.05} />
-        <SectionSpiral reverse className="-left-24 bottom-10 h-72 w-72" opacity={0.05} />
         <div className="wrap relative z-10">
           <header className="mx-auto max-w-2xl text-center">
             <p className="eyebrow">Processo creativo</p>
@@ -59,15 +58,14 @@ export default function ProcessoPage() {
             </h1>
             <p className="mt-5 text-pretty font-sans text-base leading-relaxed text-ink/70">
               Ogni commissione è un piccolo viaggio a due: dalla prima idea al
-              capo finito. Ecco le fasi che seguiamo insieme.
+              capo finito. Scorri per vivere le fasi, una a una.
             </p>
           </header>
-
-          <div className="mt-16">
-            <ProcessTimeline steps={steps} />
-          </div>
         </div>
       </section>
+
+      {/* Esperienza guidata dallo scroll */}
+      <ProcessScrolly steps={steps} />
 
       {/* Materiali & tempi */}
       <section className="bg-paper-soft">
