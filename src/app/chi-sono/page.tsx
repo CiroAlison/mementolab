@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { ParallaxImage } from "@/components/ParallaxImage";
+import { SectionSpiral } from "@/components/SectionSpiral";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -77,8 +78,9 @@ export default function ChiSonoPage() {
       </section>
 
       {/* Milestones */}
-      <section className="bg-ink text-paper">
-        <div className="wrap py-20 sm:py-28">
+      <section className="relative overflow-hidden bg-ink text-paper">
+        <SectionSpiral cream className="-right-24 -top-16 h-96 w-96" opacity={0.05} />
+        <div className="wrap relative z-10 py-20 sm:py-28">
           <Reveal className="mb-12 flex items-center gap-4">
             <span className="relative block h-10 w-10 shrink-0">
               <Image src="/brand/spiral-cream.png" alt="" fill className="object-contain" />
@@ -106,8 +108,9 @@ export default function ChiSonoPage() {
       </section>
 
       {/* Ispirazioni */}
-      <section className="wrap py-20 text-center sm:py-28">
-        <Reveal className="mx-auto max-w-3xl">
+      <section className="relative overflow-hidden py-20 text-center sm:py-28">
+        <SectionSpiral reverse className="-left-20 -bottom-16 h-80 w-80" />
+        <Reveal className="wrap relative z-10 mx-auto max-w-3xl">
           <p className="eyebrow">Ispirazioni</p>
           <h2 className="mt-3 text-balance font-display text-3xl leading-snug text-ink sm:text-4xl">
             Da Van Gogh a Basquiat, da Klimt alla cultura pop: prendo un

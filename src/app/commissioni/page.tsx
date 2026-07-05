@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { CommissionForm } from "@/components/CommissionForm";
 import { Faq, type FaqItem } from "@/components/Faq";
+import { SectionSpiral } from "@/components/SectionSpiral";
 
 const faq: FaqItem[] = [
   {
@@ -72,8 +73,9 @@ export default function CommissioniPage() {
       </div>
     </section>
 
-    <section className="wrap pb-20 sm:pb-28">
-      <div className="mx-auto max-w-3xl">
+    <section className="relative overflow-hidden pb-20 sm:pb-28">
+      <SectionSpiral reverse className="-right-20 bottom-0 h-72 w-72" />
+      <div className="wrap relative z-10 mx-auto max-w-3xl">
         <p className="eyebrow">Domande frequenti</p>
         <h2 className="mb-8 mt-2 font-display text-4xl text-ink sm:text-5xl">
           Come funziona

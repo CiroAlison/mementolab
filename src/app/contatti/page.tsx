@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
+import { SectionSpiral } from "@/components/SectionSpiral";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -11,7 +12,9 @@ export const metadata: Metadata = {
 
 export default function ContattiPage() {
   return (
-    <section className="wrap grid gap-12 py-16 sm:py-24 lg:grid-cols-2 lg:gap-20">
+    <section className="relative overflow-hidden py-16 sm:py-24">
+      <SectionSpiral className="-right-24 top-10 h-80 w-80" />
+      <div className="wrap relative z-10 grid gap-12 lg:grid-cols-2 lg:gap-20">
       <div>
         <p className="eyebrow">Contatti</p>
         <h1 className="mt-3 font-display text-5xl leading-[0.95] text-ink sm:text-6xl">
@@ -36,6 +39,7 @@ export default function ContattiPage() {
 
       <div className="rounded-2xl border border-ink/10 bg-paper-soft/60 p-6 sm:p-8">
         <ContactForm />
+      </div>
       </div>
     </section>
   );

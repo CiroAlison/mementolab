@@ -68,8 +68,9 @@ export default function ProcessoPage() {
       <ProcessScrolly steps={steps} />
 
       {/* Materiali & tempi */}
-      <section className="bg-paper-soft">
-        <div className="wrap grid gap-10 py-20 sm:py-24 md:grid-cols-2 md:items-center md:gap-16">
+      <section className="relative overflow-hidden bg-paper-soft">
+        <SectionSpiral reverse className="-left-24 top-1/2 h-80 w-80 -translate-y-1/2" opacity={0.05} />
+        <div className="wrap relative z-10 grid gap-10 py-20 sm:py-24 md:grid-cols-2 md:items-center md:gap-16">
           <Reveal className="relative aspect-[4/3] overflow-hidden rounded-lg">
             <ParallaxImage
               src="/gallery/scarpe-04.jpg"
