@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { HeroScroll } from "@/components/HeroScroll";
 import { Marquee } from "@/components/Marquee";
-import { BrandReveal } from "@/components/BrandReveal";
 import { works } from "@/lib/gallery";
 import { categories, site } from "@/lib/site";
 import { blurFor } from "@/lib/blur";
@@ -122,9 +121,6 @@ export default function Home() {
           ))}
         </Marquee>
       </section>
-
-      {/* ——— REVEAL DEL NOME (dopo i caroselli) ——— */}
-      <BrandReveal />
 
       {/* ——— CHI SONO (teaser, sezione navy) ——— */}
       <section className="bg-ink text-paper">

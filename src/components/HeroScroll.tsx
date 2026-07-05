@@ -16,9 +16,15 @@ export function HeroScroll() {
   // La spirale ruota e si rimpicciolisce restando SEMPRE al centro e interamente visibile
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 220]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.62]);
-  // Claim + CTA si rivelano scorrendo (niente wordmark qui)
-  const revealOpacity = useTransform(scrollYProgress, [0.15, 0.5], [0, 1]);
-  const revealY = useTransform(scrollYProgress, [0.15, 0.5], [26, 0]);
+  // Il nome MEMENTOLAB, SOTTO la spirale, si rivela con un wipe mentre si scrolla
+  const wordClip = useTransform(
+    scrollYProgress,
+    [0.12, 0.5],
+    ["inset(0 100% 0 0)", "inset(0 0% 0 0)"],
+  );
+  const wordOpacity = useTransform(scrollYProgress, [0.12, 0.32], [0, 1]);
+  const revealOpacity = useTransform(scrollYProgress, [0.45, 0.8], [0, 1]);
+  const revealY = useTransform(scrollYProgress, [0.45, 0.8], [24, 0]);
   const hintOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
 
   return (
@@ -39,7 +45,7 @@ export function HeroScroll() {
         </div>
 
         {/* Spirale protagonista — centrata in alto, mai sotto la barra, più piccola su mobile */}
-        <div className="absolute inset-x-0 top-[11%] flex h-[40%] items-center justify-center sm:top-[9%] sm:h-[50%]">
+        <div className="absolute inset-x-0 top-[10%] flex h-[38%] items-center justify-center sm:top-[8%] sm:h-[46%]">
           <motion.div
             style={reduce ? undefined : { rotate, scale }}
             className="relative h-full w-auto"
@@ -50,29 +56,45 @@ export function HeroScroll() {
               width={420}
               height={420}
               priority
-              sizes="(max-width: 640px) 58vw, 40vh"
+              sizes="(max-width: 640px) 55vw, 38vh"
               className="h-full w-auto object-contain"
             />
           </motion.div>
         </div>
 
-        {/* Claim + CTA che si rivelano */}
-        <motion.div
-          style={reduce ? undefined : { opacity: revealOpacity, y: revealY }}
-          className="absolute inset-x-0 top-[58%] flex flex-col items-center px-6 text-center"
-        >
-          <p className="max-w-md text-balance font-display text-3xl leading-tight text-ink sm:text-4xl">
-            Capi unici dipinti a mano. Ogni pezzo è un&apos;opera irripetibile.
-          </p>
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Link href="/portfolio" className="btn-primary">
-              Esplora il portfolio
-            </Link>
-            <Link href="/commissioni" className="btn-ghost">
-              Richiedi un pezzo
-            </Link>
-          </div>
-        </motion.div>
+        {/* SOTTO la spirale: il nome che si rivela, poi claim + CTA */}
+        <div className="absolute inset-x-0 top-[53%] flex flex-col items-center px-6 text-center">
+          {/* Wordmark MEMENTOLAB (reveal legato allo scroll) */}
+          <motion.div
+            style={reduce ? undefined : { clipPath: wordClip, opacity: wordOpacity }}
+            className="relative h-11 w-[min(78vw,520px)] sm:h-16"
+          >
+            <Image
+              src="/brand/wordmark-full.png"
+              alt="MementoLab"
+              fill
+              priority
+              className="object-contain"
+            />
+          </motion.div>
+
+          <motion.div
+            style={reduce ? undefined : { opacity: revealOpacity, y: revealY }}
+            className="mt-5 flex flex-col items-center"
+          >
+            <p className="max-w-md text-balance font-display text-xl leading-tight text-ink sm:text-2xl">
+              Capi unici dipinti a mano. Ogni pezzo è un&apos;opera irripetibile.
+            </p>
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
+              <Link href="/portfolio" className="btn-primary">
+                Esplora il portfolio
+              </Link>
+              <Link href="/commissioni" className="btn-ghost">
+                Richiedi un pezzo
+              </Link>
+            </div>
+          </motion.div>
+        </div>
 
         {/* Hint scroll */}
         <motion.div
