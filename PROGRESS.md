@@ -6,6 +6,23 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
 - **Sito live**: https://mementolab.vercel.app
 - **Repo**: https://github.com/CiroAlison/mementolab
 - **Vercel**: progetto `mementolab` (separato da Cala Sea), collegato al repo GitHub → deploy automatico ad ogni `git push`.
+- **Guida completa per ricostruire**: vedi `HANDOFF.md`.
+
+## 🔁 Iterazioni successive (dopo la release 1)
+- **v2 — Premium/dinamico**: arancione dominante su tutto, intro cinematografica,
+  hero con spirale che si rivela allo scroll, asset reali (spirale + wordmark dal logo).
+- **v3 — Qualità spirale**: provata la spirale vettoriale → **scartata**, ripristinata
+  quella reale (pennellata). Poi ripulita per togliere l'alone arancione.
+- **v4 — Immagini & contenuti**: blur-up + parallasse sulle foto; sezione
+  "Collaborazioni" (NEA Connect); FAQ commissioni ad accordion.
+- **v5 — Hero & caroselli**: spirale sempre visibile (non va sotto la barra);
+  "In evidenza" e "Categorie" diventati caroselli scorrevoli.
+- **v6 — Footer & categoria**: footer chiaro (crema); categoria Jeans con foto di un pantalone.
+- **v7 — Mobile**: menu mobile a overlay navy; caroselli trascinabili col dito;
+  spirale più piccola su mobile; alone rimosso anche nell'intro.
+- **v8 — Reveal nome & processo**: sezione BrandReveal (il nome MEMENTOLAB si svela dopo
+  i caroselli); pagina Processo trasformata in timeline interattiva; intro con reveal del
+  nome anticipato e più lungo. Documentazione completa (`HANDOFF.md`).
 
 ## ✅ Fatto (release 1)
 

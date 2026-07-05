@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { ParallaxImage } from "@/components/ParallaxImage";
+import { ProcessTimeline } from "@/components/ProcessTimeline";
 
 export const metadata: Metadata = {
   title: "Processo creativo",
@@ -58,16 +59,8 @@ export default function ProcessoPage() {
           </p>
         </header>
 
-        <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-          {steps.map((s, i) => (
-            <Reveal key={s.n} as="article" delay={(i % 3) * 0.08}>
-              <span className="font-display text-6xl text-ink/20">{s.n}</span>
-              <h2 className="-mt-3 font-display text-3xl text-ink">{s.title}</h2>
-              <p className="mt-3 text-pretty font-sans text-sm leading-relaxed text-ink/70">
-                {s.text}
-              </p>
-            </Reveal>
-          ))}
+        <div className="mt-14">
+          <ProcessTimeline steps={steps} />
         </div>
       </section>
 

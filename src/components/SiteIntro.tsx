@@ -19,11 +19,11 @@ export function SiteIntro() {
   useEffect(() => {
     if (sessionStorage.getItem("ml_intro_seen")) return;
     setShow(true);
-    const ctrl = animate(deg, 360, { duration: 1.9, ease: [0.42, 0, 0.2, 1] });
+    const ctrl = animate(deg, 360, { duration: 1.6, ease: [0.42, 0, 0.2, 1] });
     const t = setTimeout(() => {
       sessionStorage.setItem("ml_intro_seen", "1");
       setShow(false);
-    }, 3400);
+    }, 4000);
     return () => {
       ctrl.stop();
       clearTimeout(t);
@@ -66,8 +66,8 @@ export function SiteIntro() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.95, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="relative mt-8 h-8 w-64 sm:h-10 sm:w-80"
+            transition={{ delay: 1.35, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="relative mt-8 h-9 w-72 sm:h-10 sm:w-80"
           >
             <Image
               src="/brand/wordmark-full.png"
@@ -81,7 +81,7 @@ export function SiteIntro() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 2.4, duration: 0.6 }}
+            transition={{ delay: 1.85, duration: 0.6 }}
             className="mt-5 font-sans text-xs uppercase tracking-wide2 text-ink/70"
           >
             L&apos;arte che indossi
