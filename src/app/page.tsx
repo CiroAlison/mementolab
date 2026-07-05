@@ -7,6 +7,7 @@ import { works } from "@/lib/gallery";
 import { categories, site } from "@/lib/site";
 import { blurFor } from "@/lib/blur";
 import { ParallaxImage } from "@/components/ParallaxImage";
+import { SectionSpiral } from "@/components/SectionSpiral";
 
 const categoryImage: Record<string, string> = {
   giubbotti: "/gallery/giubbotti-01.jpg",
@@ -22,8 +23,10 @@ export default function Home() {
       <HeroScroll />
 
       {/* ——— MANIFESTO ——— */}
-      <section className="wrap relative py-20 sm:py-28">
-        <Reveal className="mx-auto max-w-3xl text-center">
+      <section className="relative overflow-hidden py-20 sm:py-28">
+        <SectionSpiral className="-left-24 top-0 h-72 w-72 sm:h-96 sm:w-96" />
+        <SectionSpiral reverse className="-right-24 bottom-0 h-64 w-64 sm:h-80 sm:w-80" />
+        <Reveal className="wrap relative z-10 mx-auto max-w-3xl text-center">
           <div className="relative mx-auto mb-8 h-14 w-14">
             <Image src="/brand/spiral.png" alt="" fill className="object-contain" />
           </div>
@@ -123,8 +126,9 @@ export default function Home() {
       </section>
 
       {/* ——— CHI SONO (teaser, sezione navy) ——— */}
-      <section className="bg-ink text-paper">
-        <div className="wrap grid gap-12 py-20 sm:py-28 md:grid-cols-2 md:items-center">
+      <section className="relative overflow-hidden bg-ink text-paper">
+        <SectionSpiral cream className="-right-28 -top-16 h-96 w-96" opacity={0.05} />
+        <div className="wrap relative z-10 grid gap-12 py-20 sm:py-28 md:grid-cols-2 md:items-center">
           <Reveal className="relative aspect-[4/5] overflow-hidden rounded-lg">
             <ParallaxImage
               src="/gallery/jeans-03.jpg"
@@ -151,8 +155,9 @@ export default function Home() {
       </section>
 
       {/* ——— COLLABORAZIONI / PRESS ——— */}
-      <section className="wrap py-20 sm:py-28">
-        <Reveal className="mx-auto max-w-3xl text-center">
+      <section className="relative overflow-hidden py-20 sm:py-28">
+        <SectionSpiral className="left-1/2 top-1/2 h-[130%] w-[130%] -translate-x-1/2 -translate-y-1/2" opacity={0.04} />
+        <Reveal className="wrap relative z-10 mx-auto max-w-3xl text-center">
           <p className="eyebrow">Collaborazioni</p>
           <blockquote className="mt-5 text-balance font-display text-2xl leading-snug text-ink sm:text-3xl md:text-4xl">
             «MementoLab trasforma la moda in arte indossabile. Ogni creazione è un
@@ -166,8 +171,9 @@ export default function Home() {
       </section>
 
       {/* ——— CTA COMMISSIONI ——— */}
-      <section className="wrap py-20 text-center sm:py-28">
-        <Reveal className="mx-auto max-w-2xl">
+      <section className="relative overflow-hidden py-20 text-center sm:py-28">
+        <SectionSpiral reverse className="-left-20 -bottom-16 h-80 w-80" />
+        <Reveal className="wrap relative z-10 mx-auto max-w-2xl">
           <p className="eyebrow">Su commissione</p>
           <h2 className="mt-3 text-balance font-display text-4xl text-ink sm:text-6xl">
             Hai un&apos;idea in mente?

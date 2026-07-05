@@ -30,19 +30,7 @@ export function HeroScroll() {
   return (
     <section ref={ref} className="relative h-[240vh]">
       <div className="sticky top-0 h-[100svh] overflow-hidden">
-        {/* spirali di sfondo che ruotano lente */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -left-[22%] top-[6%] h-[46vh] w-[46vh] opacity-[0.09]"
-        >
-          <Image src="/brand/spiral.png" alt="" fill className="spin-slow object-contain" />
-        </div>
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-[20%] bottom-[4%] h-[40vh] w-[40vh] opacity-[0.09]"
-        >
-          <Image src="/brand/spiral.png" alt="" fill className="spin-slow-rev object-contain" />
-        </div>
+        {/* Sfondo pulito: nessuna filigrana qui dietro la spirale che gira */}
 
         {/* Spirale protagonista — centrata in alto, mai sotto la barra, più piccola su mobile */}
         <div className="absolute inset-x-0 top-[10%] flex h-[38%] items-center justify-center sm:top-[8%] sm:h-[46%]">

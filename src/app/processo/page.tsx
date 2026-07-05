@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { ParallaxImage } from "@/components/ParallaxImage";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
+import { SectionSpiral } from "@/components/SectionSpiral";
 
 export const metadata: Metadata = {
   title: "Processo creativo",
@@ -47,20 +48,24 @@ const steps = [
 export default function ProcessoPage() {
   return (
     <div>
-      <section className="wrap py-16 sm:py-24">
-        <header className="max-w-2xl">
-          <p className="eyebrow">Processo creativo</p>
-          <h1 className="mt-3 font-display text-5xl text-ink sm:text-7xl">
-            Come nasce un pezzo
-          </h1>
-          <p className="mt-5 text-pretty font-sans text-base leading-relaxed text-ink/70">
-            Ogni commissione è un piccolo viaggio a due: dalla prima idea al capo
-            finito. Ecco le fasi che seguiamo insieme.
-          </p>
-        </header>
+      <section className="relative overflow-hidden bg-paper py-16 sm:py-24">
+        <SectionSpiral className="-right-24 top-10 h-80 w-80" opacity={0.05} />
+        <SectionSpiral reverse className="-left-24 bottom-10 h-72 w-72" opacity={0.05} />
+        <div className="wrap relative z-10">
+          <header className="mx-auto max-w-2xl text-center">
+            <p className="eyebrow">Processo creativo</p>
+            <h1 className="mt-3 font-display text-5xl text-ink sm:text-7xl">
+              Come nasce un pezzo
+            </h1>
+            <p className="mt-5 text-pretty font-sans text-base leading-relaxed text-ink/70">
+              Ogni commissione è un piccolo viaggio a due: dalla prima idea al
+              capo finito. Ecco le fasi che seguiamo insieme.
+            </p>
+          </header>
 
-        <div className="mt-14">
-          <ProcessTimeline steps={steps} />
+          <div className="mt-16">
+            <ProcessTimeline steps={steps} />
+          </div>
         </div>
       </section>
 

@@ -1,56 +1,71 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { SpiralNode } from "./SpiralNode";
 
 export type Step = { n: string; title: string; text: string };
 
 export function ProcessTimeline({ steps }: { steps: Step[] }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 0.6", "end 0.75"],
-  });
-  const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
-
   return (
-    <div ref={ref} className="relative mx-auto max-w-2xl pl-2">
-      {/* linea base */}
-      <div className="absolute left-[15px] top-3 h-[calc(100%-1.5rem)] w-px bg-ink/15" />
-      {/* linea di avanzamento che si riempie scorrendo */}
-      <motion.div
-        style={reduce ? { scaleY: 1 } : { scaleY: lineScale }}
-        className="absolute left-[15px] top-3 h-[calc(100%-1.5rem)] w-px origin-top bg-flame"
-      />
+    <ol className="relative mx-auto max-w-4xl">
+      {/* linea verticale centrale (solo desktop) */}
+      <div className="absolute left-1/2 top-8 hidden h-[calc(100%-4rem)] w-px -translate-x-1/2 bg-ink/10 md:block" />
 
-      <ol className="space-y-8">
-        {steps.map((s) => (
-          <motion.li
+      {steps.map((s, i) => {
+        const flip = i % 2 === 1;
+        return (
+          <li
             key={s.n}
-            initial={reduce ? false : { opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-70px" }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="relative pl-12 sm:pl-16"
+            className="relative flex flex-col gap-2 border-b border-ink/10 py-8 last:border-0 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-8 md:border-0"
           >
-            {/* pallino con numero */}
-            <span className="absolute left-0 top-1 flex h-8 w-8 items-center justify-center rounded-full bg-flame font-display text-sm font-medium text-paper shadow-sm">
-              {s.n}
-            </span>
-            <div className="group relative overflow-hidden rounded-xl border border-ink/10 bg-white/40 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-ink/25 hover:bg-white/70 sm:p-6">
-              {/* numero fantasma decorativo */}
-              <span className="pointer-events-none absolute -right-2 -top-6 font-display text-8xl text-ink/[0.05] transition-transform duration-500 group-hover:scale-110">
+            {/* NUMERO gigante outline */}
+            <motion.div
+              initial={{ opacity: 0, x: flip ? 40 : -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className={`flex items-center ${
+                flip ? "md:order-3 md:justify-start" : "md:order-1 md:justify-end"
+              }`}
+            >
+              <span
+                className="select-none font-display text-6xl leading-none text-transparent sm:text-7xl md:text-[8.5rem]"
+                style={{ WebkitTextStroke: "2px #F1500F" }}
+              >
                 {s.n}
               </span>
-              <h3 className="relative font-display text-2xl text-ink">{s.title}</h3>
-              <p className="relative mt-2 text-pretty font-sans text-sm leading-relaxed text-ink/70">
+            </motion.div>
+
+            {/* nodo spirale (solo desktop, sulla linea) */}
+            <div className="hidden md:order-2 md:block">
+              <SpiralNode />
+            </div>
+
+            {/* CONTENUTO */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className={
+                flip ? "md:order-1 md:pr-6 md:text-right" : "md:order-3 md:pl-6"
+              }
+            >
+              <p className="eyebrow mb-1">Fase {s.n}</p>
+              <h3 className="font-display text-3xl text-ink sm:text-4xl">
+                {s.title}
+              </h3>
+              <p
+                className={`mt-3 max-w-sm text-pretty font-sans text-sm leading-relaxed text-ink/70 ${
+                  flip ? "md:ml-auto" : ""
+                }`}
+              >
                 {s.text}
               </p>
-            </div>
-          </motion.li>
-        ))}
-      </ol>
-    </div>
+            </motion.div>
+          </li>
+        );
+      })}
+    </ol>
   );
 }
