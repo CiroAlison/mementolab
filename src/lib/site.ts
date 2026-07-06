@@ -14,6 +14,8 @@ export const site = {
   whatsapp: "393485924413", // 348 592 4413
   instagram: "https://www.instagram.com/mementolab_/",
   instagramHandle: "@mementolab_",
+  tiktok: "https://www.tiktok.com/@mementolab_",
+  tiktokHandle: "@mementolab_",
 } as const;
 
 export const nav = [

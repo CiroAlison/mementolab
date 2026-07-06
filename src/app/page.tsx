@@ -194,7 +194,15 @@ export default function Home() {
               rel="noopener noreferrer"
               className="btn-ghost"
             >
-              Seguimi su Instagram
+              Instagram
+            </a>
+            <a
+              href={site.tiktok}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost"
+            >
+              TikTok
             </a>
           </div>
         </Reveal>

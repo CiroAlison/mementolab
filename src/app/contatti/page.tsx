@@ -27,6 +27,7 @@ export default function ContattiPage() {
 
         <div className="mt-10 space-y-5">
           <ContactRow label="Instagram" value={site.instagramHandle} href={site.instagram} />
+          <ContactRow label="TikTok" value={site.tiktokHandle} href={site.tiktok} />
           <ContactRow
             label="WhatsApp"
             value="348 592 4413"

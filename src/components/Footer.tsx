@@ -19,14 +19,24 @@ export function Footer() {
           <p className="mt-5 max-w-xs text-pretty font-sans text-sm leading-relaxed text-ink/70">
             {site.tagline}. Capi unici dipinti a mano, un pezzo alla volta.
           </p>
-          <a
-            href={site.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 font-sans text-sm text-ink/80 transition-colors hover:text-flame"
-          >
-            <span aria-hidden>◍</span> {site.instagramHandle}
-          </a>
+          <div className="mt-6 flex flex-col gap-2">
+            <a
+              href={site.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-sans text-sm text-ink/80 transition-colors hover:text-flame"
+            >
+              <span aria-hidden>◍</span> Instagram {site.instagramHandle}
+            </a>
+            <a
+              href={site.tiktok}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-sans text-sm text-ink/80 transition-colors hover:text-flame"
+            >
+              <span aria-hidden>♪</span> TikTok {site.tiktokHandle}
+            </a>
+          </div>
         </div>
 
         <nav aria-label="Footer">
