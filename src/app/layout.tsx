@@ -4,6 +4,8 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SiteIntro } from "@/components/SiteIntro";
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { site } from "@/lib/site";
 
 const display = Cormorant_Garamond({
@@ -70,6 +72,8 @@ export default function RootLayout({
     <html lang="it" className={`${display.variable} ${sans.variable}`}>
       <body className="min-h-screen bg-flame antialiased">
         <SiteIntro />
+        <SmoothScroll />
+        <WhatsAppFab />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-paper"

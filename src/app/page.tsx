@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { HeroScroll } from "@/components/HeroScroll";
 import { Marquee } from "@/components/Marquee";
+import { InMovimento } from "@/components/InMovimento";
+import { Testimonials } from "@/components/Testimonials";
 import { works } from "@/lib/gallery";
 import { categories, site } from "@/lib/site";
 import { blurFor } from "@/lib/blur";
@@ -156,21 +158,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ——— COLLABORAZIONI / PRESS ——— */}
-      <section className="relative overflow-hidden py-20 sm:py-28">
-        <SectionSpiral className="left-1/2 top-1/2 h-[130%] w-[130%] -translate-x-1/2 -translate-y-1/2" opacity={0.04} />
-        <Reveal className="wrap relative z-10 mx-auto max-w-3xl text-center">
-          <p className="eyebrow">Collaborazioni</p>
-          <blockquote className="mt-5 text-balance font-display text-2xl leading-snug text-ink sm:text-3xl md:text-4xl">
-            «MementoLab trasforma la moda in arte indossabile. Ogni creazione è un
-            pezzo irripetibile, dipinto a mano e pensato per chi vuole raccontare
-            la propria personalità attraverso ciò che indossa.»
-          </blockquote>
-          <p className="mt-6 font-sans text-sm text-ink/60">
-            — NEA Connect, sul progetto MementoLab
-          </p>
-        </Reveal>
-      </section>
+      {/* ——— TESTIMONIANZE ——— */}
+      <Testimonials />
+
+      {/* ——— IN MOVIMENTO (video) ——— */}
+      <InMovimento />
 
       {/* ——— CTA COMMISSIONI ——— */}
       <section className="relative overflow-hidden py-20 text-center sm:py-28">
