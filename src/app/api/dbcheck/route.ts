@@ -9,6 +9,7 @@ export async function GET() {
   const prisma = getPrisma();
   if (!prisma) return NextResponse.json({ db: false });
   try {
+    await prisma.commission.deleteMany({ where: { email: "test@example.com" } });
     const commissions = await prisma.commission.count();
     const messages = await prisma.contactMessage.count();
     return NextResponse.json({ db: true, commissions, messages });
