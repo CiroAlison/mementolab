@@ -65,12 +65,12 @@ export function ContactForm() {
       <div className="rounded-xl border border-ink/15 bg-white/60 p-8 text-center">
         <p className="font-display text-4xl text-ink">Ci siamo ✦</p>
         <p className="mt-3 font-sans text-sm text-ink/70">
+          {done === "ig" &&
+            "Ho copiato il messaggio e ti ho aperto il DM su Instagram: incollalo nella chat (tieni premuto → Incolla, o ⌘/Ctrl+V) e invialo."}
           {done === "wa" &&
             "Ti ho aperto WhatsApp con il messaggio pronto: premi invio."}
           {done === "email" &&
             "Ti ho aperto l'email con il messaggio pronto: premi invia."}
-          {done === "ig" &&
-            "Ho copiato il messaggio e aperto il DM su Instagram: incollalo (⌘/Ctrl + V) e invia."}
         </p>
         <button type="button" onClick={() => setDone(null)} className="btn-ghost mt-6">
           Torna al modulo
@@ -84,7 +84,7 @@ export function ContactForm() {
       ref={formRef}
       onSubmit={(e) => {
         e.preventDefault();
-        sendWhatsApp();
+        sendInstagram();
       }}
       noValidate
       className="space-y-5"
@@ -116,27 +116,27 @@ export function ContactForm() {
       <div className="space-y-3 pt-2">
         <button
           type="submit"
-          className="btn inline-flex w-full items-center justify-center gap-2 bg-[#25D366] text-white hover:brightness-95 sm:w-auto"
+          className="btn inline-flex w-full items-center justify-center gap-2 bg-gradient-to-tr from-[#FA7E1E] via-[#D62976] to-[#962FBF] text-white hover:brightness-105 sm:w-auto"
         >
-          <WaIcon />
-          Invia su WhatsApp
+          <IgIcon />
+          Invia in DM su Instagram
         </button>
         <p className="font-sans text-xs text-ink/60">
-          Oppure invia lo stesso messaggio via{" "}
+          Oppure invia lo stesso messaggio su{" "}
+          <button
+            type="button"
+            onClick={sendWhatsApp}
+            className="font-medium text-ink underline underline-offset-2 hover:text-ink/70"
+          >
+            WhatsApp
+          </button>{" "}
+          o via{" "}
           <button
             type="button"
             onClick={sendEmail}
             className="font-medium text-ink underline underline-offset-2 hover:text-ink/70"
           >
             email
-          </button>{" "}
-          o{" "}
-          <button
-            type="button"
-            onClick={sendInstagram}
-            className="font-medium text-ink underline underline-offset-2 hover:text-ink/70"
-          >
-            DM su Instagram
           </button>
           .
         </p>
@@ -145,10 +145,12 @@ export function ContactForm() {
   );
 }
 
-function WaIcon() {
+function IgIcon() {
   return (
-    <svg viewBox="0 0 32 32" className="h-5 w-5 fill-current" aria-hidden>
-      <path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-2.1A12 12 0 1 0 16 3zm0 21.9a9.9 9.9 0 0 1-5-1.4l-.4-.2-4.9 1.3 1.3-4.7-.2-.4A9.9 9.9 0 1 1 16 24.9zm5.4-7.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1l-.9 1.2c-.2.2-.3.2-.6.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2c-.1-.3 0-.5.1-.6l.5-.5.3-.5c.1-.2 0-.4 0-.5l-1-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4z" />
+    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4.2" />
+      <circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none" />
     </svg>
   );
 }
