@@ -66,7 +66,7 @@ export function CommissionForm() {
         <p className="font-display text-4xl text-ink">Ci siamo! ✦</p>
         <p className="mt-3 text-pretty font-sans text-sm leading-relaxed text-ink/70">
           {done === "ig" &&
-            "Ho copiato la tua richiesta e ti ho aperto il DM su Instagram: incollala nella chat (tieni premuto → Incolla, o ⌘/Ctrl+V) e inviala."}
+            "Ho copiato la tua richiesta e ti ho aperto la chat di Instagram: incollala nella chat (tieni premuto → Incolla, o ⌘/Ctrl+V) e inviala."}
           {done === "wa" &&
             "Ti ho aperto WhatsApp con la richiesta già scritta: premi invio per mandarmela."}
           {done === "email" &&
@@ -157,7 +157,7 @@ export function CommissionForm() {
           className="btn inline-flex w-full items-center justify-center gap-2 bg-gradient-to-tr from-[#FA7E1E] via-[#D62976] to-[#962FBF] text-white hover:brightness-105 sm:w-auto"
         >
           <IgIcon />
-          Invia in DM su Instagram
+          Invia su Instagram
         </button>
 
         <p className="font-sans text-xs text-ink/60">

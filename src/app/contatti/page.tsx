@@ -26,8 +26,7 @@ export default function ContattiPage() {
         </p>
 
         <div className="mt-10 space-y-5">
-          <ContactRow label="Instagram DM" value="Scrivimi in privato" href={site.instagramDM} />
-          <ContactRow label="Instagram" value={site.instagramHandle} href={site.instagram} />
+          <ContactRow label="Instagram" value={site.instagramHandle} href={site.instagramDM} />
           <ContactRow label="TikTok" value={site.tiktokHandle} href={site.tiktok} />
           <ContactRow
             label="WhatsApp"

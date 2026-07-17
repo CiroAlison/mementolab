@@ -18,7 +18,7 @@ export function InstagramFab() {
       href={site.instagramDM}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Scrivimi in DM su Instagram"
+      aria-label="Scrivimi su Instagram"
       className={`group fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full bg-gradient-to-tr from-[#FA7E1E] via-[#D62976] to-[#962FBF] py-3 pl-3 pr-3 text-white shadow-lg shadow-ink/20 transition-all duration-300 hover:pr-5 sm:bottom-7 sm:right-7 ${
         show ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
       }`}
@@ -36,7 +36,7 @@ export function InstagramFab() {
         <circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none" />
       </svg>
       <span className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-medium opacity-0 transition-all duration-300 group-hover:max-w-[8rem] group-hover:opacity-100">
-        Scrivimi in DM
+        Instagram
       </span>
     </a>
   );

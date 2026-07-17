@@ -66,7 +66,7 @@ export function ContactForm() {
         <p className="font-display text-4xl text-ink">Ci siamo ✦</p>
         <p className="mt-3 font-sans text-sm text-ink/70">
           {done === "ig" &&
-            "Ho copiato il messaggio e ti ho aperto il DM su Instagram: incollalo nella chat (tieni premuto → Incolla, o ⌘/Ctrl+V) e invialo."}
+            "Ho copiato il messaggio e ti ho aperto la chat di Instagram: incollalo nella chat (tieni premuto → Incolla, o ⌘/Ctrl+V) e invialo."}
           {done === "wa" &&
             "Ti ho aperto WhatsApp con il messaggio pronto: premi invio."}
           {done === "email" &&
@@ -119,7 +119,7 @@ export function ContactForm() {
           className="btn inline-flex w-full items-center justify-center gap-2 bg-gradient-to-tr from-[#FA7E1E] via-[#D62976] to-[#962FBF] text-white hover:brightness-105 sm:w-auto"
         >
           <IgIcon />
-          Invia in DM su Instagram
+          Invia su Instagram
         </button>
         <p className="font-sans text-xs text-ink/60">
           Oppure invia lo stesso messaggio su{" "}
