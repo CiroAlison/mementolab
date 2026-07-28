@@ -10,8 +10,9 @@ export const site = {
   url: "https://mementolab.vercel.app",
   locale: "it_IT",
   city: "Napoli",
-  email: "mementolab.art@gmail.com", // TODO: confermare indirizzo ufficiale
-  whatsapp: "393485924413", // 348 592 4413
+  email: "mementolab97@gmail.com",
+  whatsapp: "393485924413", // per i link wa.me (senza +)
+  phoneDisplay: "+39 348 592 4413",
   instagram: "https://www.instagram.com/mementolab_/",
   instagramHandle: "@mementolab_",
   instagramDM: "https://ig.me/m/mementolab_", // apre direttamente il DM

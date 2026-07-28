@@ -53,7 +53,7 @@ export default function PrivacyPage() {
           >
             {site.email}
           </a>{" "}
-          o contattarci via WhatsApp al numero 348 592 4413.
+          o contattarci via WhatsApp al numero +39 348 592 4413.
         </p>
       </Section>
 

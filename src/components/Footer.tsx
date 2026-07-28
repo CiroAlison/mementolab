@@ -65,7 +65,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="transition-colors hover:text-ink"
               >
-                WhatsApp · 348 592 4413
+                WhatsApp · +39 348 592 4413
               </a>
             </li>
             <li>

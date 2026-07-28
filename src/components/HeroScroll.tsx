@@ -70,7 +70,7 @@ export function HeroScroll() {
             style={reduce ? undefined : { opacity: revealOpacity, y: revealY }}
             className="mt-5 flex flex-col items-center"
           >
-            <p className="max-w-md text-balance font-display text-xl leading-tight text-ink sm:text-2xl">
+            <p className="max-w-lg text-balance font-display text-2xl font-medium leading-tight text-ink sm:text-3xl md:text-4xl">
               Capi unici dipinti a mano. Ogni pezzo è un&apos;opera irripetibile.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">

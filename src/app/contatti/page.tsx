@@ -30,7 +30,7 @@ export default function ContattiPage() {
           <ContactRow label="TikTok" value={site.tiktokHandle} href={site.tiktok} />
           <ContactRow
             label="WhatsApp"
-            value="348 592 4413"
+            value="+39 348 592 4413"
             href={`https://wa.me/${site.whatsapp}`}
           />
           <ContactRow label="Email" value={site.email} href={`mailto:${site.email}`} />
