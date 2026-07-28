@@ -39,7 +39,7 @@ export function HeroScroll() {
             className="relative h-full w-auto"
           >
             <Image
-              src="/brand/spiral.png"
+              src="/brand/spiral.png?v=2"
               alt="MementoLab"
               width={420}
               height={420}
@@ -58,7 +58,7 @@ export function HeroScroll() {
             className="relative h-11 w-[min(78vw,520px)] sm:h-16"
           >
             <Image
-              src="/brand/wordmark-full.png"
+              src="/brand/wordmark-full.png?v=2"
               alt="MementoLab"
               fill
               priority

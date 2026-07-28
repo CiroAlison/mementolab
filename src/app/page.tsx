@@ -30,7 +30,7 @@ export default function Home() {
         <SectionSpiral reverse className="-right-24 bottom-0 h-64 w-64 sm:h-80 sm:w-80" />
         <Reveal className="wrap relative z-10 mx-auto max-w-3xl text-center">
           <div className="relative mx-auto mb-8 h-14 w-14">
-            <Image src="/brand/spiral.png" alt="" fill className="object-contain" />
+            <Image src="/brand/spiral.png?v=2" alt="" fill className="object-contain" />
           </div>
           <p className="text-balance font-display text-3xl leading-[1.05] text-ink sm:text-4xl md:text-5xl">
             Prendo un capo vissuto — un giubbotto, un jeans, un paio di scarpe — e

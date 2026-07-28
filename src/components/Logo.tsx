@@ -13,7 +13,7 @@ export function Logo({
   onNavigate?: () => void;
 }) {
   const src =
-    variant === "cream" ? "/brand/wordmark-cream.png" : "/brand/wordmark-full.png";
+    variant === "cream" ? "/brand/wordmark-cream.png?v=2" : "/brand/wordmark-full.png?v=2";
   return (
     <Link
       href="/"

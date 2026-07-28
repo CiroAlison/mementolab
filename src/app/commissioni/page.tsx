@@ -60,7 +60,7 @@ export default function CommissioniPage() {
               className="flex items-start gap-3 font-sans text-sm text-ink/80"
             >
               <span className="relative mt-0.5 block h-5 w-5 shrink-0">
-                <Image src="/brand/spiral.png" alt="" fill className="object-contain" />
+                <Image src="/brand/spiral.png?v=2" alt="" fill className="object-contain" />
               </span>
               {p}
             </li>

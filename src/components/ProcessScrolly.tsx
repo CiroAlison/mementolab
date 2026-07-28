@@ -63,7 +63,7 @@ export function ProcessScrolly({ steps }: { steps: Step[] }) {
               style={reduce ? undefined : { rotate }}
               className="relative h-[64%] w-[64%]"
             >
-              <Image src="/brand/spiral.png" alt="" fill className="object-contain" />
+              <Image src="/brand/spiral.png?v=2" alt="" fill className="object-contain" />
             </motion.div>
           </div>
 

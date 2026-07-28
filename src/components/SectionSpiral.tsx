@@ -21,7 +21,7 @@ export function SectionSpiral({
       style={{ opacity }}
     >
       <Image
-        src={cream ? "/brand/spiral-cream.png" : "/brand/spiral.png"}
+        src={cream ? "/brand/spiral-cream.png?v=2" : "/brand/spiral.png?v=2"}
         alt=""
         fill
         className={`object-contain ${reverse ? "spin-slow-rev" : "spin-slow"}`}
