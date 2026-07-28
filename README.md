@@ -18,22 +18,27 @@ npm run dev      # http://localhost:3000
 
 > Node 20+ richiesto.
 
-## Variabili d'ambiente
-Copia `.env.example` in `.env.local` e configura le variabili. I form funzionano
-anche senza credenziali (degradano con eleganza); per **salvare** le richieste e
-ricevere **notifiche email** servono `DATABASE_URL` (Neon) e `RESEND_API_KEY` (Resend).
+## Contatti / richieste
+I form **non usano il database**: precompilano lo stesso messaggio (con emoji) e lo
+mandano via **Instagram** (canale primario), **WhatsApp** o **email**. Il database
+**Neon è dormiente** (collegato ma non usato) — vedi `DECISIONS.md` per il perché e
+come riattivarlo.
 
-Con il database configurato:
+## Brand assets (logo, spirale, favicon)
+Tutti i loghi derivano dalla **scansione reale** della spirale. Per rigenerarli:
 
 ```bash
-npx prisma db push   # crea le tabelle su Neon
+cd scripts/brand && python3 extract-spiral.py && python3 build-assets.py
 ```
 
+Guida completa: [`docs/BRAND-ASSETS.md`](./docs/BRAND-ASSETS.md).
+
 ## Struttura
-- `src/app` — pagine (home, portfolio, chi-sono, processo, commissioni, contatti) e API
+- `src/app` — pagine (home, portfolio, shop, chi-sono, processo, commissioni, contatti) e API
 - `src/components` — UI (Header, Footer, Logo, Gallery, form…)
-- `src/lib` — dati e configurazione (`site.ts`, `gallery.ts`, `validation.ts`)
-- `prisma/schema.prisma` — modelli dati
+- `src/lib` — dati e configurazione (`site.ts`, `gallery.ts`, `message.ts`, `validation.ts`)
+- `public/brand` — logo, spirale, wordmark, favicon (generati da `scripts/brand/`)
 - `public/gallery` — immagini delle opere
+- `prisma/schema.prisma` — modelli dati (DB dormiente)
 
 Vedi [`PROGRESS.md`](./PROGRESS.md) e [`DECISIONS.md`](./DECISIONS.md) per stato e scelte.

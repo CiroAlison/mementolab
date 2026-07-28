@@ -53,6 +53,28 @@ Dopo la prima release, il brand ha chiesto un'esperienza più forte e in movimen
 - **Hero scroll-driven** (`HeroScroll.tsx`): con Framer Motion `useScroll`, la spirale ruota e
   si rimpicciolisce mentre il wordmark si svela con un wipe. Rispetta `prefers-reduced-motion`.
 
-## Contatti
-- **WhatsApp 348 592 4413** e **Instagram @mementolab_** presi dai contenuti reali.
-- **Email**: placeholder (`mementolab.art@gmail.com`) in `src/lib/site.ts` — **da confermare**.
+## Contatti & flusso richieste (v9 — scelta del cliente: "più light")
+- Il cliente ha chiesto un flusso **senza database**: i form commissioni/contatti
+  **non salvano** più nulla. Precompilano lo **stesso messaggio con emoji**
+  (`src/lib/message.ts`) e lo mandano via **Instagram** (canale primario, `ig.me/m/` +
+  copia negli appunti perché IG non permette il prefill), **WhatsApp** (`wa.me`) o
+  **email** (`mailto:`). Vuole che i messaggi arrivino soprattutto da Instagram.
+- **Neon reso dormiente**: tolto `db-push` dal build; le API `/api/*` (Prisma+Resend)
+  esistono ma non sono più chiamate. Riattivabile in futuro (vedi `PROGRESS.md`).
+- **Contatti veri**: WhatsApp/telefono **+39 348 592 4413**, Instagram **@mementolab_**,
+  email ufficiale **mementolab97@gmail.com** (confermata dal cliente). In `src/lib/site.ts`.
+
+## Logo in alta qualità & colori autentici (v10 — richiesta del cliente)
+- Il cliente ha fornito la **scansione reale** della spirale (PDF). Ho sostituito
+  **tutti** i loghi con la spirale in alta risoluzione estratta da quella scansione.
+- **Colori autentici, non schiariti**: si tengono i colori RGB originali della
+  scansione (indaco profondo + azzurro acciaio). Un primo tentativo che "puliva" i
+  bordi li rendeva troppo chiari/azzurro acceso → scartato. Pipeline e motivazioni in
+  **`docs/BRAND-ASSETS.md`**; script rieseguibili in **`scripts/brand/`**.
+- La versione **SVG vettoriale** della spirale è definitivamente **abbandonata**: il
+  cliente vuole la pennellata reale.
+
+## Sezione Shop (v10)
+- Aggiunta pagina **`/shop`** come **placeholder premium** ("Lo shop sta prendendo
+  forma") con card "IN ARRIVO", su richiesta del cliente. Sarà rifinita con i prodotti
+  reali (foto/prezzi/disponibilità) più avanti.

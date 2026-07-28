@@ -23,6 +23,16 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
 - **v8 — Reveal nome & processo**: sezione BrandReveal (il nome MEMENTOLAB si svela dopo
   i caroselli); pagina Processo trasformata in timeline interattiva; intro con reveal del
   nome anticipato e più lungo. Documentazione completa (`HANDOFF.md`).
+- **v9 — Contatti "light" & Instagram in primo piano**: form commissioni/contatti resi
+  **solo lato client** — precompilano lo stesso messaggio con emoji e lo mandano via
+  **Instagram** (primario), WhatsApp o email (`src/lib/message.ts`). Nessuna scrittura su DB.
+  **Neon reso dormiente** (vedi sotto). Email ufficiale `mementolab97@gmail.com`, telefono
+  con prefisso `+39 348 592 4413`.
+- **v10 — Logo in alta qualità & sezione Shop**: TUTTI i loghi rigenerati dalla
+  **scansione reale** della spirale in alta risoluzione, con i **colori autentici**
+  (vedi `docs/BRAND-ASSETS.md` e `scripts/brand/`). Nuova pagina **`/shop`** (voce di menu):
+  placeholder "Lo shop sta prendendo forma" con card "IN ARRIVO", da rifinire quando il
+  cliente avrà le info sui prodotti. Testo Contatti "Parliamone" riscritto.
 
 ## ✅ Fatto (release 1)
 
@@ -39,8 +49,10 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
   recuperate e salvate in `brand-reference/`.
 
 ### Identità
-- Logo **MEMENT·O·LAB** ricostruito in SVG vettoriale: la "O" è una spirale
-  pennellata (`src/components/SpiralMark.tsx` + `Logo.tsx`). Favicon SVG in `public/icon.svg`.
+- Logo **MEMENT·O·LAB**: la "O" è la **spirale reale dipinta a mano** (scansione in
+  alta qualità). Tutti gli asset (spirale, wordmark, favicon) sono generati da
+  `scripts/brand/` — vedi **`docs/BRAND-ASSETS.md`**. La vecchia versione SVG
+  vettoriale è stata **scartata** (il cliente vuole la pennellata reale).
 - Palette: arancione `#EB5634`, navy `#082E56`, crema `#FAF6EF`.
 - Font: **Cormorant Garamond** (display) + **Inter** (testo).
 
@@ -64,13 +76,15 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
 - Tutte le pagine rispondono 200, build pulita, API testate (200 valido / 422 non valido).
 
 ## 🔜 Da fare / possibili step 2
-- Collegare **Neon** (DATABASE_URL) e **Resend** (RESEND_API_KEY) per attivare
-  salvataggio richieste + notifiche email. Vedi `.env.example`.
-- Upload immagini di riferimento nel form commissioni (storage es. Vercel Blob).
+- **Sezione Shop**: rifinire `/shop` con i prodotti reali (foto, prezzi, disponibilità,
+  eventuale checkout) quando il cliente fornirà le info. Ora è un placeholder.
+- **Neon dormiente**: il DB è collegato ma non usato (scelta del cliente, vedi
+  `DECISIONS.md`). Per riattivarlo: rimettere `node scripts/db-push.mjs` nel build e
+  ricollegare il fetch nei form a `/api/commissioni` e `/api/contatti`.
 - Eventuale **Journal/Blog** per storytelling e SEO.
 - Ampliare la categoria "Altro" con nuovi pezzi (tele, accessori).
 - Sostituire eventuali foto con scatti dedicati in alta risoluzione, se disponibili.
 
 ## Contenuti reali ancora da fornire
-- Indirizzo email ufficiale del brand (ora placeholder in `src/lib/site.ts`).
+- **Prodotti per lo Shop** (foto, prezzi, disponibilità).
 - Conferma della categoria di alcuni pezzi (classificazione automatica dalle didascalie).

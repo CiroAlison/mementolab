@@ -21,8 +21,9 @@ export default function ContattiPage() {
           Parliamone
         </h1>
         <p className="mt-5 text-pretty font-sans text-base leading-relaxed text-ink/70">
-          Per una commissione, una collaborazione o solo per un saluto: sono qui.
-          Il modo più veloce per raggiungermi è Instagram o WhatsApp.
+          Per una commissione, una collaborazione o due parole su un&apos;idea che
+          hai in mente: scrivimi pure. Rispondo personalmente a ogni messaggio —
+          mi trovi più facilmente su Instagram o WhatsApp.
         </p>
 
         <div className="mt-10 space-y-5">
