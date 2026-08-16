@@ -19,14 +19,6 @@ const milestones = [
     text: "Nasce il viaggio nella custom art, in un periodo difficile che mi ha fatto riscoprire una passione di sempre.",
   },
   {
-    year: "Studio",
-    text: "Una laurea in Servizio sociale e un master in Criminologia, senza mai smettere di dipingere.",
-  },
-  {
-    year: "La scelta",
-    text: "Il coraggio di lasciare il posto fisso per dedicarmi anima e corpo a MementoLab.",
-  },
-  {
     year: "Oggi",
     text: "Un nuovo logo, una nuova estetica e la voglia di affrontare ogni pezzo come una sfida.",
   },
@@ -58,18 +50,7 @@ export default function ChiSonoPage() {
               passione che ho sempre avuto fin da piccola: quella per l&apos;arte
               e la creatività in ogni sua forma.
             </p>
-            <p>
-              In questi anni ho continuato a lavorare e a studiare — una laurea
-              in Servizio sociale, un master in Criminologia — ma con il pensiero
-              fisso di realizzare quello che era diventato il mio sogno nel
-              cassetto: diventare una brava customizer e fare della mia passione
-              il mio primo lavoro.
-            </p>
-            <p>
-              Per questo, qualche tempo fa, ho trovato il coraggio di lasciare un
-              lavoro sicuro per dedicarmi anima e corpo a questo progetto. Spero
-              che il tempo mi dia ragione.
-            </p>
+            <p>In questi anni ho continuato a lavorare e a studiare.</p>
           </div>
           <p className="mt-6 font-display text-2xl italic text-ink">
             — {site.city}, Italia
@@ -83,13 +64,13 @@ export default function ChiSonoPage() {
         <div className="wrap relative z-10 py-20 sm:py-28">
           <Reveal className="mb-12 flex items-center gap-4">
             <span className="relative block h-10 w-10 shrink-0">
-              <Image src="/brand/spiral-cream.png?v=2" alt="" fill className="object-contain" />
+              <Image src="/brand/spiral-cream.png?v=3" alt="" fill className="object-contain" />
             </span>
             <h2 className="font-display text-4xl text-paper sm:text-5xl">
               Il percorso
             </h2>
           </Reveal>
-          <div className="grid gap-px overflow-hidden rounded-lg border border-paper/15 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-px overflow-hidden rounded-lg border border-paper/15 sm:grid-cols-2">
             {milestones.map((m, i) => (
               <Reveal
                 key={m.year}
@@ -118,8 +99,8 @@ export default function ChiSonoPage() {
             l&apos;arte non resti appesa a una parete ma si possa indossare.
           </h2>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
-            <Link href="/portfolio" className="btn-primary">
-              Guarda le opere
+            <Link href="/shop" className="btn-primary">
+              Scopri lo shop
             </Link>
             <Link href="/processo" className="btn-ghost">
               Come nasce un pezzo

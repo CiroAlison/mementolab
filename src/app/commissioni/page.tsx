@@ -30,7 +30,7 @@ const faq: FaqItem[] = [
 export const metadata: Metadata = {
   title: "Commissioni",
   description:
-    "Richiedi un pezzo custom dipinto a mano da MementoLab. Racconta la tua idea: tipo di capo, ispirazione e budget. Ogni commissione è un'opera unica.",
+    "Richiedi un pezzo custom dipinto a mano da MementoLab. Racconta la tua idea: tipo di capo e ispirazione. Ogni commissione è un'opera unica.",
   alternates: { canonical: "/commissioni" },
 };
 
@@ -60,7 +60,7 @@ export default function CommissioniPage() {
               className="flex items-start gap-3 font-sans text-sm text-ink/80"
             >
               <span className="relative mt-0.5 block h-5 w-5 shrink-0">
-                <Image src="/brand/spiral.png?v=2" alt="" fill className="object-contain" />
+                <Image src="/brand/spiral.png?v=3" alt="" fill className="object-contain" />
               </span>
               {p}
             </li>

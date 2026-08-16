@@ -37,7 +37,6 @@ export async function POST(req: Request) {
           phone: data.phone || null,
           itemType: data.itemType,
           idea: data.idea,
-          budget: data.budget || null,
         },
       });
     } catch (err) {
@@ -59,7 +58,6 @@ export async function POST(req: Request) {
      <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
      <p><strong>Telefono:</strong> ${escapeHtml(data.phone || "—")}</p>
      <p><strong>Tipo di capo:</strong> ${escapeHtml(data.itemType)}</p>
-     <p><strong>Budget:</strong> ${escapeHtml(data.budget || "—")}</p>
      <p><strong>Idea:</strong><br/>${escapeHtml(data.idea).replace(/\n/g, "<br/>")}</p>`,
   );
 

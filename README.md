@@ -33,10 +33,15 @@ cd scripts/brand && python3 extract-spiral.py && python3 build-assets.py
 
 Guida completa: [`docs/BRAND-ASSETS.md`](./docs/BRAND-ASSETS.md).
 
+## Shop
+Il sito è costruito attorno allo shop. Per aggiungere/modificare pezzi, prezzi e
+disponibilità si tocca **un solo file**: `src/lib/shop.ts`.
+Guida completa: [`docs/SHOP.md`](./docs/SHOP.md).
+
 ## Struttura
-- `src/app` — pagine (home, portfolio, shop, chi-sono, processo, commissioni, contatti) e API
-- `src/components` — UI (Header, Footer, Logo, Gallery, form…)
-- `src/lib` — dati e configurazione (`site.ts`, `gallery.ts`, `message.ts`, `validation.ts`)
+- `src/app` — pagine (home, shop, chi-sono, processo, commissioni, contatti) e API
+- `src/components` — UI (Header, Footer, Logo, ProductCard, BuyButton, form…)
+- `src/lib` — dati e configurazione (`site.ts`, `shop.ts`, `message.ts`, `send.ts`, `validation.ts`)
 - `public/brand` — logo, spirale, wordmark, favicon (generati da `scripts/brand/`)
 - `public/gallery` — immagini delle opere
 - `prisma/schema.prisma` — modelli dati (DB dormiente)

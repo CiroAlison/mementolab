@@ -33,6 +33,15 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
   (vedi `docs/BRAND-ASSETS.md` e `scripts/brand/`). Nuova pagina **`/shop`** (voce di menu):
   placeholder "Lo shop sta prendendo forma" con card "IN ARRIVO", da rifinire quando il
   cliente avrà le info sui prodotti. Testo Contatti "Parliamone" riscritto.
+- **v11 — Sito più piccolo e centrato sullo SHOP** (richiesta della cliente):
+  rimossi **Portfolio**, **In evidenza**, **In movimento** (e i video: −1,1 MB).
+  Lo **shop è ora il cuore del sito**: griglia prodotti con prezzo/disponibilità e
+  pulsante «Lo voglio» (`src/lib/shop.ts` → vedi `docs/SHOP.md`), messo **subito
+  sotto l'intro in home**. Tolte le foto di modella di spalle dalle sezioni visibili
+  (categoria Jeans ora è una foto pulita del capo; categoria *Altro* non mostra più
+  scarpe — foto provvisoria, la cliente ne fornirà una dedicata). Testo *Chi sono*
+  accorciato su richiesta; tolto il campo **budget** dalle commissioni; **corretto il
+  bug dell'invio su Instagram**; **colori del logo riportati a quelli originali**.
 
 ## ✅ Fatto (release 1)
 
@@ -76,8 +85,11 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
 - Tutte le pagine rispondono 200, build pulita, API testate (200 valido / 422 non valido).
 
 ## 🔜 Da fare / possibili step 2
-- **Sezione Shop**: rifinire `/shop` con i prodotti reali (foto, prezzi, disponibilità,
-  eventuale checkout) quando il cliente fornirà le info. Ora è un placeholder.
+- **Prezzi e disponibilità reali** dei pezzi in `src/lib/shop.ts` (ora tutti
+  "Prezzo su richiesta" / "Su ordinazione"). Vedi `docs/SHOP.md`.
+- **Foto dedicata per la categoria "Altro"** (ora provvisoria: San Gennaro su tela).
+- Eventuale **checkout** vero (Stripe/PayPal) se un domani servisse: la struttura
+  dati dello shop è già pronta.
 - **Neon dormiente**: il DB è collegato ma non usato (scelta del cliente, vedi
   `DECISIONS.md`). Per riattivarlo: rimettere `node scripts/db-push.mjs` nel build e
   ricollegare il fetch nei form a `/api/commissioni` e `/api/contatti`.
@@ -86,5 +98,6 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
 - Sostituire eventuali foto con scatti dedicati in alta risoluzione, se disponibili.
 
 ## Contenuti reali ancora da fornire
-- **Prodotti per lo Shop** (foto, prezzi, disponibilità).
+- **Prezzi, disponibilità e foto dei pezzi in vendita** (`src/lib/shop.ts`).
+- **Foto per la categoria "Altro"** in home.
 - Conferma della categoria di alcuni pezzi (classificazione automatica dalle didascalie).

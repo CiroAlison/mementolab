@@ -26,10 +26,25 @@ a = np.asarray(src).astype(np.float32)
 d = np.sqrt(((a - ORANGE) ** 2).sum(axis=2))
 alpha = np.clip((d - LO) / (HI - LO), 0, 1)
 
-# Keep the scan's ORIGINAL RGB. The spiral is always shown ON the orange brand
-# background in the site, so keeping original colours reproduces the scan exactly
-# and avoids the bright-blue fringing that un-premultiplying causes on downscale.
-rgba = np.dstack([a.astype(np.uint8), (alpha * 255).astype(np.uint8)])
+# ——— CORREZIONE COLORE ———
+# La scansione è la FOTO di una stampa: la carta e il riflesso hanno spento il
+# blu del brand in un grigio-viola slavato (ink medio ~(93,72,93)), mentre i
+# colori digitali veri del logo sono un blu profondo (~(36,57,85), vedi
+# logo-concept.png e pattern-spirale.png). Qui riportiamo i colori a quelli
+# ORIGINALI del brand MANTENENDO intatta la pennellata: usiamo la luminosità di
+# ogni pixel (cioè la texture del pennello) per interpolare fra il navy profondo
+# e l'azzurro del brand. Nessun ridisegno: solo i colori giusti.
+NAVY = np.array([10, 42, 76], dtype=np.float32)    # brand ink  #0A2A4C
+SKY = np.array([46, 147, 200], dtype=np.float32)   # brand sky  #2E93C8
+
+lum = a @ np.array([0.299, 0.587, 0.114], dtype=np.float32)
+ink = alpha > 0.5                                   # solo dove c'è colore vero
+lo, hi = np.percentile(lum[ink], 4), np.percentile(lum[ink], 96)
+t = np.clip((lum - lo) / max(hi - lo, 1e-6), 0, 1)
+t = t ** 1.45  # il navy resta dominante, come nel logo originale
+rgb = NAVY + t[..., None] * (SKY - NAVY)
+
+rgba = np.dstack([rgb.astype(np.uint8), (alpha * 255).astype(np.uint8)])
 
 # Remove disconnected flecks: dilate to bridge the real (thin) strands into one
 # blob, keep the largest blob, drop everything spatially separated from it.

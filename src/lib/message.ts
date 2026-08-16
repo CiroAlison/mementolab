@@ -2,6 +2,8 @@
 // (WhatsApp, DM Instagram, email). Con qualche emoji per renderlo più caldo.
 import type { CommissionInput, ContactInput } from "./validation";
 import { itemTypeOptions } from "./validation";
+import type { Product } from "./shop";
+import { priceLabel } from "./shop";
 
 const itemLabel = (v: string) =>
   itemTypeOptions.find((o) => o.value === v)?.label ?? v;
@@ -12,7 +14,6 @@ export function commissionMessage(d: CommissionInput) {
     "",
     `👋 Nome: ${d.name}`,
     `🧥 Capo: ${itemLabel(d.itemType)}`,
-    d.budget ? `💰 Budget: ${d.budget}` : null,
     "",
     `💡 La mia idea: ${d.idea}`,
     "",
@@ -41,4 +42,21 @@ export function contactMessage(d: ContactInput) {
 
 export function contactSubject(d: ContactInput) {
   return `Messaggio dal sito — ${d.name}`;
+}
+
+// Messaggio per l'acquisto di un pezzo dallo shop.
+export function productMessage(p: Product) {
+  return [
+    "🛍️ Ciao MementoLab! Vorrei questo pezzo:",
+    "",
+    `✨ ${p.title}`,
+    `🧥 ${p.base}`,
+    `🏷️ ${priceLabel(p)}`,
+    "",
+    "Mi dici come procedere? 😊",
+  ].join("\n");
+}
+
+export function productSubject(p: Product) {
+  return `Vorrei acquistare: ${p.title}`;
 }

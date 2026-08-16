@@ -39,7 +39,7 @@ export function HeroScroll() {
             className="relative h-full w-auto"
           >
             <Image
-              src="/brand/spiral.png?v=2"
+              src="/brand/spiral.png?v=3"
               alt="MementoLab"
               width={420}
               height={420}
@@ -58,7 +58,7 @@ export function HeroScroll() {
             className="relative h-11 w-[min(78vw,520px)] sm:h-16"
           >
             <Image
-              src="/brand/wordmark-full.png?v=2"
+              src="/brand/wordmark-full.png?v=3"
               alt="MementoLab"
               fill
               priority
@@ -74,8 +74,8 @@ export function HeroScroll() {
               Capi unici dipinti a mano. Ogni pezzo è un&apos;opera irripetibile.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <Link href="/portfolio" className="btn-primary">
-                Esplora il portfolio
+              <Link href="/shop" className="btn-primary">
+                Scopri lo shop
               </Link>
               <Link href="/commissioni" className="btn-ghost">
                 Richiedi un pezzo

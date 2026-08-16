@@ -22,7 +22,6 @@ export const site = {
 
 export const nav = [
   { href: "/", label: "Home" },
-  { href: "/portfolio", label: "Portfolio" },
   { href: "/shop", label: "Shop" },
   { href: "/chi-sono", label: "Chi sono" },
   { href: "/processo", label: "Processo" },

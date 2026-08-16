@@ -4,9 +4,10 @@ import { useRef, useState } from "react";
 import { commissionSchema, itemTypeOptions, type CommissionInput } from "@/lib/validation";
 import { commissionMessage, commissionSubject } from "@/lib/message";
 import { site } from "@/lib/site";
+import { copyText, openTab, waLink, mailLink } from "@/lib/send";
+import { SentPanel, type Channel } from "./SentPanel";
 
 type Errors = Record<string, string[] | undefined>;
-type Done = null | "wa" | "email" | "ig";
 
 const field =
   "w-full rounded-lg border border-ink/20 bg-white/70 px-4 py-3 font-sans text-sm text-ink placeholder:text-ink/40 transition focus:border-ink focus:outline-none focus:ring-2 focus:ring-flame/40";
@@ -15,7 +16,8 @@ const labelCls = "mb-1.5 block font-sans text-sm font-medium text-ink";
 export function CommissionForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [errors, setErrors] = useState<Errors>({});
-  const [done, setDone] = useState<Done>(null);
+  const [done, setDone] = useState<Channel | null>(null);
+  const [sentMessage, setSentMessage] = useState("");
 
   function validate(): CommissionInput | null {
     setErrors({});
@@ -28,58 +30,43 @@ export function CommissionForm() {
     return parsed.data;
   }
 
+  // NB: tutte sincrone — nessun `await` prima di aprire la scheda, altrimenti
+  // il browser blocca il popup (vedi src/lib/send.ts).
   function sendWhatsApp() {
     const d = validate();
     if (!d) return;
-    window.open(
-      `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(commissionMessage(d))}`,
-      "_blank",
-      "noopener",
-    );
+    const msg = commissionMessage(d);
+    setSentMessage(msg);
+    openTab(waLink(site.whatsapp, msg));
     setDone("wa");
   }
 
   function sendEmail() {
     const d = validate();
     if (!d) return;
-    window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(
-      commissionSubject(d),
-    )}&body=${encodeURIComponent(commissionMessage(d))}`;
+    const msg = commissionMessage(d);
+    setSentMessage(msg);
+    window.location.href = mailLink(site.email, commissionSubject(d), msg);
     setDone("email");
   }
 
-  async function sendInstagram() {
+  function sendInstagram() {
     const d = validate();
     if (!d) return;
-    try {
-      await navigator.clipboard.writeText(commissionMessage(d));
-    } catch {
-      /* se la copia non è permessa, apriamo comunque il DM */
-    }
-    window.open(site.instagramDM, "_blank", "noopener");
+    const msg = commissionMessage(d);
+    setSentMessage(msg);
+    copyText(msg);
+    openTab(site.instagramDM);
     setDone("ig");
   }
 
   if (done) {
     return (
-      <div className="rounded-xl border border-ink/15 bg-white/60 p-8 text-center">
-        <p className="font-display text-4xl text-ink">Ci siamo! ✦</p>
-        <p className="mt-3 text-pretty font-sans text-sm leading-relaxed text-ink/70">
-          {done === "ig" &&
-            "Ho copiato la tua richiesta e ti ho aperto la chat di Instagram: incollala nella chat (tieni premuto → Incolla, o ⌘/Ctrl+V) e inviala."}
-          {done === "wa" &&
-            "Ti ho aperto WhatsApp con la richiesta già scritta: premi invio per mandarmela."}
-          {done === "email" &&
-            "Ti ho aperto l'email con il messaggio già pronto: premi invia."}
-        </p>
-        <button
-          type="button"
-          onClick={() => setDone(null)}
-          className="btn-ghost mt-6"
-        >
-          Torna al modulo
-        </button>
-      </div>
+      <SentPanel
+        channel={done}
+        message={sentMessage}
+        onBack={() => setDone(null)}
+      />
     );
   }
 
@@ -131,12 +118,6 @@ export function CommissionForm() {
           </select>
           <FieldError e={errors.itemType} />
         </div>
-      </div>
-
-      <div>
-        <label htmlFor="budget" className={labelCls}>Budget indicativo</label>
-        <input id="budget" name="budget" className={field} placeholder="Es. 150–250€ (facoltativo)" />
-        <FieldError e={errors.budget} />
       </div>
 
       <div>

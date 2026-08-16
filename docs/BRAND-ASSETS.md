@@ -5,10 +5,17 @@ scansionata dal cliente. Questo documento spiega quali file esistono, dove
 vengono usati e **come rigenerarli da zero** in modo fedele.
 
 ## Regola d'oro
-Il cliente vuole la **scansione reale** della spirale, con i **colori autentici**
-(indaco profondo + azzurro acciaio). NON usare versioni vettoriali/ridisegnate e
-NON "schiarire" o desaturare i colori. La spirale va sempre mostrata sul fondo
-**arancione** del brand.
+Il cliente vuole la **pennellata reale** della spirale (mai versioni vettoriali o
+ridisegnate) con i **colori originali del brand**: un **blu profondo** con
+sfumature azzurre. La spirale va sempre mostrata sul fondo **arancione**.
+
+⚠️ **La scansione NON ha i colori giusti.** È la foto di una stampa: la carta e
+il riflesso hanno spento il blu in un grigio-viola slavato (ink medio circa
+`(93,72,93)`), mentre i colori digitali veri del logo sono blu — `(36,57,85)`,
+misurati su `logo-concept.png` e `pattern-spirale.png`. Per questo
+`extract-spiral.py` applica una **correzione colore**: usa la luminosità di ogni
+pixel (cioè la texture del pennello) per interpolare fra il navy del brand
+`#0A2A4C` e l'azzurro `#2E93C8`. Risultato: pennellata autentica + colori veri.
 
 ## File generati
 
@@ -57,7 +64,14 @@ trasparenza (fallisce se per errore produce un rettangolo pieno).
   verifica sempre la trasparenza.
 - **Spirale troppo chiara / azzurro acceso**: causato dall'"un-premultiply" dei
   bordi semi-trasparenti, che veniva poi amplificato dal ridimensionamento di
-  `next/image`. Soluzione: tenere i colori RGB originali della scansione.
+  `next/image`. Soluzione: non un-premultiplicare.
+- **Logo "sbiadito"**: si erano tenuti i colori grezzi della scansione, che sono
+  smorti (vedi Regola d'oro). Soluzione: la correzione colore verso i blu del
+  brand, con `t ** 1.45` per mantenere il navy dominante come nel logo originale.
+- **Modifiche non visibili al cliente**: le immagini hanno lo stesso nome file e
+  restano in cache nel browser. Soluzione: i riferimenti nel codice hanno un
+  suffisso di versione (`/brand/spiral.png?v=3`). **Se rigeneri i loghi, alza il
+  numero di versione** in tutti i file: `grep -rl "?v=3" src/ | xargs sed -i '' 's/?v=3/?v=4/g'`
 
 ## Se cambia la spirale (nuova scansione)
 Sostituisci `scripts/brand/source-spiral-scan.png` con la nuova scansione (sempre

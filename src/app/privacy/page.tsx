@@ -62,7 +62,7 @@ export default function PrivacyPage() {
         <ul className="list-disc space-y-1 pl-5">
           <li>
             <strong>Modulo commissioni</strong>: nome, email, eventuale telefono,
-            tipo di capo, descrizione della tua idea ed eventuale budget indicativo.
+            tipo di capo e descrizione della tua idea.
           </li>
           <li>
             <strong>Modulo contatti</strong>: nome, email e testo del messaggio.

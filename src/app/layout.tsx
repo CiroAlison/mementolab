@@ -55,8 +55,8 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: "/" },
   icons: {
-    icon: [{ url: "/apple-icon.png?v=2", type: "image/png" }],
-    apple: [{ url: "/apple-icon.png?v=2" }],
+    icon: [{ url: "/apple-icon.png?v=3", type: "image/png" }],
+    apple: [{ url: "/apple-icon.png?v=3" }],
   },
 };
 

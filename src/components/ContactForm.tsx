@@ -4,9 +4,10 @@ import { useRef, useState } from "react";
 import { contactSchema, type ContactInput } from "@/lib/validation";
 import { contactMessage, contactSubject } from "@/lib/message";
 import { site } from "@/lib/site";
+import { copyText, openTab, waLink, mailLink } from "@/lib/send";
+import { SentPanel, type Channel } from "./SentPanel";
 
 type Errors = Record<string, string[] | undefined>;
-type Done = null | "wa" | "email" | "ig";
 
 const field =
   "w-full rounded-lg border border-ink/20 bg-white/70 px-4 py-3 font-sans text-sm text-ink placeholder:text-ink/40 transition focus:border-ink focus:outline-none focus:ring-2 focus:ring-flame/40";
@@ -15,7 +16,8 @@ const labelCls = "mb-1.5 block font-sans text-sm font-medium text-ink";
 export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [errors, setErrors] = useState<Errors>({});
-  const [done, setDone] = useState<Done>(null);
+  const [done, setDone] = useState<Channel | null>(null);
+  const [sentMessage, setSentMessage] = useState("");
 
   function validate(): ContactInput | null {
     setErrors({});
@@ -28,54 +30,42 @@ export function ContactForm() {
     return parsed.data;
   }
 
+  // Sincrone: nessun `await` prima di aprire la scheda (vedi src/lib/send.ts).
   function sendWhatsApp() {
     const d = validate();
     if (!d) return;
-    window.open(
-      `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(contactMessage(d))}`,
-      "_blank",
-      "noopener",
-    );
+    const msg = contactMessage(d);
+    setSentMessage(msg);
+    openTab(waLink(site.whatsapp, msg));
     setDone("wa");
   }
 
   function sendEmail() {
     const d = validate();
     if (!d) return;
-    window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(
-      contactSubject(d),
-    )}&body=${encodeURIComponent(contactMessage(d))}`;
+    const msg = contactMessage(d);
+    setSentMessage(msg);
+    window.location.href = mailLink(site.email, contactSubject(d), msg);
     setDone("email");
   }
 
-  async function sendInstagram() {
+  function sendInstagram() {
     const d = validate();
     if (!d) return;
-    try {
-      await navigator.clipboard.writeText(contactMessage(d));
-    } catch {
-      /* apriamo comunque il DM */
-    }
-    window.open(site.instagramDM, "_blank", "noopener");
+    const msg = contactMessage(d);
+    setSentMessage(msg);
+    copyText(msg);
+    openTab(site.instagramDM);
     setDone("ig");
   }
 
   if (done) {
     return (
-      <div className="rounded-xl border border-ink/15 bg-white/60 p-8 text-center">
-        <p className="font-display text-4xl text-ink">Ci siamo ✦</p>
-        <p className="mt-3 font-sans text-sm text-ink/70">
-          {done === "ig" &&
-            "Ho copiato il messaggio e ti ho aperto la chat di Instagram: incollalo nella chat (tieni premuto → Incolla, o ⌘/Ctrl+V) e invialo."}
-          {done === "wa" &&
-            "Ti ho aperto WhatsApp con il messaggio pronto: premi invio."}
-          {done === "email" &&
-            "Ti ho aperto l'email con il messaggio pronto: premi invia."}
-        </p>
-        <button type="button" onClick={() => setDone(null)} className="btn-ghost mt-6">
-          Torna al modulo
-        </button>
-      </div>
+      <SentPanel
+        channel={done}
+        message={sentMessage}
+        onBack={() => setDone(null)}
+      />
     );
   }
 

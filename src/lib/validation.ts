@@ -11,7 +11,6 @@ export const commissionSchema = z.object({
     .string()
     .min(10, "Raccontami almeno un po' della tua idea")
     .max(2000),
-  budget: z.string().max(40).optional().or(z.literal("")),
   // honeypot anti-spam: deve restare vuoto
   website: z.string().max(0).optional().or(z.literal("")),
 });

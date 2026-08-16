@@ -55,7 +55,7 @@ export function SiteIntro() {
             style={{ WebkitMaskImage: mask, maskImage: mask }}
           >
             <Image
-              src="/brand/spiral.png?v=2"
+              src="/brand/spiral.png?v=3"
               alt=""
               fill
               priority
@@ -70,7 +70,7 @@ export function SiteIntro() {
             className="relative mt-8 h-9 w-72 sm:h-10 sm:w-80"
           >
             <Image
-              src="/brand/wordmark-full.png?v=2"
+              src="/brand/wordmark-full.png?v=3"
               alt="MementoLab"
               fill
               priority

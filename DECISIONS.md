@@ -78,3 +78,36 @@ Dopo la prima release, il brand ha chiesto un'esperienza più forte e in movimen
 - Aggiunta pagina **`/shop`** come **placeholder premium** ("Lo shop sta prendendo
   forma") con card "IN ARRIVO", su richiesta del cliente. Sarà rifinita con i prodotti
   reali (foto/prezzi/disponibilità) più avanti.
+
+## Sito centrato sullo shop (v11 — richiesta della cliente)
+- La cliente vuole **vendere**: lo shop è stato messo **subito sotto l'intro** in
+  home e la navigazione parte da lì. Le CTA principali portano allo shop.
+- **Sito alleggerito**: rimossi Portfolio, "In evidenza", "In movimento" e i video
+  (−1,1 MB). Con il Portfolio è sparita anche `src/lib/gallery.ts`: i pezzi in
+  vendita vivono ora in `src/lib/shop.ts`.
+- **Niente carrello né pagamenti online**: per pezzi unici sarebbe un peso inutile.
+  Il pulsante «Lo voglio» copia un messaggio già scritto (nome pezzo, capo, prezzo)
+  e apre il DM Instagram — lo stesso flusso che l'artista già usa. Vedi `docs/SHOP.md`.
+- **Nessun prezzo inventato**: finché la cliente non li fornisce, i pezzi mostrano
+  "Prezzo su richiesta" e stato "Su ordinazione" (che è la verità: dipinge a richiesta).
+- **Foto**: tolte dalle sezioni visibili le foto di modella di spalle. La categoria
+  *Jeans* usa una foto pulita del capo; la categoria *Altro* non mostra più scarpe
+  (mostrava dei mocassini) ed è in attesa di una foto dedicata.
+
+## Bug risolto: invio su Instagram (v11)
+Il pulsante "Invia su Instagram" non funzionava. Causa: `window.open()` veniva
+chiamato **dopo un `await`** (la copia negli appunti), quindi il browser perdeva la
+"user activation" e **bloccava la finestra come popup**; su Safari/iOS falliva anche
+la copia. Soluzione in `src/lib/send.ts`: funzioni **sincrone** (nessun `await` prima
+di aprire la scheda), fallback di copia con `execCommand` per Safari, fallback alla
+stessa scheda se il popup viene comunque bloccato, e una schermata finale
+(`SentPanel`) che **mostra sempre il messaggio con un tasto «Copia»** — così il
+cliente non resta mai bloccato.
+
+## Testi (v11)
+- *Chi sono*: su richiesta della cliente il racconto si ferma a «In questi anni ho
+  continuato a lavorare e a studiare». I dettagli personali (laurea, master, la
+  scelta di lasciare il posto fisso) sono stati tolti anche dalla timeline e dal
+  teaser in home, per coerenza.
+- *Commissioni*: rimosso il campo **budget** (dal form, dal messaggio precompilato,
+  dalla validazione e dalla privacy policy).
