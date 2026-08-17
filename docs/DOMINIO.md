@@ -12,7 +12,8 @@ Il sito oggi vive su `https://mementolab.vercel.app`.
 
 - **Acquistato** il 17 agosto 2026 su **Register.it** (scade 17/08/2027)
 - **Collegato al progetto Vercel** `mementolab`: sia `mementolab.it` sia `www.mementolab.it`
-- **Manca solo**: i record DNS nel pannello Register.it, poi la variabile d'ambiente
+- **ATTIVO** dal 17 agosto 2026: https://mementolab.it (HTTPS automatico Vercel)
+- Record DNS configurati su Register.it, `NEXT_PUBLIC_SITE_URL` impostata
 
 ## Record DNS da inserire su Register.it
 

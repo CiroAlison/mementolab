@@ -3,7 +3,8 @@
 Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
 
 ## 🌐 Online
-- **Sito live**: https://mementolab.vercel.app
+- **Sito live**: https://mementolab.it (dominio proprio, dal 17 ago 2026)
+- Indirizzo tecnico Vercel: https://mementolab.vercel.app
 - **Repo**: https://github.com/CiroAlison/mementolab
 - **Vercel**: progetto `mementolab` (separato da Cala Sea), collegato al repo GitHub → deploy automatico ad ogni `git push`.
 - **Guida completa per ricostruire**: vedi `HANDOFF.md`.
@@ -64,6 +65,7 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
 - **v18 — Dominio**: scelto `mementolab.it` (libero; il `.com` è in vendita a
   $4.395). Sito predisposto: `site.url` legge `NEXT_PUBLIC_SITE_URL`, quindi il
   passaggio al dominio non richiede modifiche al codice. Guida: `docs/DOMINIO.md`.
+  **Dominio ATTIVO dal 17/08/2026.**
 
 ## ✅ Fatto (release 1)
 
