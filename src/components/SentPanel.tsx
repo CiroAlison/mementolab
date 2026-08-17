@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { copyText, openTab } from "@/lib/send";
+import { copyText } from "@/lib/send";
 import { site } from "@/lib/site";
 
 export type Channel = "ig" | "wa" | "email";
@@ -48,14 +48,16 @@ export function SentPanel({
           {copied ? "Copiato ✓" : "Copia messaggio"}
         </button>
 
+        {/* link vero: solo così iOS/Android aprono l'app invece del browser */}
         {channel === "ig" && (
-          <button
-            type="button"
-            onClick={() => openTab(site.instagramDM)}
+          <a
+            href={site.instagramDM}
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn inline-flex items-center justify-center bg-gradient-to-tr from-[#FA7E1E] via-[#D62976] to-[#962FBF] text-white hover:brightness-105"
           >
             Riapri Instagram
-          </button>
+          </a>
         )}
       </div>
 

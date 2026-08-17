@@ -99,6 +99,9 @@ del pezzo, il prezzo e il messaggio già pronto, e due modi per mandarlo:
 | **WhatsApp** | Il messaggio arriva **già scritto**: il cliente preme solo invio. Zero passaggi. |
 | **Instagram** | Il messaggio viene **copiato** e si apre il DM: il cliente deve **incollare**. |
 
+Entrambi sono **link veri** (`<a href>`), non aperture da JavaScript: è l'unico
+modo perché iOS e Android aprano l'**app** invece di una pagina web.
+
 ### Perché su Instagram bisogna incollare
 **Non è un difetto del sito: Instagram non lo permette.** I link `ig.me/m/utente`
 non accettano un parametro con il testo — a differenza di WhatsApp (`wa.me/?text=`).

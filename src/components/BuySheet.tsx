@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import type { Product } from "@/lib/shop";
 import { priceLabel } from "@/lib/shop";
 import { productMessage } from "@/lib/message";
-import { copyText, openTab, waLink } from "@/lib/send";
+import { copyText, waLink } from "@/lib/send";
 import { site } from "@/lib/site";
 
 // Pannello d'acquisto. Su cellulare sale dal basso (bottom sheet), su desktop
@@ -50,15 +50,10 @@ export function BuySheet({
     };
   }, [open, onClose]);
 
-  function goWhatsApp() {
-    openTab(waLink(site.whatsapp, msg));
-    onClose();
-  }
-
-  function goInstagram() {
+  // Copia il messaggio e lascia che sia il link a portare all'app.
+  function preparaInstagram() {
     copyText(msg);
     setCopied(true);
-    openTab(site.instagramDM);
   }
 
   function justCopy() {
@@ -130,27 +125,34 @@ export function BuySheet({
 
             <div className="mt-5">
               {/* Instagram è il canale principale del brand: primo e più grande. */}
-              <button
-                type="button"
-                onClick={goInstagram}
+              {/* Link VERO, non un window.open da codice: iOS e Android aprono
+                  l'app di Instagram solo quando l'utente tocca un vero <a>
+                  (universal link). Aperto via JavaScript resterebbe nel browser. */}
+              <a
+                href={site.instagramDM}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={preparaInstagram}
                 className="btn flex w-full items-center justify-center gap-2 bg-gradient-to-tr from-[#FA7E1E] via-[#D62976] to-[#962FBF] py-4 text-base text-white hover:brightness-105"
               >
                 <IgIcon />
                 {copied ? "Copiato ✓ — apri e incolla" : "Invia su Instagram"}
-              </button>
+              </a>
               <p className="mt-2 text-center font-sans text-[0.7rem] text-ink/50">
                 Instagram non permette di scrivere il messaggio in automatico:
                 lo copio io, tu incollalo nella chat.
               </p>
 
-              <button
-                type="button"
-                onClick={goWhatsApp}
+              <a
+                href={waLink(site.whatsapp, msg)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={onClose}
                 className="mt-4 flex w-full items-center justify-center gap-2 rounded-full border border-ink/20 py-2.5 font-sans text-sm text-ink transition hover:border-ink/40 hover:bg-ink/5"
               >
                 <WaIcon />
                 Oppure su WhatsApp (già scritto)
-              </button>
+              </a>
             </div>
 
             <div className="mt-5 flex items-center justify-between gap-3 border-t border-ink/10 pt-4">

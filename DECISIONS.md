@@ -191,3 +191,19 @@ Se la scheda del browser è in background (`document.visibilityState === "hidden
 congelate al fotogramma iniziale**: il pannello sembra fermo fuori schermo anche
 quando funziona. Per misurare la posizione reale, azzerare `transform` a mano
 prima di leggere `getBoundingClientRect()`.
+
+## Instagram si apriva nel browser invece che nell'app (v17)
+La cliente ha notato che premendo «Lo voglio» si apriva una **pagina web** di
+Instagram e non l'app. Causa: i link `ig.me` (e `wa.me`) sono **universal link** —
+iOS e Android li dirottano sull'app **solo quando l'utente tocca un vero `<a href>`**.
+Il sito li apriva invece da JavaScript (`window.open`), e in quel caso il sistema
+operativo li tratta come normali indirizzi web: restano nel browser.
+
+**Soluzione**: in `BuySheet` e `SentPanel` i pulsanti Instagram e WhatsApp sono
+diventati **veri `<a href target="_blank">`**. La copia del messaggio avviene
+nell'`onClick` (sincrona, dentro il gesto), mentre a portare all'app ci pensa il
+link stesso.
+
+⚠️ **Regola generale**: per aprire un'app esterna (Instagram, WhatsApp, telefono,
+email) usare SEMPRE un `<a href>`, mai `window.open` da codice. `openTab()` in
+`src/lib/send.ts` resta solo per i form, dove prima serve la validazione.

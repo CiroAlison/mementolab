@@ -59,6 +59,8 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
   attesa della P.IVA (`docs/PAGAMENTI.md`).
 - **v16 — Bug fix**: il pannello «Lo voglio» si apriva a metà nella home (ora usa
   un portal, vedi `DECISIONS.md`); tolta la barra fissa in fondo alle pagine dei pezzi.
+- **v17 — Apertura app**: i pulsanti Instagram/WhatsApp sono diventati link veri,
+  così i telefoni aprono l'app invece della pagina web.
 
 ## ✅ Fatto (release 1)
 
