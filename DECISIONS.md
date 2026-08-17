@@ -149,3 +149,21 @@ La cliente aggiungerà molti pezzi nel tempo e non voleva un processo macchinoso
 - **Pannello «Lo voglio»**: **Instagram è il primo pulsante** e il più grande —
   è il canale che la cliente vuole in primo piano. WhatsApp resta sotto come
   alternativa discreta ("già scritto"), perché è l'unico che precompila davvero.
+
+## Pagine dei pezzi e basi per i pagamenti (v15)
+- **Pagina dedicata per ogni pezzo** (`/shop/<id>`): foto grande, prezzo, racconto,
+  rassicurazioni (pezzo unico / dipinto a mano / spedizione), link al post
+  Instagram, pezzi correlati e — su cellulare — una **barra fissa** col prezzo e
+  «Lo voglio» sempre a portata di pollice. Generate da sole dai dati, zero lavoro
+  manuale. Aggiunti i dati schema.org: Google può mostrarle come prodotti.
+- **Prezzo diventato numerico** (`priceEur: 180`) invece di stringa `"180€"`:
+  unica fonte di verità, usata sia per mostrarlo sia (domani) per incassarlo.
+- **Checkout Stripe scritto e installato ma SPENTO** (`/api/checkout`, guardia
+  `SHOP_PAGAMENTI=on` + `STRIPE_SECRET_KEY`). Senza le variabili risponde 503 e non
+  può muovere denaro. Motivo: l'artista non ha ancora la P.IVA.
+- **Metodi di pagamento non elencati nel codice** di proposito: Stripe Checkout
+  mostra da solo tutti quelli attivati nel pannello (carte, Apple Pay, Google Pay,
+  Klarna, PayPal, Satispay). Aggiungerne uno domani = una spunta, non una modifica.
+- Guida di attivazione completa, con costi e adempimenti di legge: `docs/PAGAMENTI.md`.
+- Il flusso d'acquisto attuale (pannello con Instagram in primo piano) **resta
+  invariato**: la cliente l'ha confermato finché non ci sono i prezzi.

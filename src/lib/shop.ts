@@ -21,11 +21,19 @@ export type Product = {
   base: string;
   category: CategorySlug;
   image: string;
-  /** Es. "180€". Se assente mostra "Prezzo su richiesta". */
-  price?: string;
+  /** Foto aggiuntive (retro, dettagli). La prima resta `image`. */
+  gallery?: string[];
+  /** Prezzo in EURO, come numero: 180 (non "180€"). È l'unico posto dove si
+   *  scrive il prezzo: il sito lo formatta da solo e domani il pagamento userà
+   *  lo stesso valore. Se manca, mostra "Prezzo su richiesta". */
+  priceEur?: number;
+  /** Taglie disponibili, se il capo ne ha. Es. ["S","M","L"] */
+  sizes?: string[];
   status: ProductStatus;
   /** Descrizione breve mostrata nella scheda */
   blurb: string;
+  /** Racconto più lungo, mostrato nella pagina del pezzo */
+  story?: string;
   /** Post Instagram del pezzo: finisce nel messaggio d'acquisto, così si vede
    *  subito di quale pezzo si tratta. */
   instagramPost?: string;
@@ -47,4 +55,30 @@ export function productsByCategory(slug: CategorySlug) {
   return products.filter((p) => p.category === slug);
 }
 
-export const priceLabel = (p: Product) => p.price ?? "Prezzo su richiesta";
+const euro = new Intl.NumberFormat("it-IT", {
+  style: "currency",
+  currency: "EUR",
+  maximumFractionDigits: 0,
+});
+
+/** Prezzo da mostrare: "180 €" oppure "Prezzo su richiesta". */
+export const priceLabel = (p: Product) =>
+  typeof p.priceEur === "number" ? euro.format(p.priceEur) : "Prezzo su richiesta";
+
+/** true quando il pezzo ha un prezzo e si potrà pagare online. */
+export const hasPrice = (p: Product) => typeof p.priceEur === "number";
+
+export function getProduct(id: string) {
+  return products.find((p) => p.id === id);
+}
+
+/** Altri pezzi da suggerire in fondo alla pagina di un pezzo. */
+export function relatedProducts(p: Product, n = 4) {
+  const stessaCategoria = products.filter(
+    (x) => x.id !== p.id && x.category === p.category,
+  );
+  const altri = products.filter(
+    (x) => x.id !== p.id && x.category !== p.category,
+  );
+  return [...stessaCategoria, ...altri].slice(0, n);
+}

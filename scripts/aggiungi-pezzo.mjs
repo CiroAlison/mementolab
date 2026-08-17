@@ -50,7 +50,7 @@ Serve il link del post Instagram.
   npm run pezzo -- https://www.instagram.com/p/ABC123/ --prezzo 180
 
 Opzioni:
-  --prezzo <valore>   es. 180  oppure "180€"   (senza = "Prezzo su richiesta")
+  --prezzo <numero>   es. 180   (senza = "Prezzo su richiesta")
   --titolo <testo>    altrimenti lo ricavo dalla didascalia
   --capo <testo>      es. "Giubbotto in denim"
   --cat <categoria>   ${CATEGORIE.join(" | ")}   (altrimenti la indovino)
@@ -127,9 +127,13 @@ if (!STATI.includes(stato)) {
   process.exit(1);
 }
 
-// prezzo: "180" -> "180€"
-let prezzo = opt("prezzo");
-if (prezzo && /^\d+([.,]\d+)?$/.test(prezzo)) prezzo = `${prezzo}€`;
+// prezzo: numero in euro (il sito lo formatta da solo)
+const prezzoRaw = opt("prezzo");
+const prezzo = prezzoRaw ? Number(String(prezzoRaw).replace(/[^\d.,]/g, "").replace(",", ".")) : undefined;
+if (prezzoRaw && !Number.isFinite(prezzo)) {
+  console.error(`❌ Prezzo "${prezzoRaw}" non valido. Scrivi un numero, es. --prezzo 180`);
+  process.exit(1);
+}
 
 // descrizione: dalla didascalia, ripulita dagli hashtag
 const blurb =
@@ -150,7 +154,7 @@ const nuovo = {
   base: opt("capo") || "Pezzo unico dipinto a mano",
   category: cat,
   image: `/shop/${id}${ext}`,
-  ...(prezzo ? { price: prezzo } : {}),
+  ...(prezzo !== undefined ? { priceEur: prezzo } : {}),
   status: stato,
   blurb,
   instagramPost: `https://www.instagram.com/p/${shortcode}/`,
@@ -165,7 +169,7 @@ console.log(`
    ${nuovo.title}
    capo      ${nuovo.base}
    categoria ${nuovo.category}
-   prezzo    ${nuovo.price ?? "Prezzo su richiesta"}
+   prezzo    ${nuovo.priceEur !== undefined ? nuovo.priceEur + " €" : "Prezzo su richiesta"}
    stato     ${nuovo.status}
    foto      public/shop/${id}${ext}
    in home   ${nuovo.featured ? "sì" : "no"}

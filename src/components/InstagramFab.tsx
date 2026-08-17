@@ -19,7 +19,7 @@ export function InstagramFab() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Scrivimi su Instagram"
-      className={`group fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full bg-gradient-to-tr from-[#FA7E1E] via-[#D62976] to-[#962FBF] py-3 pl-3 pr-3 text-white shadow-lg shadow-ink/20 transition-all duration-300 hover:pr-5 sm:bottom-7 sm:right-7 ${
+      className={`ig-fab group fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full bg-gradient-to-tr from-[#FA7E1E] via-[#D62976] to-[#962FBF] py-3 pl-3 pr-3 text-white shadow-lg shadow-ink/20 transition-all duration-300 hover:pr-5 sm:bottom-7 sm:right-7 ${
         show ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
       }`}
     >

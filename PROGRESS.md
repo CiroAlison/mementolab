@@ -53,6 +53,10 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
 - **v14 — Ritocchi**: categorie a carosello come "In evidenza"; tolta la foto del
   ragazzo di spalle con Zio Paperone; nel pannello d'acquisto Instagram è il
   pulsante principale.
+- **v15 — Pagine dei pezzi + basi pagamenti**: ogni pezzo ha la sua pagina
+  `/shop/<id>` (foto grande, racconto, rassicurazioni, correlati, barra fissa su
+  cellulare). Prezzo diventato numerico. Checkout Stripe pronto ma **spento** in
+  attesa della P.IVA (`docs/PAGAMENTI.md`).
 
 ## ✅ Fatto (release 1)
 

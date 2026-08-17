@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { BuySheet } from "./BuySheet";
@@ -28,12 +29,10 @@ export function ProductCard({
         whileHover={reduce || sold ? undefined : { y: -8 }}
         transition={{ type: "spring", stiffness: 300, damping: 24 }}
       >
-        <button
-          type="button"
-          onClick={() => !sold && setOpen(true)}
-          disabled={sold}
-          aria-label={sold ? `${product.title} — venduto` : `Vorrei ${product.title}`}
-          className="relative block aspect-[4/5] w-full overflow-hidden bg-ink/5 text-left"
+        <Link
+          href={`/shop/${product.id}`}
+          aria-label={`${product.title} — vedi il pezzo`}
+          className="relative block aspect-[4/5] w-full overflow-hidden bg-ink/5"
         >
           <motion.div
             className="absolute inset-0"
@@ -61,14 +60,16 @@ export function ProductCard({
 
           {!sold && (
             <span className="pointer-events-none absolute inset-x-3 bottom-3 hidden translate-y-3 rounded-full bg-paper px-4 py-2.5 text-center font-sans text-sm font-medium text-ink opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 lg:block">
-              Lo voglio
+              Vedi il pezzo
             </span>
           )}
-        </button>
+        </Link>
 
         <div className="flex flex-1 flex-col p-3.5 sm:p-5">
           <h3 className="font-display text-lg leading-tight text-ink sm:text-2xl">
-            {product.title}
+            <Link href={`/shop/${product.id}`} className="hover:text-ink/70">
+              {product.title}
+            </Link>
           </h3>
           <p className="mt-0.5 font-sans text-[0.6rem] uppercase tracking-wide2 text-ink/50 sm:text-[0.7rem]">
             {product.base}
@@ -89,7 +90,7 @@ export function ProductCard({
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="btn mt-3 w-full bg-gradient-to-tr from-[#FA7E1E] via-[#D62976] to-[#962FBF] px-4 py-2.5 text-xs text-white hover:brightness-105 sm:text-sm lg:hidden"
+              className="btn mt-3 w-full bg-gradient-to-tr from-[#FA7E1E] via-[#D62976] to-[#962FBF] px-4 py-2.5 text-xs text-white hover:brightness-105 sm:text-sm"
             >
               Lo voglio
             </button>

@@ -27,7 +27,7 @@ npm run pezzo -- https://www.instagram.com/p/ABC123/ \
 
 | Opzione | A cosa serve |
 |---|---|
-| `--prezzo 180` | Prezzo (`180` diventa `180€`). Senza → "Prezzo su richiesta" |
+| `--prezzo 180` | Prezzo in euro, come numero. Senza → "Prezzo su richiesta" |
 | `--titolo "..."` | Nome del pezzo (altrimenti dalla didascalia) |
 | `--capo "..."` | Su cosa è dipinto, es. "Giubbotto in denim" |
 | `--cat` | `giubbotti` `jeans` `scarpe` `altro` (altrimenti la indovina) |
@@ -52,9 +52,12 @@ Per cambiare un prezzo basta aprire il file e scriverlo:
   "base": "Giubbotto vintage in pelle",
   "category": "giubbotti",
   "image": "/gallery/giubbotti-01.jpg",
-  "price": "180€",
+  "gallery": ["/shop/watch-me-2.jpg"],
+  "priceEur": 180,
+  "sizes": ["S", "M", "L"],
   "status": "disponibile",
-  "blurb": "Descrizione breve…",
+  "blurb": "Descrizione breve, esce nella scheda…",
+  "story": "Racconto più lungo, esce nella pagina del pezzo…",
   "instagramPost": "https://www.instagram.com/p/CbQXeAcIjtw/",
   "featured": true
 }
@@ -68,8 +71,22 @@ Per cambiare un prezzo basta aprire il file e scriverlo:
 | `venduto` | badge "Venduto", nessun pulsante | pezzo non più acquistabile |
 
 ### Prezzi
-Se `price` manca, la scheda mostra **"Prezzo su richiesta"**. È lo stato attuale di
-tutti i pezzi: appena arrivano i prezzi reali basta aggiungere `"price": "180€"`.
+Il prezzo si scrive **come numero**: `"priceEur": 180`. Il sito lo formatta da solo
+(`180 €`) e domani il pagamento online userà lo stesso valore, senza doppioni.
+Se manca, la scheda mostra **"Prezzo su richiesta"** — lo stato attuale di tutti i pezzi.
+
+### Campi facoltativi
+| Campo | A cosa serve |
+|---|---|
+| `gallery` | Altre foto (retro, dettagli) mostrate nella pagina del pezzo |
+| `sizes` | Taglie selezionabili; quella scelta finisce nel messaggio |
+| `story` | Racconto lungo per la pagina del pezzo (la scheda usa `blurb`) |
+
+## La pagina di ogni pezzo
+Ogni pezzo ha la sua pagina: **`/shop/<id>`** (es. `/shop/watch-me`). Si genera da
+sola dai dati — non c'è niente da creare a mano. Contiene foto grande, prezzo,
+racconto, rassicurazioni, link al post Instagram, pezzi correlati e una barra fissa
+in basso col prezzo e «Lo voglio» su cellulare.
 
 ## Come compra il cliente
 
@@ -98,3 +115,7 @@ si tratta, con tanto di anteprima.
 Serviranno: pagamenti (Stripe/PayPal), carrello, gestione scorte e spedizioni.
 La struttura dati in `shop.ts` (prezzo, stato, categoria) è già compatibile: si
 tratterebbe di collegarla a un checkout, non di rifare il sito.
+
+## Pagamenti online
+Sono **già pronti ma spenti**, in attesa della Partita IVA.
+Guida completa per accenderli: [`PAGAMENTI.md`](./PAGAMENTI.md).

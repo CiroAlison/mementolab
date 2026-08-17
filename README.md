@@ -43,6 +43,7 @@ npm run pezzo -- https://www.instagram.com/p/ABC123/ --prezzo 180
 Scarica la foto, ricava titolo e descrizione dalla didascalia e aggiunge la scheda
 a `src/data/prodotti.json` (modificabile anche a mano).
 Guida completa: [`docs/SHOP.md`](./docs/SHOP.md).
+Pagamenti online (pronti ma spenti): [`docs/PAGAMENTI.md`](./docs/PAGAMENTI.md).
 
 ## Struttura
 - `src/app` — pagine (home, shop, chi-sono, processo, commissioni, contatti) e API

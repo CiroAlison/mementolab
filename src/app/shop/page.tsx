@@ -17,7 +17,7 @@ const steps = [
   {
     n: "01",
     t: "Scegli il pezzo",
-    d: "Guarda i pezzi qui sotto e premi «Lo voglio»: ti preparo il messaggio già scritto.",
+    d: "Ogni pezzo è unico ed esiste in un solo esemplare. Quando ne trovi uno che ti conquista, premi «Lo voglio».",
   },
   {
     n: "02",

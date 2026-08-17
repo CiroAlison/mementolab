@@ -18,15 +18,17 @@ import { site } from "@/lib/site";
 // questo lo copiamo automaticamente e lo mostriamo bello grande.
 export function BuySheet({
   product,
+  size,
   open,
   onClose,
 }: {
   product: Product;
+  size?: string;
   open: boolean;
   onClose: () => void;
 }) {
   const [copied, setCopied] = useState(false);
-  const msg = productMessage(product);
+  const msg = productMessage(product, size);
 
   useEffect(() => {
     if (!open) return;
