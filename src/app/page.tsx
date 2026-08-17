@@ -130,48 +130,54 @@ export default function Home() {
         </Marquee>
       </section>
 
-      {/* ——— CATEGORIE ——— */}
-      <section className="relative overflow-hidden pb-20 sm:pb-28">
+      {/* ——— CATEGORIE (carosello, come "In evidenza") ——— */}
+      <section className="relative overflow-hidden py-8 pb-20 sm:pb-28">
         <SectionSpiral reverse className="-left-16 -top-4 h-64 w-64 sm:h-80 sm:w-80" />
-        <div className="wrap relative z-10">
-          <Reveal className="mb-10">
+        <Reveal className="wrap relative z-10 mb-10 flex items-end justify-between gap-4">
+          <div>
             <p className="eyebrow">Cosa personalizzo</p>
             <h2 className="mt-2 font-display text-4xl text-ink sm:text-5xl">
               Le categorie
             </h2>
-          </Reveal>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {categories.map((c, i) => (
-              <Reveal key={c.slug} delay={i * 0.06}>
-                <Link
-                  href="/shop"
-                  className="group flex h-full flex-col overflow-hidden rounded-lg bg-ink text-paper"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image
-                      src={categoryImage[c.slug]}
-                      alt={c.label}
-                      fill
-                      sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 25vw"
-                      placeholder={blurFor(categoryImage[c.slug]) ? "blur" : "empty"}
-                      blurDataURL={blurFor(categoryImage[c.slug])}
-                      className="object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-5">
-                    <h3 className="font-display text-2xl text-paper">{c.label}</h3>
-                    <p className="mt-2 flex-1 text-pretty font-sans text-sm leading-relaxed text-paper/70">
-                      {c.blurb}
-                    </p>
-                    <span className="mt-4 font-sans text-sm text-flame-soft">
-                      Scopri →
-                    </span>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
           </div>
-        </div>
+          <Link
+            href="/shop"
+            className="link-underline shrink-0 font-sans text-sm text-ink/80 hover:text-ink"
+          >
+            Vai allo shop →
+          </Link>
+        </Reveal>
+
+        <Marquee reverse speed={55}>
+          {categories.map((c) => (
+            <Link
+              key={c.slug}
+              href="/shop"
+              className="group flex w-[260px] shrink-0 flex-col overflow-hidden rounded-lg bg-ink text-paper sm:w-[340px]"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={categoryImage[c.slug]}
+                  alt={c.label}
+                  fill
+                  sizes="340px"
+                  placeholder={blurFor(categoryImage[c.slug]) ? "blur" : "empty"}
+                  blurDataURL={blurFor(categoryImage[c.slug])}
+                  className="object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-5">
+                <h3 className="font-display text-2xl text-paper">{c.label}</h3>
+                <p className="mt-2 flex-1 text-pretty font-sans text-sm leading-relaxed text-paper/70">
+                  {c.blurb}
+                </p>
+                <span className="mt-4 font-sans text-sm text-flame-soft">
+                  Scopri →
+                </span>
+              </div>
+            </Link>
+          ))}
+        </Marquee>
       </section>
 
       {/* ——— CHI SONO (teaser, sezione navy) ——— */}

@@ -457,6 +457,7 @@ const FOTO_ESCLUSE = new Set([
   "/gallery/jeans-05.jpg",
   "/gallery/jeans-06.jpg",
   "/gallery/jeans-07.jpg",
+  "/gallery/jeans-08.jpg", // ragazzo di spalle con la camicia Zio Paperone
   "/gallery/x-frida-levis.jpg",
   "/gallery/x-girasoli-giub.jpg",
   "/gallery/x-modigliani.jpg",

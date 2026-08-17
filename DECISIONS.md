@@ -140,3 +140,12 @@ La cliente aggiungerà molti pezzi nel tempo e non voleva un processo macchinoso
   link al post già collegato. Testato su un post reale.
 - Così il collegamento fra pezzo, foto, post Instagram e prezzo avviene in un
   comando solo, invece che compilando otto campi a mano.
+
+## Ritocchi (v14 — richieste della cliente)
+- **Categorie**: da griglia a **carosello scorrevole**, come la sezione "In evidenza"
+  (non le piacevano incolonnate).
+- Esclusa anche `jeans-08.jpg` (ragazzo di spalle con la camicia Zio Paperone):
+  la lista delle foto da non mostrare è `FOTO_ESCLUSE` in `src/lib/gallery.ts`.
+- **Pannello «Lo voglio»**: **Instagram è il primo pulsante** e il più grande —
+  è il canale che la cliente vuole in primo piano. WhatsApp resta sotto come
+  alternativa discreta ("già scritto"), perché è l'unico che precompila davvero.

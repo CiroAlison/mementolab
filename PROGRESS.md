@@ -50,6 +50,9 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
 - **v13 — Shop facile da aggiornare**: pezzi spostati in `src/data/prodotti.json`
   e nuovo comando `npm run pezzo -- <link-ig> --prezzo 180` che scarica foto,
   didascalia e collega il post automaticamente (`scripts/aggiungi-pezzo.mjs`).
+- **v14 — Ritocchi**: categorie a carosello come "In evidenza"; tolta la foto del
+  ragazzo di spalle con Zio Paperone; nel pannello d'acquisto Instagram è il
+  pulsante principale.
 
 ## ✅ Fatto (release 1)
 

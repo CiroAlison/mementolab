@@ -115,31 +115,29 @@ export function BuySheet({
               {msg}
             </pre>
 
-            <div className="mt-5 space-y-2.5">
-              <button
-                type="button"
-                onClick={goWhatsApp}
-                className="btn flex w-full items-center justify-center gap-2 bg-[#25D366] text-white hover:brightness-105"
-              >
-                <WaIcon />
-                Invia su WhatsApp
-              </button>
-              <p className="text-center font-sans text-[0.7rem] text-ink/50">
-                Il messaggio è già scritto: premi solo invio.
-              </p>
-
+            <div className="mt-5">
+              {/* Instagram è il canale principale del brand: primo e più grande. */}
               <button
                 type="button"
                 onClick={goInstagram}
-                className="btn mt-3 flex w-full items-center justify-center gap-2 bg-gradient-to-tr from-[#FA7E1E] via-[#D62976] to-[#962FBF] text-white hover:brightness-105"
+                className="btn flex w-full items-center justify-center gap-2 bg-gradient-to-tr from-[#FA7E1E] via-[#D62976] to-[#962FBF] py-4 text-base text-white hover:brightness-105"
               >
                 <IgIcon />
                 {copied ? "Copiato ✓ — apri e incolla" : "Invia su Instagram"}
               </button>
-              <p className="text-center font-sans text-[0.7rem] text-ink/50">
+              <p className="mt-2 text-center font-sans text-[0.7rem] text-ink/50">
                 Instagram non permette di scrivere il messaggio in automatico:
                 lo copio io, tu incollalo nella chat.
               </p>
+
+              <button
+                type="button"
+                onClick={goWhatsApp}
+                className="mt-4 flex w-full items-center justify-center gap-2 rounded-full border border-ink/20 py-2.5 font-sans text-sm text-ink transition hover:border-ink/40 hover:bg-ink/5"
+              >
+                <WaIcon />
+                Oppure su WhatsApp (già scritto)
+              </button>
             </div>
 
             <div className="mt-5 flex items-center justify-between gap-3 border-t border-ink/10 pt-4">
