@@ -87,7 +87,7 @@ export default function ProcessoPage() {
                 ["Tecnica", "Pittura acrilica a mano su tessuto, denim e pelle"],
                 ["Fissaggio", "Trattamento che protegge il colore da uso e lavaggi"],
                 ["Basi", "Giubbotti, jeans, scarpe, camicie, tele e accessori"],
-                ["Tempi indicativi", "Da 1 a 3 settimane, in base alla complessità"],
+                ["Tempi indicativi", "Da pochi giorni a un paio di settimane, in base alla complessità"],
                 ["Spedizione", "In tutta Italia; su richiesta anche all'estero"],
               ].map(([k, v]) => (
                 <div key={k} className="flex justify-between gap-6 py-3.5">
