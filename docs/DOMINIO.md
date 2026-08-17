@@ -8,6 +8,56 @@ Il sito oggi vive su `https://mementolab.vercel.app`.
 > **$4.395**. Per questo si è scelto il `.it`, che per un brand napoletano è anche
 > più credibile.
 
+## ✅ Stato
+
+- **Acquistato** il 17 agosto 2026 su **Register.it** (scade 17/08/2027)
+- **Collegato al progetto Vercel** `mementolab`: sia `mementolab.it` sia `www.mementolab.it`
+- **Manca solo**: i record DNS nel pannello Register.it, poi la variabile d'ambiente
+
+## Record DNS da inserire su Register.it
+
+Questi sono i valori **specifici di questo progetto** (letti da
+`vercel domains verify mementolab.it`):
+
+| Tipo | Nome / Host | Valore |
+|------|-------------|--------|
+| `A` | `@` (o vuoto) | `216.198.79.1` |
+| `A` | `@` (o vuoto) | `64.29.17.1` |
+| `CNAME` | `www` | `e431c298a45f1b4b.vercel-dns-017.com.` |
+
+> Due record `A` sullo stesso nome sono **corretti**: servono per ridondanza.
+> Se il pannello di Register non accettasse due `A`, basta il primo.
+> Valore `A` alternativo più vecchio, se richiesto: `76.76.21.21`.
+> CNAME generico alternativo: `cname.vercel-dns.com.`
+
+⚠️ **Prima di aggiungere**: cancellare eventuali record `A` o `CNAME` già presenti
+su `@` e su `www` (Register mette una pagina di parcheggio per impostazione
+predefinita), altrimenti entrano in conflitto.
+
+### Alternativa (più semplice ma più invasiva)
+Invece dei record, si possono cambiare i **nameserver** del dominio in
+`ns1.vercel-dns.com` e `ns2.vercel-dns.com`: così tutto il DNS si gestisce da
+Vercel. Sconsigliata se un domani si vuole un'email `@mementolab.it`, perché i
+record MX andrebbero ricreati su Vercel.
+
+## Dopo che i DNS funzionano
+
+1. Verifica:
+   ```bash
+   dig +short mementolab.it
+   npx vercel domains verify mementolab.it
+   ```
+2. Su Vercel → **Settings → Environment Variables**: `NEXT_PUBLIC_SITE_URL` =
+   `https://mementolab.it`, poi **Redeploy**. Serve per link canonici, sitemap,
+   anteprime social e dati prodotto Google.
+3. Su Vercel → **Domains**: impostare `mementolab.it` come **primario**, così
+   `www` e `.vercel.app` reindirizzano lì.
+4. Aggiornare il link nella bio di **Instagram** e **TikTok**.
+
+---
+
+## Storico / riferimento
+
 ## 1. Comprare il dominio (lo fa il proprietario)
 
 Il `.it` **non si può comprare da Vercel** (non supporta quell'estensione): serve
