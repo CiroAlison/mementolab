@@ -205,5 +205,13 @@ nell'`onClick` (sincrona, dentro il gesto), mentre a portare all'app ci pensa il
 link stesso.
 
 ⚠️ **Regola generale**: per aprire un'app esterna (Instagram, WhatsApp, telefono,
-email) usare SEMPRE un `<a href>`, mai `window.open` da codice. `openTab()` in
-`src/lib/send.ts` resta solo per i form, dove prima serve la validazione.
+email) usare SEMPRE un `<a href>`, mai `window.open` da codice.
+
+**Anche nei form** (v17b): erano l'ultimo punto rimasto con `window.open`. Ora
+anche lì i tre canali sono `<a>` veri. Il trucco per farlo convivere con la
+validazione: nell'`onClick` si valida e, se i dati non vanno, si chiama
+`e.preventDefault()` per annullare la navigazione; se vanno, si aggiorna
+`e.currentTarget.href` con il messaggio appena costruito — il browser legge
+l'href **dopo** l'handler, quindi il link parte già completo.
+`openTab()` in `src/lib/send.ts` non è più usato da nessuna parte per i canali
+social: resta come utilità.

@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { commissionSchema, itemTypeOptions, type CommissionInput } from "@/lib/validation";
 import { commissionMessage, commissionSubject } from "@/lib/message";
 import { site } from "@/lib/site";
-import { copyText, openTab, waLink, mailLink } from "@/lib/send";
+import { copyText, waLink, mailLink } from "@/lib/send";
 import { SentPanel, type Channel } from "./SentPanel";
 
 type Errors = Record<string, string[] | undefined>;
@@ -30,34 +30,24 @@ export function CommissionForm() {
     return parsed.data;
   }
 
-  // NB: tutte sincrone — nessun `await` prima di aprire la scheda, altrimenti
-  // il browser blocca il popup (vedi src/lib/send.ts).
-  function sendWhatsApp() {
+  // Preparano soltanto: ad aprire l'app ci pensa il LINK vero (vedi sotto).
+  // Se i dati non sono validi si annulla la navigazione con preventDefault.
+  function prepara(
+    e: React.MouseEvent<HTMLAnchorElement>,
+    canale: Channel,
+    href: (msg: string, d: NonNullable<ReturnType<typeof validate>>) => string,
+  ) {
     const d = validate();
-    if (!d) return;
+    if (!d) {
+      e.preventDefault();
+      return;
+    }
     const msg = commissionMessage(d);
     setSentMessage(msg);
-    openTab(waLink(site.whatsapp, msg));
-    setDone("wa");
-  }
-
-  function sendEmail() {
-    const d = validate();
-    if (!d) return;
-    const msg = commissionMessage(d);
-    setSentMessage(msg);
-    window.location.href = mailLink(site.email, commissionSubject(d), msg);
-    setDone("email");
-  }
-
-  function sendInstagram() {
-    const d = validate();
-    if (!d) return;
-    const msg = commissionMessage(d);
-    setSentMessage(msg);
-    copyText(msg);
-    openTab(site.instagramDM);
-    setDone("ig");
+    if (canale === "ig") copyText(msg);
+    // l'href viene letto DOPO questo handler: qui possiamo ancora aggiornarlo
+    e.currentTarget.href = href(msg, d);
+    setDone(canale);
   }
 
   if (done) {
@@ -73,10 +63,7 @@ export function CommissionForm() {
   return (
     <form
       ref={formRef}
-      onSubmit={(e) => {
-        e.preventDefault();
-        sendInstagram();
-      }}
+      onSubmit={(e) => e.preventDefault()}
       noValidate
       className="space-y-5"
     >
@@ -133,31 +120,41 @@ export function CommissionForm() {
       </div>
 
       <div className="space-y-3 pt-2">
-        <button
-          type="submit"
+        {/* Link VERI: iOS e Android aprono l'app solo se si tocca un <a>. */}
+        <a
+          href={site.instagramDM}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => prepara(e, "ig", () => site.instagramDM)}
           className="btn inline-flex w-full items-center justify-center gap-2 bg-gradient-to-tr from-[#FA7E1E] via-[#D62976] to-[#962FBF] text-white hover:brightness-105 sm:w-auto"
         >
           <IgIcon />
           Invia su Instagram
-        </button>
+        </a>
 
         <p className="font-sans text-xs text-ink/60">
           Oppure invia lo stesso messaggio su{" "}
-          <button
-            type="button"
-            onClick={sendWhatsApp}
+          <a
+            href={`https://wa.me/${site.whatsapp}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => prepara(e, "wa", (msg) => waLink(site.whatsapp, msg))}
             className="font-medium text-ink underline underline-offset-2 hover:text-ink/70"
           >
             WhatsApp
-          </button>{" "}
+          </a>{" "}
           o via{" "}
-          <button
-            type="button"
-            onClick={sendEmail}
+          <a
+            href={`mailto:${site.email}`}
+            onClick={(e) =>
+              prepara(e, "email", (msg, d) =>
+                mailLink(site.email, commissionSubject(d), msg),
+              )
+            }
             className="font-medium text-ink underline underline-offset-2 hover:text-ink/70"
           >
             email
-          </button>
+          </a>
           .
         </p>
       </div>
