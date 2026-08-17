@@ -167,3 +167,27 @@ La cliente aggiungerà molti pezzi nel tempo e non voleva un processo macchinoso
 - Guida di attivazione completa, con costi e adempimenti di legge: `docs/PAGAMENTI.md`.
 - Il flusso d'acquisto attuale (pannello con Instagram in primo piano) **resta
   invariato**: la cliente l'ha confermato finché non ci sono i prezzi.
+
+## Due bug risolti (v16)
+### Il pannello «Lo voglio» si apriva a metà e tagliato
+Succedeva nella sezione shop della home. Causa: le schede prodotto stanno dentro
+elementi **animati con `transform`** (`Reveal` e la card che si solleva). In CSS,
+un elemento `position: fixed` dentro un antenato trasformato **non si ancora più
+alla finestra** ma a quell'antenato — quindi il pannello veniva posizionato dentro
+la scheda e tagliato dalla sezione con `overflow-hidden`.
+**Soluzione**: `BuySheet` viene renderizzato con un **portal** (`createPortal` su
+`document.body`), così esce da qualsiasi antenato trasformato e copre davvero lo
+schermo. ⚠️ Se un domani si aggiungono altri pannelli/modali, devono usare il
+portal per lo stesso motivo.
+
+### Barra fissa in fondo alle pagine dei pezzi
+Rimossa su richiesta della cliente (non le piaceva). Con lei sono spariti anche la
+classe `ha-barra-acquisto` sul body e la regola CSS che nascondeva il pulsante
+Instagram fisso: quel pulsante ora è di nuovo sempre visibile.
+
+### Nota per chi testa nel browser automatico
+Se la scheda del browser è in background (`document.visibilityState === "hidden"`),
+`requestAnimationFrame` è sospeso e **le animazioni di Framer Motion restano
+congelate al fotogramma iniziale**: il pannello sembra fermo fuori schermo anche
+quando funziona. Per misurare la posizione reale, azzerare `transform` a mano
+prima di leggere `getBoundingClientRect()`.

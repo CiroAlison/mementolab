@@ -57,6 +57,8 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
   `/shop/<id>` (foto grande, racconto, rassicurazioni, correlati, barra fissa su
   cellulare). Prezzo diventato numerico. Checkout Stripe pronto ma **spento** in
   attesa della P.IVA (`docs/PAGAMENTI.md`).
+- **v16 — Bug fix**: il pannello «Lo voglio» si apriva a metà nella home (ora usa
+  un portal, vedi `DECISIONS.md`); tolta la barra fissa in fondo alle pagine dei pezzi.
 
 ## ✅ Fatto (release 1)
 

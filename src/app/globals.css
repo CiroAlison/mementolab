@@ -98,14 +98,3 @@
     scroll-behavior: auto !important;
   }
 }
-
-/* Nella pagina di un pezzo la barra d'acquisto occupa il fondo dello schermo:
-   su cellulare nascondiamo il pulsante Instagram fisso per non sovrapporli. */
-@media (max-width: 1023px) {
-  body.ha-barra-acquisto .ig-fab {
-    display: none;
-  }
-  body.ha-barra-acquisto {
-    padding-bottom: 5.5rem;
-  }
-}

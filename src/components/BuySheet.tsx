@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Product } from "@/lib/shop";
 import { priceLabel } from "@/lib/shop";
@@ -28,6 +29,14 @@ export function BuySheet({
   onClose: () => void;
 }) {
   const [copied, setCopied] = useState(false);
+  // Il pannello viene "teletrasportato" in fondo alla pagina (portal).
+  // Serve: le schede prodotto sono dentro elementi animati con `transform`, e
+  // un elemento `position: fixed` dentro un antenato trasformato NON si ancora
+  // più alla finestra ma a quell'antenato — il pannello usciva a metà e veniva
+  // tagliato dalla sezione. Col portal esce da lì e copre davvero lo schermo.
+  const [montato, setMontato] = useState(false);
+  useEffect(() => setMontato(true), []);
+
   const msg = productMessage(product, size);
 
   useEffect(() => {
@@ -58,7 +67,9 @@ export function BuySheet({
     setTimeout(() => setCopied(false), 2500);
   }
 
-  return (
+  if (!montato) return null;
+
+  return createPortal(
     <AnimatePresence>
       {open && (
         <motion.div
@@ -161,7 +172,8 @@ export function BuySheet({
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }
 

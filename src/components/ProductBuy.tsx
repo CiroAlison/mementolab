@@ -1,23 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BuySheet } from "./BuySheet";
-import { priceLabel, type Product } from "@/lib/shop";
+import type { Product } from "@/lib/shop";
 
-// Blocco d'acquisto della pagina del pezzo: taglia (se serve), pulsante grande
-// e — su cellulare — una barra fissa in basso col prezzo, così il pulsante è
-// sempre a portata di pollice mentre si scorre.
+// Blocco d'acquisto della pagina del pezzo: taglia (se serve) e pulsante grande.
 export function ProductBuy({ product }: { product: Product }) {
   const [open, setOpen] = useState(false);
   const [size, setSize] = useState<string | undefined>();
   const venduto = product.status === "venduto";
 
-  // segnala al sito che in fondo c'è la barra d'acquisto (vedi globals.css)
-  useEffect(() => {
-    if (venduto) return;
-    document.body.classList.add("ha-barra-acquisto");
-    return () => document.body.classList.remove("ha-barra-acquisto");
-  }, [venduto]);
 
   if (venduto) {
     return (
@@ -68,25 +60,6 @@ export function ProductBuy({ product }: { product: Product }) {
         Nessun impegno: ci mettiamo d&apos;accordo prima. Di solito rispondo in
         poche ore.
       </p>
-
-      {/* barra fissa su cellulare */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-ink/10 bg-paper/95 px-4 py-3 backdrop-blur lg:hidden">
-        <div className="flex items-center gap-3">
-          <div className="min-w-0 flex-1">
-            <p className="truncate font-sans text-xs text-ink/55">{product.title}</p>
-            <p className="font-display text-xl leading-tight text-ink">
-              {priceLabel(product)}
-            </p>
-          </div>
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            className="btn shrink-0 bg-gradient-to-tr from-[#FA7E1E] via-[#D62976] to-[#962FBF] px-6 py-3 text-sm text-white hover:brightness-105"
-          >
-            Lo voglio
-          </button>
-        </div>
-      </div>
 
       <BuySheet
         product={product}
