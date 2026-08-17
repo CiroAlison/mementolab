@@ -128,3 +128,15 @@ cliente non resta mai bloccato.
   (`FOTO_ESCLUSE` in `gallery.ts`) che tiene fuori le foto di spalle/senza capo.
 - Foto di *Chi sono* sostituita con le tele di San Gennaro (più neutra).
 - FAQ commissioni: tempi ridotti da "1–3 settimane" a "pochi giorni – un paio di settimane".
+
+## Aggiungere pezzi senza fatica (v13)
+La cliente aggiungerà molti pezzi nel tempo e non voleva un processo macchinoso.
+- I pezzi sono stati spostati da TypeScript a un **file dati**: `src/data/prodotti.json`.
+  Cambiare un prezzo ora è modificare una riga di JSON, non toccare codice.
+- Aggiunto **`npm run pezzo -- <link-instagram> --prezzo 180`**
+  (`scripts/aggiungi-pezzo.mjs`): scarica la foto dal post con `gallery-dl`
+  (cookie di Chrome), la salva in `public/shop/`, ricava titolo e descrizione dalla
+  didascalia, indovina la categoria dalle parole chiave e aggiunge la scheda con il
+  link al post già collegato. Testato su un post reale.
+- Così il collegamento fra pezzo, foto, post Instagram e prezzo avviene in un
+  comando solo, invece che compilando otto campi a mano.

@@ -3,21 +3,60 @@
 Il sito è costruito **attorno allo shop**: la home mostra i pezzi in evidenza
 subito sotto l'intro, e ogni pezzo ha un pulsante **«Lo voglio»**.
 
-## Dove si modifica
+## Aggiungere un pezzo (il modo veloce)
 
-Un solo file: **`src/lib/shop.ts`**. Non serve toccare nient'altro.
+Serve solo il **link del post Instagram** e, se ce l'hai, il **prezzo**:
 
-```ts
+```bash
+npm run pezzo -- https://www.instagram.com/p/ABC123/ --prezzo 180
+```
+
+Lo script fa tutto da solo:
+1. scarica la foto dal post (usa i cookie di Chrome: devi essere loggato su Instagram)
+2. la salva in `public/shop/`
+3. ricava **titolo** e **descrizione** dalla didascalia del post
+4. **indovina la categoria** (giubbotti / jeans / scarpe / altro) dalla didascalia
+5. aggiunge la scheda al catalogo con il **link al post** già collegato
+
+Se vuoi precisare qualcosa:
+
+```bash
+npm run pezzo -- https://www.instagram.com/p/ABC123/ \
+  --prezzo 180 --titolo "Notte stellata" --capo "Jeans Levi's" --cat jeans --evidenza
+```
+
+| Opzione | A cosa serve |
+|---|---|
+| `--prezzo 180` | Prezzo (`180` diventa `180€`). Senza → "Prezzo su richiesta" |
+| `--titolo "..."` | Nome del pezzo (altrimenti dalla didascalia) |
+| `--capo "..."` | Su cosa è dipinto, es. "Giubbotto in denim" |
+| `--cat` | `giubbotti` `jeans` `scarpe` `altro` (altrimenti la indovina) |
+| `--stato` | `disponibile` `su-ordinazione` `venduto` (default: su-ordinazione) |
+| `--evidenza` | Mostra il pezzo anche in home |
+
+Poi si pubblica come sempre:
+
+```bash
+git add -A && git commit -m "Shop: nuovo pezzo" && git push
+```
+
+## Modificare a mano
+
+I pezzi stanno in **`src/data/prodotti.json`** — un file dati normale, senza codice.
+Per cambiare un prezzo basta aprire il file e scriverlo:
+
+```json
 {
-  id: "watch-me",                       // identificativo unico (senza spazi)
-  title: "Watch me",                    // nome del pezzo
-  base: "Giubbotto vintage in pelle",   // su cosa è realizzato
-  category: "giubbotti",                // giubbotti | jeans | scarpe | altro
-  image: "/gallery/giubbotti-01.jpg",   // foto (vedi sotto)
-  price: "180€",                        // se lo togli mostra "Prezzo su richiesta"
-  status: "disponibile",                // disponibile | su-ordinazione | venduto
-  blurb: "Descrizione breve…",
-  featured: true,                       // true = compare anche in home
+  "id": "watch-me",
+  "title": "Watch me",
+  "base": "Giubbotto vintage in pelle",
+  "category": "giubbotti",
+  "image": "/gallery/giubbotti-01.jpg",
+  "price": "180€",
+  "status": "disponibile",
+  "blurb": "Descrizione breve…",
+  "instagramPost": "https://www.instagram.com/p/CbQXeAcIjtw/",
+  "featured": true
 }
 ```
 
@@ -29,14 +68,8 @@ Un solo file: **`src/lib/shop.ts`**. Non serve toccare nient'altro.
 | `venduto` | badge "Venduto", nessun pulsante | pezzo non più acquistabile |
 
 ### Prezzi
-Se `price` è assente la scheda mostra **"Prezzo su richiesta"**. È lo stato
-attuale di tutti i pezzi: appena l'artista fornisce i prezzi reali basta
-aggiungere `price: "180€"` al pezzo.
-
-### Foto
-Metti la foto in `public/gallery/` (o crea `public/shop/`) e indica il percorso
-in `image`. Formato consigliato: **verticale 4:5**, foto pulita del capo (senza
-persona), luce naturale.
+Se `price` manca, la scheda mostra **"Prezzo su richiesta"**. È lo stato attuale di
+tutti i pezzi: appena arrivano i prezzi reali basta aggiungere `"price": "180€"`.
 
 ## Come compra il cliente
 

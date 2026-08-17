@@ -34,14 +34,22 @@ cd scripts/brand && python3 extract-spiral.py && python3 build-assets.py
 Guida completa: [`docs/BRAND-ASSETS.md`](./docs/BRAND-ASSETS.md).
 
 ## Shop
-Il sito è costruito attorno allo shop. Per aggiungere/modificare pezzi, prezzi e
-disponibilità si tocca **un solo file**: `src/lib/shop.ts`.
+Per aggiungere un pezzo basta il link del post Instagram:
+
+```bash
+npm run pezzo -- https://www.instagram.com/p/ABC123/ --prezzo 180
+```
+
+Scarica la foto, ricava titolo e descrizione dalla didascalia e aggiunge la scheda
+a `src/data/prodotti.json` (modificabile anche a mano).
 Guida completa: [`docs/SHOP.md`](./docs/SHOP.md).
 
 ## Struttura
 - `src/app` — pagine (home, shop, chi-sono, processo, commissioni, contatti) e API
-- `src/components` — UI (Header, Footer, Logo, ProductCard, BuyButton, form…)
-- `src/lib` — dati e configurazione (`site.ts`, `shop.ts`, `message.ts`, `send.ts`, `validation.ts`)
+- `src/components` — UI (Header, Footer, Logo, ProductCard, BuySheet, form…)
+- `src/data/prodotti.json` — i pezzi in vendita (file dati)
+- `src/lib` — configurazione (`site.ts`, `shop.ts`, `message.ts`, `send.ts`, `validation.ts`)
+- `scripts/aggiungi-pezzo.mjs` — aggiunge un pezzo da un link Instagram
 - `public/brand` — logo, spirale, wordmark, favicon (generati da `scripts/brand/`)
 - `public/gallery` — immagini delle opere
 - `prisma/schema.prisma` — modelli dati (DB dormiente)

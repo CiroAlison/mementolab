@@ -1,0 +1,127 @@
+[
+  {
+    "id": "watch-me",
+    "title": "Watch me",
+    "base": "Giubbotto vintage in pelle",
+    "category": "giubbotti",
+    "image": "/gallery/giubbotti-01.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Un giubbotto vintage in pelle punteggiato di occhi dipinti a mano: ovunque ti giri, qualcuno ti osserva.",
+    "instagramPost": "https://www.instagram.com/p/CbQXeAcIjtw/",
+    "featured": true
+  },
+  {
+    "id": "goku",
+    "title": "Goku Super Saiyan",
+    "base": "Giacca in denim",
+    "category": "giubbotti",
+    "image": "/gallery/giubbotti-06.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Quando la cultura pop diventa un pezzo unico: Goku su denim.",
+    "instagramPost": "https://www.instagram.com/p/C6eTRYRo_hW/",
+    "featured": true
+  },
+  {
+    "id": "luffy",
+    "title": "Luffy Â· Gear 5",
+    "base": "Giubbotto in denim",
+    "category": "giubbotti",
+    "image": "/gallery/x-popmix.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Rufy in versione Gear 5 sulla schiena di un giubbotto di jeans.",
+    "instagramPost": "https://www.instagram.com/p/C37zUHDoib5/"
+  },
+  {
+    "id": "paperone-jacket",
+    "title": "Zio Paperone",
+    "base": "Giubbotto in denim",
+    "category": "giubbotti",
+    "image": "/gallery/giubbotti-03.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Denim e oro: un omaggio pop al papero piÃ¹ ricco del mondo.",
+    "instagramPost": "https://www.instagram.com/p/DGL0eVoInYA/"
+  },
+  {
+    "id": "starry-jeans",
+    "title": "Notte stellata",
+    "base": "Jeans Â· tasca dipinta",
+    "category": "jeans",
+    "image": "/gallery/jeans-09.jpg",
+    "status": "su-ordinazione",
+    "blurb": "La Notte stellata di Van Gogh dipinta sulla tasca: ogni versione Ã¨ diversa dall'altra.",
+    "instagramPost": "https://www.instagram.com/p/CN-S4mwHcuz/",
+    "featured": true
+  },
+  {
+    "id": "starry-sogno",
+    "title": "Notte stellata Â· sogno",
+    "base": "Jeans",
+    "category": "jeans",
+    "image": "/gallery/x-starry-sogno.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Â«Non so nulla con certezza, ma la vista delle stelle mi fa sognare.Â»",
+    "instagramPost": "https://www.instagram.com/p/COdegnfHalh/"
+  },
+  {
+    "id": "dsquared-starry",
+    "title": "Notte stellata",
+    "base": "Sneaker Dsquared2",
+    "category": "scarpe",
+    "image": "/gallery/scarpe-01.jpg",
+    "status": "su-ordinazione",
+    "blurb": "La Notte stellata di Van Gogh che avvolge un paio di Dsquared2.",
+    "instagramPost": "https://www.instagram.com/p/Cfq_iqqIMtl/",
+    "featured": true
+  },
+  {
+    "id": "af1-masters",
+    "title": "Van Gogh Â· DalÃ­ Â· Monet",
+    "base": "Nike Air Force 1",
+    "category": "scarpe",
+    "image": "/gallery/scarpe-03.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Un mix di capolavori su un paio di AF1, nate per una mostra.",
+    "instagramPost": "https://www.instagram.com/p/DBPGsBkx3br/"
+  },
+  {
+    "id": "af1-denim",
+    "title": "AF1 Denim Â· Decon-Recon",
+    "base": "Nike Air Force 1",
+    "category": "scarpe",
+    "image": "/gallery/scarpe-04.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Decostruite e ricostruite interamente in denim, cucite a mano una cucitura alla volta.",
+    "instagramPost": "https://www.instagram.com/p/DBeU1ZDoYuR/"
+  },
+  {
+    "id": "charizard",
+    "title": "Charizard",
+    "base": "Adidas Stan Smith",
+    "category": "scarpe",
+    "image": "/gallery/x-charizard.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Dipingere su una superficie cosÃ¬ piccola Ã¨ stata una bella sfida.",
+    "instagramPost": "https://www.instagram.com/p/C9pAY2nIor-/"
+  },
+  {
+    "id": "sangennaro",
+    "title": "San Gennaro",
+    "base": "Opera su tela",
+    "category": "altro",
+    "image": "/gallery/x-sangennaro.jpg",
+    "status": "su-ordinazione",
+    "blurb": "San Gennaro e il Vesuvio: un omaggio a Napoli, dipinto a mano su tela.",
+    "instagramPost": "https://www.instagram.com/p/DAGxin-ItTI/",
+    "featured": true
+  },
+  {
+    "id": "adamo",
+    "title": "La creazione di Adamo",
+    "base": "Camicia",
+    "category": "altro",
+    "image": "/gallery/giubbotti-09.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Le mani della Creazione di Adamo dipinte su una camicia.",
+    "instagramPost": "https://www.instagram.com/p/COaWiqzHcpA/"
+  }
+]

@@ -47,6 +47,9 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
   scritto / Instagram da incollare + link al post del pezzo). Ripristinata
   "In evidenza" in home con filtro sulle foto di spalle; foto *Chi sono* più
   neutra; tempi FAQ ridotti.
+- **v13 — Shop facile da aggiornare**: pezzi spostati in `src/data/prodotti.json`
+  e nuovo comando `npm run pezzo -- <link-ig> --prezzo 180` che scarica foto,
+  didascalia e collega il post automaticamente (`scripts/aggiungi-pezzo.mjs`).
 
 ## ✅ Fatto (release 1)
 
