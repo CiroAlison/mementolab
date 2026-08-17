@@ -45,6 +45,8 @@ export function contactSubject(d: ContactInput) {
 }
 
 // Messaggio per l'acquisto di un pezzo dallo shop.
+// Include il link al post Instagram del pezzo: è il modo per far vedere
+// ESATTAMENTE quale pezzo si sta comprando anche dentro la chat.
 export function productMessage(p: Product) {
   return [
     "🛍️ Ciao MementoLab! Vorrei questo pezzo:",
@@ -52,9 +54,12 @@ export function productMessage(p: Product) {
     `✨ ${p.title}`,
     `🧥 ${p.base}`,
     `🏷️ ${priceLabel(p)}`,
+    p.instagramPost ? `📸 ${p.instagramPost}` : null,
     "",
     "Mi dici come procedere? 😊",
-  ].join("\n");
+  ]
+    .filter((l) => l !== null)
+    .join("\n");
 }
 
 export function productSubject(p: Product) {

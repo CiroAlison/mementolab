@@ -66,10 +66,10 @@ export default function ShopPage() {
             </p>
           </Reveal>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
             {products.map((p, i) => (
-              <Reveal key={p.id} delay={(i % 3) * 0.06}>
-                <ProductCard product={p} priority={i < 3} />
+              <Reveal key={p.id} delay={(i % 4) * 0.05}>
+                <ProductCard product={p} priority={i < 4} />
               </Reveal>
             ))}
           </div>

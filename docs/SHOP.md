@@ -40,18 +40,26 @@ persona), luce naturale.
 
 ## Come compra il cliente
 
-Non c'è un carrello né pagamenti online: sarebbe stato un peso inutile per una
-produzione di pezzi unici. Il flusso è quello che l'artista già usa:
+Non c'è un carrello né pagamenti online: sarebbe un peso inutile per pezzi unici.
+Premendo **«Lo voglio»** si apre un pannello (dal basso su cellulare) con la foto
+del pezzo, il prezzo e il messaggio già pronto, e due modi per mandarlo:
 
-1. il cliente preme **«Lo voglio»**
-2. il sito **copia un messaggio già scritto** con nome del pezzo, capo e prezzo
-3. si apre il **DM di Instagram** (canale principale) — in alternativa WhatsApp
-4. il cliente incolla e invia; si accordano su taglia, prezzo e spedizione
+| Canale | Cosa succede |
+|---|---|
+| **WhatsApp** | Il messaggio arriva **già scritto**: il cliente preme solo invio. Zero passaggi. |
+| **Instagram** | Il messaggio viene **copiato** e si apre il DM: il cliente deve **incollare**. |
 
-> Instagram **non permette** di precompilare il testo di un DM: per questo il
-> messaggio viene copiato negli appunti e va incollato. È il massimo che si può
-> fare, ed è il motivo per cui la schermata mostra sempre il messaggio con un
-> tasto «Copia» di riserva.
+### Perché su Instagram bisogna incollare
+**Non è un difetto del sito: Instagram non lo permette.** I link `ig.me/m/utente`
+non accettano un parametro con il testo — a differenza di WhatsApp (`wa.me/?text=`).
+Il parametro `?ref=` che si legge in giro **non** scrive nulla nella chat: manda solo
+un codice a un webhook, e funziona unicamente con l'API Messaging di Meta
+(account professionale + app Meta + server + revisione). Fonte: [Meta for
+Developers — ig.me links](https://developers.facebook.com/docs/messenger-platform/instagram/features/ig-me-links/).
+
+Per questo il messaggio contiene anche il **link al post Instagram del pezzo**
+(campo `instagramPost`): appena il cliente incolla, si vede subito di quale pezzo
+si tratta, con tanto di anteprima.
 
 ## Se un domani si vuole un vero e-commerce
 Serviranno: pagamenti (Stripe/PayPal), carrello, gestione scorte e spedizioni.

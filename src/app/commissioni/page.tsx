@@ -11,7 +11,7 @@ const faq: FaqItem[] = [
   },
   {
     q: "Quanto tempo serve?",
-    a: "In genere da 1 a 3 settimane, in base alla complessità del soggetto e alla lista d'attesa del momento. Ti do sempre una stima prima di iniziare.",
+    a: "In genere da pochi giorni a un paio di settimane, in base alla complessità del soggetto e alla lista d'attesa del momento. Ti do sempre una stima prima di iniziare.",
   },
   {
     q: "Quanto costa un pezzo custom?",

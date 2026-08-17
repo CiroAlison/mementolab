@@ -31,8 +31,8 @@ export default function ChiSonoPage() {
       <section className="wrap grid gap-10 py-16 sm:py-24 md:grid-cols-2 md:items-center md:gap-16">
         <Reveal className="relative aspect-[4/5] overflow-hidden rounded-lg bg-paper-deep">
           <ParallaxImage
-            src="/gallery/jeans-03.jpg"
-            alt="L'artista di MementoLab mentre dipinge una tela nel suo studio"
+            src="/gallery/x-sangennaro.jpg"
+            alt="Due tele dipinte a mano da MementoLab: San Gennaro e il Vesuvio"
             priority
             sizes="(max-width: 768px) 100vw, 50vw"
           />

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { HeroScroll } from "@/components/HeroScroll";
 import { Testimonials } from "@/components/Testimonials";
+import { Marquee } from "@/components/Marquee";
+import { showcaseWorks } from "@/lib/gallery";
 import { ProductCard } from "@/components/ProductCard";
 import { featuredProducts } from "@/lib/shop";
 import { categories, site } from "@/lib/site";
@@ -45,9 +47,9 @@ export default function Home() {
             </Link>
           </Reveal>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredProducts.slice(0, 3).map((p, i) => (
-              <Reveal key={p.id} delay={i * 0.07}>
+          <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-4">
+            {featuredProducts.slice(0, 4).map((p, i) => (
+              <Reveal key={p.id} delay={i * 0.06}>
                 <ProductCard product={p} priority={i === 0} />
               </Reveal>
             ))}
@@ -77,6 +79,55 @@ export default function Home() {
             lo trasformo in qualcosa che nessun altro potrà avere uguale.
           </p>
         </Reveal>
+      </section>
+
+      {/* ——— IN EVIDENZA (carosello) ——— */}
+      <section className="relative overflow-hidden py-8">
+        <SectionSpiral className="-right-16 -top-4 h-64 w-64 sm:h-80 sm:w-80" />
+        <Reveal className="wrap relative z-10 mb-10 flex items-end justify-between gap-4">
+          <div>
+            <p className="eyebrow">Selezione</p>
+            <h2 className="mt-2 font-display text-4xl text-ink sm:text-5xl">
+              In evidenza
+            </h2>
+          </div>
+          <Link
+            href="/shop"
+            className="link-underline shrink-0 font-sans text-sm text-ink/80 hover:text-ink"
+          >
+            Tutte le opere →
+          </Link>
+        </Reveal>
+
+        <Marquee speed={70}>
+          {showcaseWorks.map((w) => (
+            <Link
+              key={w.id}
+              href="/shop"
+              className="group relative block w-[230px] shrink-0 overflow-hidden rounded-lg bg-ink/10 sm:w-[280px]"
+              aria-label={w.title}
+            >
+              <div className="relative aspect-[3/4]">
+                <Image
+                  src={w.src}
+                  alt={`${w.title}, ${w.base}`}
+                  fill
+                  sizes="280px"
+                  placeholder={blurFor(w.src) ? "blur" : "empty"}
+                  blurDataURL={blurFor(w.src)}
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-4 text-paper">
+                  <p className="font-display text-2xl leading-tight">{w.title}</p>
+                  <p className="mt-0.5 font-sans text-xs text-paper/80">
+                    {w.reference ?? w.base}
+                  </p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </Marquee>
       </section>
 
       {/* ——— CATEGORIE ——— */}
@@ -129,8 +180,8 @@ export default function Home() {
         <div className="wrap relative z-10 grid gap-12 py-20 sm:py-28 md:grid-cols-2 md:items-center">
           <Reveal className="relative aspect-[4/5] overflow-hidden rounded-lg">
             <ParallaxImage
-              src="/gallery/jeans-03.jpg"
-              alt="L'artista di MementoLab al lavoro in studio"
+              src="/gallery/x-sangennaro.jpg"
+              alt="Due tele dipinte a mano da MementoLab: San Gennaro e il Vesuvio"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </Reveal>

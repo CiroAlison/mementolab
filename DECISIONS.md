@@ -111,3 +111,20 @@ cliente non resta mai bloccato.
   teaser in home, per coerenza.
 - *Commissioni*: rimosso il campo **budget** (dal form, dal messaggio precompilato,
   dalla validazione e dalla privacy policy).
+
+## Shop premium & acquisto (v12 — richieste della cliente)
+- **Griglia**: 2 colonne su cellulare, 3 su tablet, 4 su desktop. Schede animate
+  (la card si solleva, la foto zooma, su desktop «Lo voglio» compare in overlay);
+  su cellulare il pulsante è sempre visibile perché il passaggio del dito non esiste.
+- **«Lo voglio» apre un pannello** (bottom sheet su cellulare, finestra su desktop)
+  con foto, prezzo, messaggio pronto e i due canali.
+- **Instagram non può precompilare i DM**: verificato sulla documentazione Meta —
+  `ig.me` non accetta parametri di testo, e `?ref=` invia solo un payload a un
+  webhook (serve l'API Messaging con account professionale, app Meta e server).
+  Quindi: **WhatsApp** manda il messaggio già scritto, **Instagram** lo copia e
+  va incollato. In più il messaggio contiene il **link al post del pezzo**
+  (`instagramPost`) così si vede subito cosa si sta comprando.
+- **"In evidenza" ripristinata** in home come prima (carosello), ma con un filtro
+  (`FOTO_ESCLUSE` in `gallery.ts`) che tiene fuori le foto di spalle/senza capo.
+- Foto di *Chi sono* sostituita con le tele di San Gennaro (più neutra).
+- FAQ commissioni: tempi ridotti da "1–3 settimane" a "pochi giorni – un paio di settimane".

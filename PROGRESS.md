@@ -42,6 +42,11 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
   scarpe — foto provvisoria, la cliente ne fornirà una dedicata). Testo *Chi sono*
   accorciato su richiesta; tolto il campo **budget** dalle commissioni; **corretto il
   bug dell'invio su Instagram**; **colori del logo riportati a quelli originali**.
+- **v12 — Shop premium & mobile**: griglia 2/3/4 colonne con schede animate;
+  «Lo voglio» apre un pannello con foto, prezzo e messaggio pronto (WhatsApp già
+  scritto / Instagram da incollare + link al post del pezzo). Ripristinata
+  "In evidenza" in home con filtro sulle foto di spalle; foto *Chi sono* più
+  neutra; tempi FAQ ridotti.
 
 ## ✅ Fatto (release 1)
 
