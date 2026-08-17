@@ -14,6 +14,15 @@ Il sito oggi vive su `https://mementolab.vercel.app`.
 - **Collegato al progetto Vercel** `mementolab`: sia `mementolab.it` sia `www.mementolab.it`
 - **ATTIVO** dal 17 agosto 2026: https://mementolab.it (HTTPS automatico Vercel)
 - Record DNS configurati su Register.it, `NEXT_PUBLIC_SITE_URL` impostata
+- `www.mementolab.it` → **redirect 308 permanente** verso `mementolab.it`
+- Record email/PEC di Register (`MX`, `TXT`, `SRV`, `pop`, `authsmtp`, `pec`) **lasciati intatti**
+
+### Configurazione finale su Vercel → Settings → Domains
+| Dominio | Impostazione |
+|---|---|
+| `mementolab.it` | Connect to an environment → Production |
+| `www.mementolab.it` | Redirect to Another Domain → `mementolab.it` (308) |
+| `mementolab.vercel.app` | invariato (indirizzo tecnico) |
 
 ## Record DNS da inserire su Register.it
 
