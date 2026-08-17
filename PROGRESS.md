@@ -61,6 +61,9 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
   un portal, vedi `DECISIONS.md`); tolta la barra fissa in fondo alle pagine dei pezzi.
 - **v17 — Apertura app**: i pulsanti Instagram/WhatsApp sono diventati link veri,
   così i telefoni aprono l'app invece della pagina web.
+- **v18 — Dominio**: scelto `mementolab.it` (libero; il `.com` è in vendita a
+  $4.395). Sito predisposto: `site.url` legge `NEXT_PUBLIC_SITE_URL`, quindi il
+  passaggio al dominio non richiede modifiche al codice. Guida: `docs/DOMINIO.md`.
 
 ## ✅ Fatto (release 1)
 

@@ -6,8 +6,12 @@ export const site = {
   tagline: "L'arte che indossi",
   description:
     "MementoLab trasforma la moda in arte indossabile: capi unici dipinti a mano — giubbotti, jeans, scarpe e pezzi speciali. Ogni creazione è irripetibile.",
-  // Canonical production URL — updated after the first Vercel deploy.
-  url: "https://mementolab.vercel.app",
+  // Indirizzo ufficiale del sito. Serve per i link canonici, la sitemap, le
+  // anteprime sui social e i dati prodotto per Google.
+  // Quando mementolab.it sarà attivo basta impostare su Vercel la variabile
+  // NEXT_PUBLIC_SITE_URL=https://mementolab.it — nessuna modifica al codice.
+  // Vedi docs/DOMINIO.md
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://mementolab.vercel.app",
   locale: "it_IT",
   city: "Napoli",
   email: "mementolab97@gmail.com",

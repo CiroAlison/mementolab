@@ -45,6 +45,10 @@ a `src/data/prodotti.json` (modificabile anche a mano).
 Guida completa: [`docs/SHOP.md`](./docs/SHOP.md).
 Pagamenti online (pronti ma spenti): [`docs/PAGAMENTI.md`](./docs/PAGAMENTI.md).
 
+## Dominio
+Il sito è su `mementolab.vercel.app`. Per collegare **mementolab.it** (libero, da
+acquistare presso un registrar italiano): [`docs/DOMINIO.md`](./docs/DOMINIO.md).
+
 ## Struttura
 - `src/app` — pagine (home, shop, chi-sono, processo, commissioni, contatti) e API
 - `src/components` — UI (Header, Footer, Logo, ProductCard, BuySheet, form…)

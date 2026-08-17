@@ -215,3 +215,17 @@ validazione: nell'`onClick` si valida e, se i dati non vanno, si chiama
 l'href **dopo** l'handler, quindi il link parte già completo.
 `openTab()` in `src/lib/send.ts` non è più usato da nessuna parte per i canali
 social: resta come utilità.
+
+## Dominio (v18)
+- `mementolab.com` è occupato (parcheggiato da HugeDomains, in vendita a $4.395):
+  scartato, non vale quella cifra per un brand che sta avviando lo shop.
+- Scelto **`mementolab.it`** — verificato libero sul registro (`whois.nic.it`).
+  Per un brand napoletano il `.it` è anche più credibile di un `.store`/`.online`.
+- Il `.it` **non si acquista da Vercel** (TLD non supportato): serve un registrar
+  italiano. **L'acquisto lo fa il proprietario** — io non effettuo acquisti né
+  inserisco dati di pagamento.
+- `site.url` non è più fisso: legge `NEXT_PUBLIC_SITE_URL` con fallback
+  sull'indirizzo Vercel. Così, quando il dominio è attivo, basta impostare la
+  variabile su Vercel e ridistribuire — **nessuna modifica al codice**.
+- Procedura completa (acquisto, record DNS, variabile, dominio primario):
+  `docs/DOMINIO.md`.
