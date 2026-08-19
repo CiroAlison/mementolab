@@ -25,7 +25,8 @@ pixel (cioè la texture del pennello) per interpolare fra il navy del brand
 | `public/brand/spiral-cream.png` | Silhouette color crema della spirale | Filigrana sulle sezioni scure (navy) |
 | `public/brand/wordmark-full.png` | Logotipo `MEMENTO●LAB`: lettere navy + spirale come lettera **O** | Header, intro, hero (reveal sullo scroll), footer |
 | `public/brand/wordmark-cream.png` | Versione crema del logotipo | Menu mobile e sfondi scuri |
-| `public/apple-icon.png` | Favicon / icona app: spirale su arancione (512×512) | Tab del browser, home screen |
+| `public/apple-icon.png` | Icona app: spirale su arancione (512×512) | Schermata home iOS/Android |
+| `src/app/favicon.ico` | **Icona della scheda del browser**, multi-risoluzione (16→256px) | Tab del browser |
 
 Sorgenti (in `scripts/brand/`):
 - `source-spiral-scan.png` — la scansione originale (spirale su cartoncino arancione), estratta dal PDF del cliente.
@@ -72,6 +73,27 @@ trasparenza (fallisce se per errore produce un rettangolo pieno).
   restano in cache nel browser. Soluzione: i riferimenti nel codice hanno un
   suffisso di versione (`/brand/spiral.png?v=3`). **Se rigeneri i loghi, alza il
   numero di versione** in tutti i file: `grep -rl "?v=3" src/ | xargs sed -i '' 's/?v=3/?v=4/g'`
+
+## ⚠️ Il favicon della scheda del browser
+Next.js usa **automaticamente** `src/app/favicon.ico` e questo file ha la
+**precedenza** sulle voci `icons` in `layout.tsx`. Per mesi lì è rimasto il
+triangolo di default di Next.js: nella scheda del browser si vedeva il logo di
+Vercel invece della spirale. Se il logo cambia, **va rigenerato anche quel file**:
+
+```python
+from PIL import Image
+ORANGE=(241,80,15)
+sp = Image.open("public/brand/spiral.png").convert("RGBA")
+D, pad = 256, 18
+base = Image.new("RGBA",(D,D),ORANGE+(255,))
+base.alpha_composite(sp.resize((D-2*pad,D-2*pad), Image.LANCZOS),(pad,pad))
+base.convert("RGB").save("src/app/favicon.ico", format="ICO",
+                         sizes=[(16,16),(32,32),(48,48),(64,64),(128,128),(256,256)])
+```
+
+Poco margine di proposito: a 16px la spirale deve restare riconoscibile.
+I browser tengono il favicon in cache a lungo: per vederlo subito serve un
+ricaricamento forzato o una finestra anonima.
 
 ## Se cambia la spirale (nuova scansione)
 Sostituisci `scripts/brand/source-spiral-scan.png` con la nuova scansione (sempre

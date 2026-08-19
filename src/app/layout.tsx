@@ -54,9 +54,12 @@ export const metadata: Metadata = {
     images: ["/og.jpg"],
   },
   alternates: { canonical: "/" },
+  // NB: Next.js usa AUTOMATICAMENTE `src/app/favicon.ico` per la scheda del
+  // browser, e ha la precedenza su queste voci. Se un domani il logo cambia,
+  // va rigenerato ANCHE quel file (vedi docs/BRAND-ASSETS.md).
   icons: {
-    icon: [{ url: "/apple-icon.png?v=3", type: "image/png" }],
-    apple: [{ url: "/apple-icon.png?v=3" }],
+    icon: [{ url: "/apple-icon.png?v=4", type: "image/png" }],
+    apple: [{ url: "/apple-icon.png?v=4" }],
   },
 };
 
