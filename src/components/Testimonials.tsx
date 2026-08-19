@@ -3,23 +3,36 @@ import { SectionSpiral } from "./SectionSpiral";
 
 type Quote = { text: string; author: string; role?: string };
 
-// La prima è reale (NEA Connect). Le altre due sono ESEMPI: sostituiscile con
-// recensioni reali dei clienti quando le hai.
+// Recensioni REALI dei clienti, trascritte dagli screenshot che l'artista ha
+// pubblicato lei stessa nelle storie in evidenza di Instagram (@mementolab_).
+// Usiamo solo il nome di battesimo, non il cognome.
+// ⚠️ Non inserire mai testimonianze inventate: oltre a essere poco credibili,
+// in Italia e in UE le recensioni false sono una pratica commerciale scorretta.
 const quotes: Quote[] = [
+  {
+    text: "Ho appena ricevuto la giacca. È stupenda e la taglia è perfetta. Gli occhi sono ancora più belli dal vivo. Grazie mille anche per gli acquerelli e la piccola tela, un pensiero carinissimo.",
+    author: "Ofelia",
+    role: "giubbotto dipinto a mano",
+  },
+  {
+    text: "Non ci posso credere, è troppo bello. Mi rendi soddisfatta e felice, non sai quanto vale per me.",
+    author: "Yle",
+    role: "commissione custom",
+  },
+  {
+    text: "I received the jacket! It is even more beautiful in person. Thank you so much.",
+    author: "Rafaella",
+    role: "cliente dall'estero",
+  },
+  {
+    text: "È bellissima davvero, grazie di cuore per tutto.",
+    author: "Rosa",
+    role: "giubbotto in denim",
+  },
   {
     text: "MementoLab trasforma la moda in arte indossabile. Ogni creazione è un pezzo irripetibile, dipinto a mano e pensato per chi vuole raccontare la propria personalità.",
     author: "NEA Connect",
     role: "sul progetto MementoLab",
-  },
-  {
-    text: "Le ho affidato un giubbotto a cui tenevo tantissimo ed è tornato un'opera d'arte. Curata in ogni dettaglio.",
-    author: "Un cliente",
-    role: "commissione custom",
-  },
-  {
-    text: "Ho regalato un paio di scarpe dipinte a mano: reazione da brividi. Non esiste niente di uguale al mondo.",
-    author: "Una cliente",
-    role: "regalo personalizzato",
   },
 ];
 
@@ -34,7 +47,7 @@ export function Testimonials() {
             Chi ha scelto un pezzo unico
           </h2>
         </Reveal>
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {quotes.map((q, i) => (
             <Reveal
               key={q.author + i}

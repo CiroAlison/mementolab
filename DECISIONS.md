@@ -229,3 +229,17 @@ social: resta come utilità.
   variabile su Vercel e ridistribuire — **nessuna modifica al codice**.
 - Procedura completa (acquisto, record DNS, variabile, dominio primario):
   `docs/DOMINIO.md`.
+
+## Testimonianze reali e anteprima di condivisione (v19)
+- **Tolte le due testimonianze inventate** ("Un cliente", "Una cliente") che erano
+  rimaste come segnaposto: poco credibili e, in Italia/UE, le recensioni false sono
+  una **pratica commerciale scorretta** sanzionabile.
+- Sostituite con **4 recensioni vere**, trascritte dagli screenshot che l'artista ha
+  pubblicato lei stessa nelle storie in evidenza di Instagram (scaricate con
+  `gallery-dl`). Attribuite con il **solo nome di battesimo**, senza cognome.
+  Una è in inglese: mostra che spedisce anche all'estero.
+- **Rifatta `public/og.jpg`** (l'anteprima che appare quando si condivide il link su
+  WhatsApp, Instagram, Facebook, Google). Prima era un riquadro arancione col logo
+  nei vecchi colori sbiaditi, senza nemmeno un capo. Ora: fondo arancione del brand,
+  wordmark crema, tagline, dominio e la **foto di un pezzo reale** sfumata a destra.
+  Rigenerabile con lo script in questo commit se si vuole cambiare il capo mostrato.

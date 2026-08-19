@@ -66,6 +66,9 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
   $4.395). Sito predisposto: `site.url` legge `NEXT_PUBLIC_SITE_URL`, quindi il
   passaggio al dominio non richiede modifiche al codice. Guida: `docs/DOMINIO.md`.
   **Dominio ATTIVO dal 17/08/2026.**
+- **v19 — Credibilità**: tolte le testimonianze inventate, inserite 4 recensioni
+  reali dei clienti (dalle storie in evidenza Instagram); rifatta l'immagine di
+  anteprima per la condivisione dei link.
 
 ## ✅ Fatto (release 1)
 
