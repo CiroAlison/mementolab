@@ -75,6 +75,9 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
   **11 nuovi pezzi** allo shop (da 12 a 23): t-shirt, felpa, mocassini, tre AF1,
   giubbotti e jeans. Solo foto dei capi, nessuna foto indossata. Tolta anche la
   foto dei girasoli da "In evidenza" (c'era una persona).
+- **v22 — Categoria T-shirt e ordine**: nuova categoria «T-shirt e felpe»; nello
+  shop i pezzi sono ordinati per forza commerciale (giubbotti e scarpe prima); in
+  home «Categorie» spostata prima di «In evidenza».
 
 ## ✅ Fatto (release 1)
 

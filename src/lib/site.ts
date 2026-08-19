@@ -40,14 +40,19 @@ export const categories = [
     blurb: "Denim e pelle che diventano tela: opere che si indossano sulle spalle.",
   },
   {
+    slug: "scarpe",
+    label: "Scarpe",
+    blurb: "Sneaker e pelle reinterpretate, dal ritocco pittorico al decon-recon.",
+  },
+  {
     slug: "jeans",
     label: "Jeans",
     blurb: "La mia base preferita. Dettagli dipinti a mano su denim vissuto.",
   },
   {
-    slug: "scarpe",
-    label: "Scarpe",
-    blurb: "Sneaker e pelle reinterpretate, dal ritocco pittorico al decon-recon.",
+    slug: "tshirt",
+    label: "T-shirt e felpe",
+    blurb: "Cotone come tela: soggetti dipinti a mano su t-shirt e felpe.",
   },
   {
     slug: "altro",

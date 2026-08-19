@@ -277,3 +277,17 @@ prima di finire sul sito.
 
 Aggiunta all'elenco `FOTO_ESCLUSE` anche `jeans-01.jpg` (i quindici girasoli):
 nella foto c'è una persona.
+
+## Categoria T-shirt, ordine dello shop, ordine della home (v22)
+- **Nuova categoria «T-shirt e felpe»**: chiesta dalla cliente. Il nome copre anche
+  la felpa, così i tre pezzi in cotone (teschio, Santamarea, farfalla «Free») stanno
+  insieme invece di finire in «Altro».
+- **Ordine dello shop**: i pezzi non seguono più l'ordine di inserimento ma un
+  ordine di categoria — **giubbotti, scarpe**, poi jeans, t-shirt, altro. Sono i
+  pezzi più forti e più cari: vanno visti per primi. L'ordine è in `shop.ts`
+  (`ordineCategorie`), dentro ogni categoria resta l'ordine di `prodotti.json`.
+- **Home: «Categorie» prima di «In evidenza»** (proposta della cliente, condivisa).
+  Motivo: dopo aver visto 4 pezzi nella sezione Shop, il visitatore ha bisogno di
+  **orientarsi** — «cosa posso far dipingere?» — prima di guardare altre immagini.
+  Le categorie rispondono a quella domanda, «In evidenza» invece ispira: prima si
+  orienta, poi si sogna.

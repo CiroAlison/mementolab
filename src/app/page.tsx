@@ -17,6 +17,7 @@ const categoryImage: Record<string, string> = {
   giubbotti: "/gallery/giubbotti-01.jpg",
   jeans: "/gallery/jeans-09.jpg",
   scarpe: "/gallery/scarpe-03.jpg",
+  tshirt: "/shop/teschio-vangogh.jpg",
   altro: "/gallery/altro-cappello.jpg",
 };
 
@@ -80,55 +81,6 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* ——— IN EVIDENZA (carosello) ——— */}
-      <section className="relative overflow-hidden py-8">
-        <SectionSpiral className="-right-16 -top-4 h-64 w-64 sm:h-80 sm:w-80" />
-        <Reveal className="wrap relative z-10 mb-10 flex items-end justify-between gap-4">
-          <div>
-            <p className="eyebrow">Selezione</p>
-            <h2 className="mt-2 font-display text-4xl text-ink sm:text-5xl">
-              In evidenza
-            </h2>
-          </div>
-          <Link
-            href="/shop"
-            className="link-underline shrink-0 font-sans text-sm text-ink/80 hover:text-ink"
-          >
-            Tutte le opere →
-          </Link>
-        </Reveal>
-
-        <Marquee speed={70}>
-          {showcaseWorks.map((w) => (
-            <Link
-              key={w.id}
-              href="/shop"
-              className="group relative block w-[230px] shrink-0 overflow-hidden rounded-lg bg-ink/10 sm:w-[280px]"
-              aria-label={w.title}
-            >
-              <div className="relative aspect-[3/4]">
-                <Image
-                  src={w.src}
-                  alt={`${w.title}, ${w.base}`}
-                  fill
-                  sizes="280px"
-                  placeholder={blurFor(w.src) ? "blur" : "empty"}
-                  blurDataURL={blurFor(w.src)}
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-4 text-paper">
-                  <p className="font-display text-2xl leading-tight">{w.title}</p>
-                  <p className="mt-0.5 font-sans text-xs text-paper/80">
-                    {w.reference ?? w.base}
-                  </p>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </Marquee>
-      </section>
-
       {/* ——— CATEGORIE (carosello, come "In evidenza") ——— */}
       <section className="relative overflow-hidden py-8 pb-20 sm:pb-28">
         <SectionSpiral reverse className="-left-16 -top-4 h-64 w-64 sm:h-80 sm:w-80" />
@@ -173,6 +125,55 @@ export default function Home() {
                 <span className="mt-4 font-sans text-sm text-flame-soft">
                   Scopri →
                 </span>
+              </div>
+            </Link>
+          ))}
+        </Marquee>
+      </section>
+
+      {/* ——— IN EVIDENZA (carosello) ——— */}
+      <section className="relative overflow-hidden py-8">
+        <SectionSpiral className="-right-16 -top-4 h-64 w-64 sm:h-80 sm:w-80" />
+        <Reveal className="wrap relative z-10 mb-10 flex items-end justify-between gap-4">
+          <div>
+            <p className="eyebrow">Selezione</p>
+            <h2 className="mt-2 font-display text-4xl text-ink sm:text-5xl">
+              In evidenza
+            </h2>
+          </div>
+          <Link
+            href="/shop"
+            className="link-underline shrink-0 font-sans text-sm text-ink/80 hover:text-ink"
+          >
+            Tutte le opere →
+          </Link>
+        </Reveal>
+
+        <Marquee speed={70}>
+          {showcaseWorks.map((w) => (
+            <Link
+              key={w.id}
+              href="/shop"
+              className="group relative block w-[230px] shrink-0 overflow-hidden rounded-lg bg-ink/10 sm:w-[280px]"
+              aria-label={w.title}
+            >
+              <div className="relative aspect-[3/4]">
+                <Image
+                  src={w.src}
+                  alt={`${w.title}, ${w.base}`}
+                  fill
+                  sizes="280px"
+                  placeholder={blurFor(w.src) ? "blur" : "empty"}
+                  blurDataURL={blurFor(w.src)}
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-4 text-paper">
+                  <p className="font-display text-2xl leading-tight">{w.title}</p>
+                  <p className="mt-0.5 font-sans text-xs text-paper/80">
+                    {w.reference ?? w.base}
+                  </p>
+                </div>
               </div>
             </Link>
           ))}

@@ -47,7 +47,20 @@ export const statusLabel: Record<ProductStatus, string> = {
   venduto: "Venduto",
 };
 
-export const products = data as Product[];
+// Ordine di presentazione nello shop: prima i pezzi più forti (giubbotti e
+// scarpe), poi il resto. Dentro ogni categoria resta l'ordine di prodotti.json.
+const ordineCategorie: CategorySlug[] = [
+  "giubbotti",
+  "scarpe",
+  "jeans",
+  "tshirt",
+  "altro",
+];
+
+export const products = [...(data as Product[])].sort(
+  (a, b) =>
+    ordineCategorie.indexOf(a.category) - ordineCategorie.indexOf(b.category),
+);
 
 export const featuredProducts = products.filter((p) => p.featured);
 
