@@ -234,12 +234,17 @@ social: resta come utilità.
 - **Tolte le due testimonianze inventate** ("Un cliente", "Una cliente") che erano
   rimaste come segnaposto: poco credibili e, in Italia/UE, le recensioni false sono
   una **pratica commerciale scorretta** sanzionabile.
-- Sostituite con **4 recensioni vere**, trascritte dagli screenshot che l'artista ha
-  pubblicato lei stessa nelle storie in evidenza di Instagram (scaricate con
-  `gallery-dl`). Attribuite con il **solo nome di battesimo**, senza cognome.
+- Sostituite con **4 recensioni vere**. Su richiesta della cliente, non trascritte
+  ma mostrate come **screenshot originali delle chat**: sono molto più credibili di
+  un testo riscritto, perché si vede che sono messaggi veri.
+  **Privacy**: ogni screenshot è ritagliato sui SOLI fumetti dei messaggi — niente
+  intestazione della chat, niente foto profilo, niente cognomi; sotto compare solo
+  il nome di battesimo. Gli originali sono quelli che l'artista ha pubblicato lei
+  stessa nelle storie in evidenza di Instagram (scaricati con `gallery-dl`).
   Una è in inglese: mostra che spedisce anche all'estero.
+  File in `public/recensioni/`. Se se ne aggiungono altri, ritagliarli allo stesso modo.
 - **Rifatta `public/og.jpg`** (l'anteprima che appare quando si condivide il link su
   WhatsApp, Instagram, Facebook, Google). Prima era un riquadro arancione col logo
   nei vecchi colori sbiaditi, senza nemmeno un capo. Ora: fondo arancione del brand,
-  wordmark crema, tagline, dominio e la **foto di un pezzo reale** sfumata a destra.
-  Rigenerabile con lo script in questo commit se si vuole cambiare il capo mostrato.
+  wordmark crema, tagline, dominio e la **spirale del brand** a destra (scelta della
+  cliente: preferita al capo fotografato, più pulita e riconoscibile).
