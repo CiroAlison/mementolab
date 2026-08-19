@@ -69,6 +69,8 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
 - **v19 — Credibilità**: tolte le testimonianze inventate, inserite 4 recensioni
   reali dei clienti (dalle storie in evidenza Instagram); rifatta l'immagine di
   anteprima per la condivisione dei link.
+- **v20 — Categoria Altro**: arrivata la foto dedicata dall'artista (cappello New Era
+  personalizzato con perle e iniziali dipinte). Sostituisce quella provvisoria.
 
 ## ✅ Fatto (release 1)
 
@@ -114,7 +116,6 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
 ## 🔜 Da fare / possibili step 2
 - **Prezzi e disponibilità reali** dei pezzi in `src/lib/shop.ts` (ora tutti
   "Prezzo su richiesta" / "Su ordinazione"). Vedi `docs/SHOP.md`.
-- **Foto dedicata per la categoria "Altro"** (ora provvisoria: San Gennaro su tela).
 - Eventuale **checkout** vero (Stripe/PayPal) se un domani servisse: la struttura
   dati dello shop è già pronta.
 - **Neon dormiente**: il DB è collegato ma non usato (scelta del cliente, vedi
@@ -126,5 +127,4 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
 
 ## Contenuti reali ancora da fornire
 - **Prezzi, disponibilità e foto dei pezzi in vendita** (`src/lib/shop.ts`).
-- **Foto per la categoria "Altro"** in home.
 - Conferma della categoria di alcuni pezzi (classificazione automatica dalle didascalie).

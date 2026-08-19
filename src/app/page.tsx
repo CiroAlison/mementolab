@@ -13,12 +13,11 @@ import { ParallaxImage } from "@/components/ParallaxImage";
 import { SectionSpiral } from "@/components/SectionSpiral";
 
 // Foto rappresentativa di ogni categoria.
-// NOTA: `altro` è provvisoria — l'artista fornirà una foto dedicata.
 const categoryImage: Record<string, string> = {
   giubbotti: "/gallery/giubbotti-01.jpg",
   jeans: "/gallery/jeans-09.jpg",
   scarpe: "/gallery/scarpe-03.jpg",
-  altro: "/gallery/x-sangennaro.jpg",
+  altro: "/gallery/altro-cappello.jpg",
 };
 
 export default function Home() {

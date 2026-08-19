@@ -248,3 +248,14 @@ social: resta come utilità.
   nei vecchi colori sbiaditi, senza nemmeno un capo. Ora: fondo arancione del brand,
   wordmark crema, tagline, dominio e la **spirale del brand** a destra (scelta della
   cliente: preferita al capo fotografato, più pulita e riconoscibile).
+
+## Foto della categoria «Altro» (v20)
+L'artista ha fornito la foto dedicata: un cappello New Era personalizzato (perle
+sul logo, iniziali dipinte a mano, cuoricino sulla visiera). Sostituisce la foto
+provvisoria delle tele di San Gennaro.
+
+La foto originale è verticale (3024×4032) mentre la scheda categoria è orizzontale
+4:3. Invece di tagliare il cappello, la si è messa **intera su uno sfondo ricavato
+dalla foto stessa e sfocato**: il soggetto resta completo e lo sfondo sembra
+naturale. Stessa tecnica in verticale 4:5 per `public/shop/cappello-ny.jpg`, pronta
+se il cappello andrà in vendita.
