@@ -259,3 +259,21 @@ La foto originale è verticale (3024×4032) mentre la scheda categoria è orizzo
 dalla foto stessa e sfocato**: il soggetto resta completo e lo sfondo sembra
 naturale. Stessa tecnica in verticale 4:5 per `public/shop/cappello-ny.jpg`, pronta
 se il cappello andrà in vendita.
+
+## Catalogo ampliato (v21)
+Il profilo Instagram ha 237 contenuti; sul sito ne era finita solo una selezione
+ristretta. Scaricato altro materiale con `gallery-dl` e aggiunti **11 pezzi** allo
+shop (12 → 23), coprendo categorie che prima mancavano: t-shirt, felpe, mocassini.
+
+**Criterio di selezione, chiesto dalla cliente**: solo foto dei capi. Escluse tutte
+le foto indossate da persone (comprese quelle di spalle, già bocciate in
+precedenza) e i contenuti puramente grafici del brand (poster, citazioni, pattern).
+
+Titoli e descrizioni ricavati dalle **didascalie reali** dei post; a ogni pezzo è
+collegato il suo post Instagram. **Nessun prezzo inserito**: alcune didascalie
+contengono prezzi pubblicati dall'artista nel 2024 (Dalì blu 180€, Goku 230€) ma
+sono vecchi e i capi erano "in pronta consegna" allora — vanno riconfermati da lei
+prima di finire sul sito.
+
+Aggiunta all'elenco `FOTO_ESCLUSE` anche `jeans-01.jpg` (i quindici girasoli):
+nella foto c'è una persona.

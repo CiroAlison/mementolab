@@ -71,6 +71,10 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
   anteprima per la condivisione dei link.
 - **v20 — Categoria Altro**: arrivata la foto dedicata dall'artista (cappello New Era
   personalizzato con perle e iniziali dipinte). Sostituisce quella provvisoria.
+- **v21 — Catalogo ampliato**: scaricato altro materiale da Instagram e aggiunti
+  **11 nuovi pezzi** allo shop (da 12 a 23): t-shirt, felpa, mocassini, tre AF1,
+  giubbotti e jeans. Solo foto dei capi, nessuna foto indossata. Tolta anche la
+  foto dei girasoli da "In evidenza" (c'era una persona).
 
 ## ✅ Fatto (release 1)
 

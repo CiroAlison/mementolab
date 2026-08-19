@@ -123,5 +123,115 @@
     "status": "su-ordinazione",
     "blurb": "Le mani della Creazione di Adamo dipinte su una camicia.",
     "instagramPost": "https://www.instagram.com/p/COaWiqzHcpA/"
+  },
+  {
+    "id": "teschio-vangogh",
+    "title": "Teschio con sigaretta",
+    "base": "T-shirt in cotone",
+    "category": "altro",
+    "image": "/shop/teschio-vangogh.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Il teschio di Van Gogh dipinto a mano su una t-shirt nera.",
+    "instagramPost": "https://www.instagram.com/p/DQ9QOcrDEtn/"
+  },
+  {
+    "id": "farfalla-free",
+    "title": "Free",
+    "base": "Felpa con cappuccio",
+    "category": "altro",
+    "image": "/shop/farfalla-free.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Una farfalla dipinta a mano e la scritta «Free»: libera la tua personalità.",
+    "instagramPost": "https://www.instagram.com/p/DH3qxL_ISJn/"
+  },
+  {
+    "id": "santamarea",
+    "title": "Santamarea",
+    "base": "T-shirt · collaborazione",
+    "category": "altro",
+    "image": "/shop/santamarea.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Nata dalla collaborazione con Santamarea: onde e lettering dipinti a mano.",
+    "instagramPost": "https://www.instagram.com/p/DOJKsw5DMZV/"
+  },
+  {
+    "id": "mocassini-luck",
+    "title": "I trust in luck",
+    "base": "Mocassini in pelle",
+    "category": "scarpe",
+    "image": "/shop/mocassini-luck.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Cornetto, ferro di cavallo e la scritta «I trust in luck»: Napoli e scaramanzia ai piedi.",
+    "instagramPost": "https://www.instagram.com/p/DCgnMq-ofss/"
+  },
+  {
+    "id": "af1-girasoli",
+    "title": "Girasoli",
+    "base": "Nike Air Force 1",
+    "category": "scarpe",
+    "image": "/shop/af1-girasoli.jpg",
+    "status": "su-ordinazione",
+    "blurb": "I girasoli di Van Gogh che avvolgono un paio di AF1, dipinti interamente a mano.",
+    "instagramPost": "https://www.instagram.com/p/DBRVtLKoubU/"
+  },
+  {
+    "id": "af1-onda",
+    "title": "L'onda",
+    "base": "Nike Air Force 1",
+    "category": "scarpe",
+    "image": "/shop/af1-onda.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Un'onda che corre lungo la scarpa, tra blu profondo e schiuma bianca.",
+    "instagramPost": "https://www.instagram.com/p/C9ulm20oviU/"
+  },
+  {
+    "id": "dali-blu",
+    "title": "Dalì blu",
+    "base": "Giubbotto in denim · taglia M",
+    "category": "giubbotti",
+    "image": "/shop/dali-blu.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Il ritratto di Dalì in blu su denim dal lavaggio chiaro.",
+    "instagramPost": "https://www.instagram.com/p/C6oB5v-I_NT/"
+  },
+  {
+    "id": "occhio-giubbotto",
+    "title": "L'occhio",
+    "base": "Giubbotto in denim",
+    "category": "giubbotti",
+    "image": "/shop/occhio-giubbotto.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Un grande occhio dipinto sulla schiena, con il colore che cola come pittura fresca.",
+    "instagramPost": "https://www.instagram.com/p/C2cRlkVIQWw/"
+  },
+  {
+    "id": "jeans-occhi",
+    "title": "Occhi",
+    "base": "Jeans",
+    "category": "jeans",
+    "image": "/shop/jeans-occhi.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Occhi dipinti a mano lungo la gamba: ogni toppa è un piccolo quadro.",
+    "instagramPost": "https://www.instagram.com/p/C2cRlkVIiSH/"
+  },
+  {
+    "id": "jeans-dipinti",
+    "title": "Piccoli dipinti",
+    "base": "Jeans",
+    "category": "jeans",
+    "image": "/shop/jeans-dipinti.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Tanti piccoli dipinti sparsi sul denim, uno diverso dall'altro.",
+    "instagramPost": "https://www.instagram.com/p/C4Lt1knI7bb/"
+  },
+  {
+    "id": "completo-denim",
+    "title": "Completo denim",
+    "base": "Giubbotto e jeans coordinati",
+    "category": "altro",
+    "image": "/shop/completo-denim.jpg",
+    "status": "su-ordinazione",
+    "blurb": "Giacca e jeans dipinti in coordinato, realizzati su commissione.",
+    "instagramPost": "https://www.instagram.com/p/C2cRlknooHk/"
   }
 ]
