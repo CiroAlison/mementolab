@@ -82,6 +82,9 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
   una schermata ponte («Messaggio copiato» + i tre passi per incollare) invece di
   uscire subito; al ritorno sul sito il pannello chiede se l'invio è riuscito e
   offre di riprovare.
+- **v24 — Istruzioni Instagram anche nei moduli**: Commissioni e Contatti usano
+  lo stesso percorso dello shop (istruzioni prima di uscire + promemoria al
+  ritorno). WhatsApp ed email restano a un tocco solo.
 
 ## ✅ Fatto (release 1)
 

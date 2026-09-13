@@ -99,6 +99,9 @@ del pezzo, il prezzo e il messaggio già pronto, e due modi per mandarlo:
 | **WhatsApp** | Il messaggio arriva **già scritto**: il cliente preme solo invio. Un tocco. |
 | **Instagram** | Passa da una **schermata ponte** che spiega cosa fare, poi apre il DM. |
 
+> Lo **stesso percorso** vale per i moduli di *Commissioni* e *Contatti*: anche lì
+> il tasto Instagram non esce subito, ma mostra prima le istruzioni (`SentPanel`).
+
 ### Il percorso Instagram, in tre schermate
 1. **Scelta** — foto del pezzo, prezzo, messaggio e i due canali.
 2. **Ponte** — al tocco su Instagram NON si esce subito: compare un grande

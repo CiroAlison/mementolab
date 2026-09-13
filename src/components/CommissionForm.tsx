@@ -32,6 +32,17 @@ export function CommissionForm() {
 
   // Preparano soltanto: ad aprire l'app ci pensa il LINK vero (vedi sotto).
   // Se i dati non sono validi si annulla la navigazione con preventDefault.
+  // Instagram: valida, copia e mostra le istruzioni. Ad aprire l'app ci pensa
+  // il link vero dentro SentPanel.
+  function preparaInstagram() {
+    const d = validate();
+    if (!d) return;
+    const msg = commissionMessage(d);
+    setSentMessage(msg);
+    copyText(msg);
+    setDone("ig");
+  }
+
   function prepara(
     e: React.MouseEvent<HTMLAnchorElement>,
     canale: Channel,
@@ -120,17 +131,17 @@ export function CommissionForm() {
       </div>
 
       <div className="space-y-3 pt-2">
-        {/* Link VERI: iOS e Android aprono l'app solo se si tocca un <a>. */}
-        <a
-          href={site.instagramDM}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => prepara(e, "ig", () => site.instagramDM)}
+        {/* Instagram NON esce subito: prima mostriamo i tre passi per
+            incollare (vedi SentPanel), altrimenti il cliente arriva sulla chat
+            vuota senza più nessuna istruzione davanti. */}
+        <button
+          type="button"
+          onClick={preparaInstagram}
           className="btn inline-flex w-full items-center justify-center gap-2 bg-gradient-to-tr from-[#FA7E1E] via-[#D62976] to-[#962FBF] text-white hover:brightness-105 sm:w-auto"
         >
           <IgIcon />
           Invia su Instagram
-        </a>
+        </button>
 
         <p className="font-sans text-xs text-ink/60">
           Oppure invia lo stesso messaggio su{" "}

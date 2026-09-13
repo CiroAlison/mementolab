@@ -316,3 +316,26 @@ aprano l'app invece del browser.
 
 Scelte della cliente: niente illustrazione del gesto (solo parole) e messaggio
 precompilato invariato.
+
+## Lo stesso percorso anche nei moduli (v24)
+La schermata ponte era stata messa solo nel pannello dello shop, ma il problema
+era identico nei moduli di *Commissioni* e *Contatti*: il tasto Instagram usciva
+subito e la schermata con il messaggio (`SentPanel`) si disegnava **dietro**,
+mentre l'utente era già dentro l'app. Non la vedeva nessuno.
+
+Ora anche lì il tasto Instagram è un `<button>` che valida, copia e mostra le
+istruzioni; ad aprire l'app ci pensa il link vero dentro `SentPanel`, che ha
+anche il promemoria al ritorno. WhatsApp ed email restano **link diretti a un
+tocco solo**, perché lì il messaggio viaggia dentro l'indirizzo ed è già scritto.
+
+## Nota operativa: non interrogare il sito a raffica
+Durante i controlli il sito è stato interrogato centinaia di volte in automatico
+e **Vercel ha attivato la mitigazione anti-bot** (`x-vercel-mitigated: challenge`):
+per un po' ogni richiesta riceveva 403 e i visitatori vedevano un "Security
+Checkpoint" di qualche secondo. Non era un'impostazione cambiata a mano, ma la
+difesa automatica scattata sull'indirizzo di rete che generava il traffico.
+
+**Regola per il futuro**: verificare il sito pubblicato **dal browser**, con
+poche richieste mirate, e fare i test di funzionamento **in locale**
+(`npx next start`). Niente cicli `until curl ...; do sleep; done` contro il
+dominio di produzione.
