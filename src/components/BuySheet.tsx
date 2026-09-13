@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Product } from "@/lib/shop";
@@ -13,10 +13,17 @@ import { site } from "@/lib/site";
 // Pannello d'acquisto. Su cellulare sale dal basso (bottom sheet), su desktop
 // è una finestra centrata.
 //
-// Perché due canali: WhatsApp accetta il testo nel link, quindi il messaggio
-// arriva GIÀ SCRITTO. Instagram no: Meta non permette di precompilare un DM
-// (vedi docs/SHOP.md), quindi lì il messaggio va copiato e incollato — per
-// questo lo copiamo automaticamente e lo mostriamo bello grande.
+// ——— PERCHÉ TRE SCHERMATE ———
+// WhatsApp accetta il testo nel link: il messaggio arriva già scritto, un tocco
+// e via. Instagram no — Meta non permette di precompilare un DM (vedi
+// docs/SHOP.md) — quindi lì il messaggio va copiato e incollato a mano.
+//
+// Il punto debole non è la copia: è che l'utente arriva su Instagram, trova la
+// chat vuota e in quel momento non ha più nessuna istruzione davanti. Per questo
+// il percorso Instagram passa da una schermata "ponte" che dice cosa fare
+// nell'attimo prima di cambiare app, e da un promemoria quando l'utente torna.
+type Fase = "scelta" | "ponte" | "ritorno";
+
 export function BuySheet({
   product,
   size,
@@ -28,7 +35,9 @@ export function BuySheet({
   open: boolean;
   onClose: () => void;
 }) {
-  const [copied, setCopied] = useState(false);
+  const [fase, setFase] = useState<Fase>("scelta");
+  const [copiato, setCopiato] = useState(false);
+
   // Il pannello viene "teletrasportato" in fondo alla pagina (portal).
   // Serve: le schede prodotto sono dentro elementi animati con `transform`, e
   // un elemento `position: fixed` dentro un antenato trasformato NON si ancora
@@ -39,27 +48,57 @@ export function BuySheet({
 
   const msg = productMessage(product, size);
 
+  const chiudi = useCallback(() => {
+    onClose();
+    // si riapre sempre dall'inizio
+    setTimeout(() => {
+      setFase("scelta");
+      setCopiato(false);
+    }, 300);
+  }, [onClose]);
+
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && chiudi();
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
-  }, [open, onClose]);
+  }, [open, chiudi]);
 
-  // Copia il messaggio e lascia che sia il link a portare all'app.
-  function preparaInstagram() {
+  // Quando l'utente torna sul sito dopo essere andato su Instagram, glielo
+  // ricordiamo: è l'unico momento in cui possiamo recuperare chi si è perso.
+  // Pretendiamo di averlo visto uscire davvero (pagina nascosta) e poi tornare,
+  // altrimenti un semplice cambio di finestra farebbe comparire il promemoria
+  // a chi non è mai andato su Instagram.
+  useEffect(() => {
+    if (!open || fase !== "ponte") return;
+    let uscito = false;
+    const alCambio = () => {
+      if (document.visibilityState === "hidden") {
+        uscito = true;
+      } else if (uscito) {
+        setFase("ritorno");
+      }
+    };
+    document.addEventListener("visibilitychange", alCambio);
+    return () => document.removeEventListener("visibilitychange", alCambio);
+  }, [open, fase]);
+
+  // La copia deve avvenire dentro il gesto dell'utente (vincolo dei browser):
+  // per questo sta nell'onClick, non in un effetto.
+  function vaiAlPonte() {
     copyText(msg);
-    setCopied(true);
+    setCopiato(true);
+    setFase("ponte");
   }
 
-  function justCopy() {
+  function ricopia() {
     copyText(msg);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    setCopiato(true);
+    setTimeout(() => setCopiato(false), 2500);
   }
 
   if (!montato) return null;
@@ -76,7 +115,7 @@ export function BuySheet({
         >
           <div
             className="absolute inset-0 bg-ink/70 backdrop-blur-sm"
-            onClick={onClose}
+            onClick={chiudi}
             aria-hidden
           />
 
@@ -93,84 +132,197 @@ export function BuySheet({
             {/* maniglia mobile */}
             <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-ink/20 sm:hidden" />
 
-            <div className="flex items-center gap-4">
-              <div className="relative h-20 w-16 shrink-0 overflow-hidden rounded-lg bg-ink/10">
-                <Image
-                  src={product.image}
-                  alt=""
-                  fill
-                  sizes="64px"
-                  className="object-cover"
-                />
+            {/* ——————————————— 1. SCELTA DEL CANALE ——————————————— */}
+            {fase === "scelta" && (
+              <>
+                <div className="flex items-center gap-4">
+                  <div className="relative h-20 w-16 shrink-0 overflow-hidden rounded-lg bg-ink/10">
+                    <Image
+                      src={product.image}
+                      alt=""
+                      fill
+                      sizes="64px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-display text-2xl leading-tight text-ink">
+                      {product.title}
+                    </p>
+                    <p className="mt-0.5 font-sans text-xs uppercase tracking-wide2 text-ink/50">
+                      {product.base}
+                    </p>
+                    <p className="mt-1 font-display text-xl text-ink">
+                      {priceLabel(product)}
+                    </p>
+                  </div>
+                </div>
+
+                <p className="mt-5 font-sans text-sm text-ink/70">
+                  Messaggio pronto da inviare:
+                </p>
+                <pre className="mt-2 max-h-32 overflow-y-auto whitespace-pre-wrap rounded-xl bg-ink/5 p-3 font-sans text-xs leading-relaxed text-ink/80">
+                  {msg}
+                </pre>
+
+                <div className="mt-5">
+                  {/* Instagram è il canale principale del brand: primo e più grande.
+                      Qui NON si esce ancora: si passa alla schermata ponte. */}
+                  <button
+                    type="button"
+                    onClick={vaiAlPonte}
+                    className="btn flex w-full items-center justify-center gap-2 bg-gradient-to-tr from-[#FA7E1E] via-[#D62976] to-[#962FBF] py-4 text-base text-white hover:brightness-105"
+                  >
+                    <IgIcon />
+                    Invia su Instagram
+                  </button>
+
+                  {/* WhatsApp resta un tocco solo: il testo viaggia nel link.
+                      Link VERO, non window.open: solo così si apre l'app. */}
+                  <a
+                    href={waLink(site.whatsapp, msg)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={chiudi}
+                    className="mt-4 flex w-full items-center justify-center gap-2 rounded-full border border-ink/20 py-2.5 font-sans text-sm text-ink transition hover:border-ink/40 hover:bg-ink/5"
+                  >
+                    <WaIcon />
+                    Oppure su WhatsApp (già scritto)
+                  </a>
+                </div>
+
+                <div className="mt-5 flex items-center justify-between gap-3 border-t border-ink/10 pt-4">
+                  <button
+                    type="button"
+                    onClick={ricopia}
+                    className="font-sans text-xs text-ink/70 underline underline-offset-2 hover:text-ink"
+                  >
+                    {copiato ? "Copiato ✓" : "Copia messaggio"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={chiudi}
+                    className="font-sans text-xs text-ink/50 hover:text-ink"
+                  >
+                    Chiudi
+                  </button>
+                </div>
+              </>
+            )}
+
+            {/* ——————————————— 2. PONTE VERSO INSTAGRAM ——————————————— */}
+            {fase === "ponte" && (
+              <div className="text-center">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#1DBF73] text-3xl text-white">
+                  ✓
+                </div>
+                <p className="mt-4 font-display text-3xl leading-tight text-ink">
+                  Messaggio copiato
+                </p>
+
+                <div className="mt-5 rounded-2xl border border-ink/10 bg-ink/5 p-4 text-left">
+                  <p className="font-sans text-sm font-semibold text-ink">
+                    Ora fai così:
+                  </p>
+                  <ol className="mt-3 space-y-2.5 font-sans text-sm leading-relaxed text-ink/80">
+                    <li className="flex gap-2.5">
+                      <span className="font-semibold text-ink">1.</span>
+                      <span>Tocca il pulsante qui sotto: si apre Instagram.</span>
+                    </li>
+                    <li className="flex gap-2.5">
+                      <span className="font-semibold text-ink">2.</span>
+                      <span>
+                        Nella chat <strong>tieni premuto</strong> sulla barra del
+                        messaggio.
+                      </span>
+                    </li>
+                    <li className="flex gap-2.5">
+                      <span className="font-semibold text-ink">3.</span>
+                      <span>
+                        Tocca <strong>&laquo;Incolla&raquo;</strong> e invia.
+                      </span>
+                    </li>
+                  </ol>
+                </div>
+
+                {/* Link VERO: iOS e Android aprono l'app di Instagram solo se
+                    l'utente tocca un <a> (universal link). Da JavaScript
+                    resterebbe nel browser. Ricopiamo per sicurezza. */}
+                <a
+                  href={site.instagramDM}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => copyText(msg)}
+                  className="btn mt-5 flex w-full items-center justify-center gap-2 bg-gradient-to-tr from-[#FA7E1E] via-[#D62976] to-[#962FBF] py-4 text-base text-white hover:brightness-105"
+                >
+                  <IgIcon />
+                  Apri Instagram
+                </a>
+
+                <div className="mt-5 flex items-center justify-between gap-3 border-t border-ink/10 pt-4">
+                  <button
+                    type="button"
+                    onClick={ricopia}
+                    className="font-sans text-xs text-ink/70 underline underline-offset-2 hover:text-ink"
+                  >
+                    {copiato ? "Copiato ✓" : "Copia di nuovo"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setFase("scelta")}
+                    className="font-sans text-xs text-ink/50 hover:text-ink"
+                  >
+                    ← Indietro
+                  </button>
+                </div>
               </div>
-              <div className="min-w-0">
-                <p className="font-display text-2xl leading-tight text-ink">
-                  {product.title}
+            )}
+
+            {/* ——————————————— 3. AL RITORNO SUL SITO ——————————————— */}
+            {fase === "ritorno" && (
+              <div className="text-center">
+                <p className="font-display text-3xl leading-tight text-ink">
+                  Sei riuscito a inviarlo?
                 </p>
-                <p className="mt-0.5 font-sans text-xs uppercase tracking-wide2 text-ink/50">
-                  {product.base}
+                <p className="mx-auto mt-3 max-w-xs text-pretty font-sans text-sm leading-relaxed text-ink/70">
+                  Se la chat era vuota nessun problema: il messaggio è ancora
+                  copiato, puoi riprovare.
                 </p>
-                <p className="mt-1 font-display text-xl text-ink">
-                  {priceLabel(product)}
-                </p>
+
+                <div className="mt-6 space-y-2.5">
+                  <button
+                    type="button"
+                    onClick={chiudi}
+                    className="btn w-full bg-ink py-3.5 text-base text-paper hover:brightness-110"
+                  >
+                    Sì, inviato
+                  </button>
+                  <a
+                    href={site.instagramDM}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      copyText(msg);
+                      setFase("ponte");
+                    }}
+                    className="flex w-full items-center justify-center gap-2 rounded-full border border-ink/20 py-3 font-sans text-sm text-ink transition hover:border-ink/40 hover:bg-ink/5"
+                  >
+                    <IgIcon />
+                    No, riprova su Instagram
+                  </a>
+                  <a
+                    href={waLink(site.whatsapp, msg)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={chiudi}
+                    className="flex w-full items-center justify-center gap-2 rounded-full border border-ink/20 py-3 font-sans text-sm text-ink transition hover:border-ink/40 hover:bg-ink/5"
+                  >
+                    <WaIcon />
+                    Mandalo su WhatsApp (già scritto)
+                  </a>
+                </div>
               </div>
-            </div>
-
-            <p className="mt-5 font-sans text-sm text-ink/70">
-              Messaggio pronto da inviare:
-            </p>
-            <pre className="mt-2 max-h-32 overflow-y-auto whitespace-pre-wrap rounded-xl bg-ink/5 p-3 font-sans text-xs leading-relaxed text-ink/80">
-              {msg}
-            </pre>
-
-            <div className="mt-5">
-              {/* Instagram è il canale principale del brand: primo e più grande. */}
-              {/* Link VERO, non un window.open da codice: iOS e Android aprono
-                  l'app di Instagram solo quando l'utente tocca un vero <a>
-                  (universal link). Aperto via JavaScript resterebbe nel browser. */}
-              <a
-                href={site.instagramDM}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={preparaInstagram}
-                className="btn flex w-full items-center justify-center gap-2 bg-gradient-to-tr from-[#FA7E1E] via-[#D62976] to-[#962FBF] py-4 text-base text-white hover:brightness-105"
-              >
-                <IgIcon />
-                {copied ? "Copiato ✓ — apri e incolla" : "Invia su Instagram"}
-              </a>
-              <p className="mt-2 text-center font-sans text-[0.7rem] text-ink/50">
-                Instagram non permette di scrivere il messaggio in automatico:
-                lo copio io, tu incollalo nella chat.
-              </p>
-
-              <a
-                href={waLink(site.whatsapp, msg)}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={onClose}
-                className="mt-4 flex w-full items-center justify-center gap-2 rounded-full border border-ink/20 py-2.5 font-sans text-sm text-ink transition hover:border-ink/40 hover:bg-ink/5"
-              >
-                <WaIcon />
-                Oppure su WhatsApp (già scritto)
-              </a>
-            </div>
-
-            <div className="mt-5 flex items-center justify-between gap-3 border-t border-ink/10 pt-4">
-              <button
-                type="button"
-                onClick={justCopy}
-                className="font-sans text-xs text-ink/70 underline underline-offset-2 hover:text-ink"
-              >
-                {copied ? "Copiato ✓" : "Copia messaggio"}
-              </button>
-              <button
-                type="button"
-                onClick={onClose}
-                className="font-sans text-xs text-ink/50 hover:text-ink"
-              >
-                Chiudi
-              </button>
-            </div>
+            )}
           </motion.div>
         </motion.div>
       )}

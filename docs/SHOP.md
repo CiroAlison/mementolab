@@ -96,8 +96,18 @@ del pezzo, il prezzo e il messaggio già pronto, e due modi per mandarlo:
 
 | Canale | Cosa succede |
 |---|---|
-| **WhatsApp** | Il messaggio arriva **già scritto**: il cliente preme solo invio. Zero passaggi. |
-| **Instagram** | Il messaggio viene **copiato** e si apre il DM: il cliente deve **incollare**. |
+| **WhatsApp** | Il messaggio arriva **già scritto**: il cliente preme solo invio. Un tocco. |
+| **Instagram** | Passa da una **schermata ponte** che spiega cosa fare, poi apre il DM. |
+
+### Il percorso Instagram, in tre schermate
+1. **Scelta** — foto del pezzo, prezzo, messaggio e i due canali.
+2. **Ponte** — al tocco su Instagram NON si esce subito: compare un grande
+   «✓ Messaggio copiato» con i tre passi (apri → tieni premuto → Incolla) e il
+   pulsante «Apri Instagram». L'istruzione si legge nell'attimo prima di cambiare
+   app, quando l'utente è ancora attento.
+3. **Ritorno** — se l'utente torna sul sito, il pannello chiede «Sei riuscito a
+   inviarlo?» con «Sì, inviato», «No, riprova su Instagram» e l'alternativa
+   WhatsApp. Recupera chi si è perso per strada.
 
 Entrambi sono **link veri** (`<a href>`), non aperture da JavaScript: è l'unico
 modo perché iOS e Android aprano l'**app** invece di una pagina web.

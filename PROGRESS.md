@@ -78,6 +78,10 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
 - **v22 — Categoria T-shirt e ordine**: nuova categoria «T-shirt e felpe»; nello
   shop i pezzi sono ordinati per forza commerciale (giubbotti e scarpe prima); in
   home «Categorie» spostata prima di «In evidenza».
+- **v23 — Passaggio a Instagram a prova di errore**: il tocco su Instagram apre
+  una schermata ponte («Messaggio copiato» + i tre passi per incollare) invece di
+  uscire subito; al ritorno sul sito il pannello chiede se l'invio è riuscito e
+  offre di riprovare.
 
 ## ✅ Fatto (release 1)
 

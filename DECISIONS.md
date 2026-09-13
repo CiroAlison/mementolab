@@ -291,3 +291,28 @@ nella foto c'è una persona.
   **orientarsi** — «cosa posso far dipingere?» — prima di guardare altre immagini.
   Le categorie rispondono a quella domanda, «In evidenza» invece ispira: prima si
   orienta, poi si sogna.
+
+## Passaggio sito → Instagram reso a prova di errore (v23)
+Il problema non era la copia del messaggio, che funzionava: era che **l'utente
+arrivava su Instagram, trovava la chat vuota e in quel momento non aveva più
+nessuna istruzione davanti**. Tre difetti precisi del pannello vecchio:
+1. l'avviso «lo copio io, tu incollalo» era piccolo, grigio e **sotto** il
+   pulsante — nel punto dove l'occhio non guarda;
+2. la conferma «Copiato ✓» compariva **nell'istante del clic**, mentre lo schermo
+   stava già passando all'app: non veniva mai letta;
+3. una volta dentro Instagram non c'era più alcun aiuto.
+
+**Soluzione — tre schermate in `BuySheet.tsx`** (`fase`: scelta → ponte → ritorno):
+- **Ponte**: il tocco su Instagram non esce più subito. Copia il messaggio e mostra
+  «✓ Messaggio copiato» con i tre passi numerati e il pulsante «Apri Instagram».
+  Costa un tocco in più ma l'istruzione viene letta nel momento giusto.
+- **Ritorno**: alla ripresa della pagina si chiede «Sei riuscito a inviarlo?».
+  Il promemoria scatta **solo** dopo aver visto la pagina passare a `hidden` e poi
+  tornare `visible`: un semplice cambio di finestra non lo fa comparire.
+
+Vincoli rispettati: la copia resta dentro il gesto dell'utente (obbligo dei
+browser) e «Apri Instagram» è un `<a href>` vero, unico modo perché iOS e Android
+aprano l'app invece del browser.
+
+Scelte della cliente: niente illustrazione del gesto (solo parole) e messaggio
+precompilato invariato.
