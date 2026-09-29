@@ -339,3 +339,31 @@ difesa automatica scattata sull'indirizzo di rete che generava il traffico.
 poche richieste mirate, e fare i test di funzionamento **in locale**
 (`npx next start`). Niente cicli `until curl ...; do sleep; done` contro il
 dominio di produzione.
+
+### Seguito (set 2026): la regola era giusta, ma era già stata violata
+Scrivendo la regola qui sopra, **un ciclo di quel tipo era in esecuzione da
+giorni** senza che me ne accorgessi: era stato avviato in background il 13
+settembre per attendere un deploy ed è rimasto attivo **16 giorni**, circa
+**138.000 richieste** a `mementolab.it/shop` ogni 10 secondi.
+
+**Perché non si è fermato — il meccanismo da ricordare:** appena Vercel ha
+iniziato a rispondere con la pagina "Security Checkpoint", quella pagina non
+conteneva più la frase cercata dal `grep`. La condizione d'uscita non si è quindi
+**mai** verificata: il ciclo continuava, e quel traffico teneva viva la protezione.
+Un ciclo che aspetta una condizione può **impedire alla condizione di realizzarsi**.
+
+Il problema era stato diagnosticato due volte in modo sbagliato ("saranno i
+controlli occasionali"); l'ha individuato la cliente notando che risultava ancora
+un'attività in esecuzione.
+
+**Barriere messe in atto perché non si ripeta:**
+- **`CLAUDE.md`** nella radice del progetto: viene caricato automaticamente a ogni
+  sessione e mette il divieto fra le prime righe, con il racconto dell'incidente.
+- **`npm run verifica`** (`scripts/verifica-online.mjs`): controllo con numero
+  massimo di tentativi, che **riconosce la pagina di sicurezza di Vercel e si
+  ferma** invece di insistere. Testato: si arresta in 1,2 secondi dopo una sola
+  richiesta.
+- **`npm run stop`** (`scripts/stop.sh`): chiude server di prova, download e cicli
+  rimasti. Da lanciare prima di considerare concluso un intervento.
+- Nota permanente nella memoria di Claude, così la regola vale anche in sessioni
+  future e su altri progetti.

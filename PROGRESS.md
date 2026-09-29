@@ -85,6 +85,10 @@ Stato del progetto, in ordine cronologico. Aggiornato ad ogni sessione.
 - **v24 — Istruzioni Instagram anche nei moduli**: Commissioni e Contatti usano
   lo stesso percorso dello shop (istruzioni prima di uscire + promemoria al
   ritorno). WhatsApp ed email restano a un tocco solo.
+- **v25 — Barriere contro gli errori operativi**: aggiunto `CLAUDE.md` (istruzioni
+  caricate a ogni sessione), `npm run verifica` (controllo sicuro del sito, si ferma
+  da solo) e `npm run stop` (chiude i processi rimasti), dopo che un ciclo di attesa
+  lasciato attivo 16 giorni aveva fatto scattare l'anti-bot di Vercel.
 
 ## ✅ Fatto (release 1)
 

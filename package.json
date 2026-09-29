@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate",
-    "pezzo": "node scripts/aggiungi-pezzo.mjs"
+    "pezzo": "node scripts/aggiungi-pezzo.mjs",
+    "verifica": "node scripts/verifica-online.mjs",
+    "stop": "bash scripts/stop.sh"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
